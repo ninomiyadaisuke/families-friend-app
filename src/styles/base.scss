@@ -172,6 +172,7 @@ p {
 
 a {
   color: $blue;
+  text-decoration: none;
   transition: color 0.35s ease;
   &:hover {
     color: $blue;

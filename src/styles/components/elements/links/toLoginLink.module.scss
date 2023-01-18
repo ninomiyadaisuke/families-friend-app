@@ -1,0 +1,26 @@
+.link {
+  display: block;
+  span {
+    color: $main;
+    &:nth-child(2) {
+      display: none;
+    }
+  }
+  @include mq('md') {
+    span {
+      font-size: 20px;
+      &:nth-child(2) {
+        display: none;
+      }
+    }
+    &:hover span {
+      &:nth-child(1) {
+        display: none;
+      }
+      &:nth-child(2) {
+        display: block;
+        opacity: 1;
+      }
+    }
+  }
+}
