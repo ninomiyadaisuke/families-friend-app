@@ -2,13 +2,13 @@ import HTMLReactParser from 'html-react-parser';
 import { FC, ReactNode } from 'react';
 
 type Props = {
-  children: ReactNode;
+  text: string;
   className?: string;
 };
 
 const Text: FC<Props> = (props) => {
-  const { children, className } = props;
-  return <p className={className}>{HTMLReactParser(children)}</p>;
+  const { className, text } = props;
+  return <p className={className}>{HTMLReactParser(text)}</p>;
 };
 
 export default Text;
