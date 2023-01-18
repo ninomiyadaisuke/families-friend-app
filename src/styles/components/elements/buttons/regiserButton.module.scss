@@ -1,0 +1,90 @@
+.button {
+  position: relative;
+  display: inline-block;
+  width: 170px;
+  height: 45px;
+  padding: 20px;
+  text-decoration: none;
+  cursor: pointer;
+  background: $main;
+  border: none;
+  border-radius: 20px;
+  p {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 163px;
+    height: 39px;
+    border: 2px solid #ffffff;
+    border-radius: 17px;
+  }
+  span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    font-size: 16px;
+    color: #ffffff;
+    white-space: nowrap;
+    transition: all 0.5s;
+    transform: translate(-50%, -50%);
+    &:nth-child(2) {
+      opacity: 0;
+    }
+  }
+  &::after,&::before {
+    position: absolute;
+    top: 3px;
+    right: 30px;
+    z-index: 1;
+    display: block;
+    width: 80px;
+    height: 4px;
+    content: '';
+    background-color: $main;
+    transition: 0.3s;
+  }
+  &::after {
+    top: 38px;
+    left: 30px;
+  }
+  @include mq('md') {
+    width: 246px;
+    height: 58px;
+    border-radius: 20px;
+    span {
+      font-size: 20px;
+    }
+    &:hover span {
+      &:nth-child(1) {
+        opacity: 0;
+      }
+      &:nth-child(2) {
+        opacity: 1;
+      }
+    }
+    &::after,&::before {
+      position: absolute;
+      top: 4px;
+      right: 6px;
+      width: 160px;
+      height: 10px;
+      border-radius: 20px;
+    }
+    &::after {
+      top: 43px;
+      left: 7px;
+    }
+    &:hover::before,&:hover::after {
+      width: 0%;
+    }
+    p {
+      top: 5px;
+      left: 5px;
+      width: 236px;
+      height: 48px;
+      border-radius: 15px;
+    }
+  }
+}
+
