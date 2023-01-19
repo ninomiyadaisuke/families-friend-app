@@ -1,0 +1,36 @@
+.about {
+  position: relative;
+  margin-bottom: 72px;
+  &__textArea {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    justify-content: center;
+    padding: 37px 0;
+    background-color: $bg-blue;
+    h2,
+    h3,
+    a {
+      font-size: 61px;
+      line-height: 100%;
+      color: $text-white;
+      text-align: center;
+    }
+    h3 {
+      font-size: 25px;
+      color: $main;
+    }
+    p {
+      width: 67%;
+      margin: 0 auto;
+      font-size: 16px;
+    }
+    a {
+      font-size: 25px;
+      color: $main;
+    }
+  }
+  &__image {
+    padding: 11px 10% 0 10%;
+  }
+}
