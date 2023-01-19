@@ -1,0 +1,84 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 200px;
+  padding: 0 4% 0 4%;
+  background-color: $bg-blue;
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  &__links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    a {
+      font-size: 16px;
+      color: $link-footer;
+    }
+  }
+  &__icons {
+    display: flex;
+    justify-content: space-between;
+    width: 174px;
+    height: auto;
+    &_facebook {
+      width: 14px;
+      height: 27px;
+    }
+    &_twitter {
+      width: 30px;
+      height: 24px;
+    }
+    &_instagram {
+      width: 26px;
+      height: 26px;
+    }
+  }
+
+  &__logoArea {
+    display: flex;
+    flex-direction: column;
+    gap: 27px;
+    &_logo {
+      align-self: center;
+      width: 77px;
+      height: 77px;
+    }
+    small {
+      font-size: 10px;
+      letter-spacing: 1px;
+      transform: scale(0.6);
+    }
+  }
+  @include mq('md') {
+    position: relative;
+    padding: 0 9.4% 0 9.4%;
+    &__icons {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 26%;
+      transform: translate(-50%, -50%);
+      &_facebook {
+        width: 19px;
+        height: 36px;
+      }
+      &_twitter {
+        width: 40px;
+        height: 32px;
+      }
+      &_instagram {
+        width: 35px;
+        height: 35px;
+      }
+    }
+    &__logoArea {
+      small {
+        font-size: 16px;
+      }
+    }
+  }
+}
