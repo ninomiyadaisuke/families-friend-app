@@ -14,7 +14,7 @@ const FixedImage: FC<Props> = (props) => {
   return (
     <div className={className}>
       <div className={styles.container}>
-        <Image src={src} alt={alt} fill sizes="100vw" className={styles.image} />
+        <Image src={src} alt={alt} fill sizes="100vw" className={styles.image} priority />
       </div>
     </div>
   );
