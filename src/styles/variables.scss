@@ -21,6 +21,15 @@ $bg-blue: #d8eefe;
 $dark-gray: #707070;
 $light-grey: #cecece;
 
+$header_bg: linear-gradient(
+  0deg,
+  rgba(255, 255, 255, 0),
+  rgba(255, 255, 255, 0.25) 25%,
+  rgba(255, 255, 255, 0.5) 50%,
+  rgba(255, 255, 255, 0.75) 75%,
+  rgba(255, 255, 255, 1)
+);
+
 $breakpoints: (
   'xxs': 'screen and (min-width: 440px)',
   'xs': 'screen and (min-width: 560px)',
