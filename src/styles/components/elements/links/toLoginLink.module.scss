@@ -1,6 +1,7 @@
 .link {
   display: block;
   span {
+    font-size: 16px;
     color: $main;
     &:nth-child(2) {
       display: none;

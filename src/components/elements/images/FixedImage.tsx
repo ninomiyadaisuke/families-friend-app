@@ -6,13 +6,16 @@ import styles from '@/styles/components/elements/images/fixedImage.module.scss';
 type Props = {
   src: string;
   alt: string;
+  className: string; // widthとheightを必ず指定
 };
 
 const FixedImage: FC<Props> = (props) => {
-  const { src, alt } = props;
+  const { src, alt, className } = props;
   return (
-    <div className={styles.container}>
-      <Image src={src} alt={alt} fill sizes="100vw" className={styles.image} />
+    <div className={className}>
+      <div className={styles.container}>
+        <Image src={src} alt={alt} fill sizes="100vw" className={styles.image} />
+      </div>
     </div>
   );
 };

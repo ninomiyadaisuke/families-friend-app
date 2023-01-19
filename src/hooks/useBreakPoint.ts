@@ -1,6 +1,6 @@
 import useBreakpoint from 'use-breakpoint';
 
-const BREAKPOINTS = { tablet: 0, desktop: 991 };
+const BREAKPOINTS = { tablet: 0, desktop: 800 };
 
 export const useBreakPoint = () => {
   const { breakpoint } = useBreakpoint(BREAKPOINTS, 'tablet');
