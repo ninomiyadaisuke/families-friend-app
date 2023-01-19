@@ -5,6 +5,7 @@
   height: 200px;
   padding: 0 4% 0 4%;
   background-color: $bg-blue;
+  box-shadow: 0 -2px 2px $light-grey;
   &__container {
     display: flex;
     flex-direction: column;
