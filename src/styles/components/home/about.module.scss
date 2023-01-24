@@ -80,10 +80,13 @@
       &_verticalRibbon,
       &_presentBottomOfTheLid,
       &_presentBeforeRibbon,
-      &_presentAfterRibbon {
+      &_presentAfterRibbon,
+      &_phoneCircle,
+      &_phoneShadow {
         position: absolute;
         z-index: -1;
       }
+      // presentImages
       &_tag {
         img {
           width: calc(25px + 40 * (100vw - 800px) / 1120);
@@ -107,6 +110,20 @@
       &_presentAfterRibbon {
         img {
           width: calc(10px + 15 * (100vw - 800px) / 1120);
+        }
+      }
+      // phoneImages
+      &_phoneCircle {
+        display: flex;
+        img {
+          width: calc(26.5px + 38.5 * (100vw - 800px) / 1120);
+        }
+      }
+      &_phoneShadow {
+        // display: flex;
+        z-index: -2;
+        img {
+          width: calc(50.5px + 76 * (100vw - 800px) / 1120);
         }
       }
     }

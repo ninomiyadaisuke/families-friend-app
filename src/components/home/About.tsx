@@ -82,6 +82,26 @@ const presentAfterRibbon = {
   },
 };
 
+const phoneCircle = {
+  initial: { x: '1300%', y: '850%' },
+  animate: {
+    x: '1065%',
+    y: '770%',
+    transition: { duration: 1.5 },
+  },
+};
+
+const phoneShadow = {
+  initial: { x: '300%', y: '285%', rotate: 140, scaleX: 0.3 },
+  animate: {
+    x: '510%',
+    y: '225%',
+    rotate: 0,
+    scaleX: 1,
+    transition: { duration: 1.5 },
+  },
+};
+
 const About: FC = () => {
   const { tablet } = useBreakPoint();
 
@@ -89,7 +109,7 @@ const About: FC = () => {
     <section className={styles.about}>
       <div className={styles.about__container}>
         <motion.div
-          initial="hidden"
+          initial="initial"
           whileInView={'animate'}
           viewport={{ once: true }}
           className={styles.about__textArea}
@@ -159,13 +179,24 @@ const About: FC = () => {
                   height={96}
                 />
               </motion.div>
+              <motion.div variants={phoneCircle} className={styles.about__image_phoneCircle}>
+                <ResponsiveImage src={'/home/animation-parts/phoneCircle.svg'} alt={'parts-1'} width={65} height={65} />
+              </motion.div>
+              <motion.div variants={phoneShadow} className={styles.about__image_phoneShadow}>
+                <ResponsiveImage
+                  src={'/home/animation-parts/phoneShadow.svg'}
+                  alt={'parts-1'}
+                  width={126}
+                  height={197}
+                />
+              </motion.div>
             </>
           )}
           <ResponsiveImage
             src={tablet ? '/home/about-gift-sp.svg' : '/home/about-gift-base.svg'}
             alt="gift"
-            width={330}
-            height={262}
+            width={873}
+            height={663}
           />
         </motion.div>
       </div>
