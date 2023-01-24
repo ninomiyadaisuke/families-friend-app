@@ -73,8 +73,42 @@
       }
     }
     &__image {
+      position: relative;
       flex: 1;
       padding: 0;
+      &_tag,
+      &_verticalRibbon,
+      &_presentBottomOfTheLid,
+      &_presentBeforeRibbon,
+      &_presentAfterRibbon {
+        position: absolute;
+        z-index: -1;
+      }
+      &_tag {
+        img {
+          width: calc(25px + 40 * (100vw - 800px) / 1120);
+        }
+      }
+      &_verticalRibbon {
+        img {
+          width: calc(10px + 15 * (100vw - 800px) / 1120);
+        }
+      }
+      &_presentBottomOfTheLid {
+        img {
+          width: calc(11px + 18 * (100vw - 800px) / 1120);
+        }
+      }
+      &_presentBeforeRibbon {
+        img {
+          width: calc(10px + 15 * (100vw - 800px) / 1120);
+        }
+      }
+      &_presentAfterRibbon {
+        img {
+          width: calc(10px + 15 * (100vw - 800px) / 1120);
+        }
+      }
     }
   }
 }

@@ -9,6 +9,7 @@ const Home: NextPageWithLayout = () => {
     <>
       <Hero />
       <About />
+      <div style={{ height: '2000px' }}></div>
     </>
   );
 };
