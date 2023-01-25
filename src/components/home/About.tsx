@@ -102,6 +102,25 @@ const phoneShadow = {
   },
 };
 
+const userListAfter = {
+  initial: { x: '373%', y: '9%' },
+  // animate: {
+  //   x: '510%',
+  //   y: '225%',
+  //   rotate: 0,
+  //   scaleX: 1,
+  //   transition: { duration: 1.5 },
+  // },
+};
+
+const noteShadow = {
+  initial: { x: '29%', y: '465%' },
+};
+
+const userListShadow = {
+  initial: { x: '390%', y: '25%' },
+};
+
 const About: FC = () => {
   const { tablet } = useBreakPoint();
 
@@ -130,6 +149,13 @@ const About: FC = () => {
         >
           {!tablet && (
             <>
+              <motion.div variants={noteShadow} className={styles.about__image_noteShadow}>
+                <ResponsiveImage src={'/home/about-gift-note-shadow.png'} alt="gift" width={140} height={118} />
+              </motion.div>
+              <motion.div variants={userListShadow} className={styles.about__image_userListShadow}>
+                <ResponsiveImage src={'/home/about-gift-list-shadow.png'} alt="gift" width={160} height={190} />
+              </motion.div>
+
               <motion.div variants={presentTag} className={styles.about__image_tag}>
                 <ResponsiveImage
                   src={'/home/animation-parts/presentTag.svg'}
@@ -188,6 +214,14 @@ const About: FC = () => {
                   alt={'parts-1'}
                   width={126}
                   height={197}
+                />
+              </motion.div>
+              <motion.div variants={userListAfter} className={styles.about__image_userListAfter}>
+                <ResponsiveImage
+                  src={'/home/animation-parts/userListAfter.svg'}
+                  alt={'parts-1'}
+                  width={171}
+                  height={216}
                 />
               </motion.div>
             </>

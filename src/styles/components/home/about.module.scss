@@ -73,18 +73,34 @@
       }
     }
     &__image {
+      // max-width: 783px;
       position: relative;
       flex: 1;
       padding: 0;
+      &_noteShadow,
+      &_userListShadow,
       &_tag,
       &_verticalRibbon,
       &_presentBottomOfTheLid,
       &_presentBeforeRibbon,
       &_presentAfterRibbon,
       &_phoneCircle,
-      &_phoneShadow {
+      &_phoneShadow,
+      &_userListAfter {
         position: absolute;
         z-index: -1;
+      }
+      &_noteShadow,
+      &_userListShadow {
+        z-index: -3;
+        img {
+          width: calc(53.5px + 86.5 * (100vw - 800px) / 1120);
+        }
+      }
+      &_userListShadow {
+        img {
+          width: calc(66.5px + 93.5 * (100vw - 800px) / 1120);
+        }
       }
       // presentImages
       &_tag {
@@ -120,10 +136,15 @@
         }
       }
       &_phoneShadow {
-        // display: flex;
         z-index: -2;
         img {
           width: calc(50.5px + 76 * (100vw - 800px) / 1120);
+        }
+      }
+      &_userListAfter {
+        
+        img {
+          width: calc(71px + 100 * (100vw - 800px) / 1120);
         }
       }
     }
