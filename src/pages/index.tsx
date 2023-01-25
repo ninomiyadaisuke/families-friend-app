@@ -7,7 +7,7 @@ import { Layout } from '@/components/layouts';
 const Home: NextPageWithLayout = () => {
   return (
     <>
-      {/* <Hero /> */}
+      <Hero />
       <About />
       <div style={{ height: '2000px' }}></div>
     </>
