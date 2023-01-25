@@ -25,7 +25,7 @@ export const homeAnimationData = [
     variants: noteBlue,
     src: '/home/animation-parts/noteBlue.svg',
     alt: 'note-animation',
-    className: styles.about__image_noteBlue,
+    className: styles.about__image_noteLightBlueSmall,
   },
   {
     widht: 37,
