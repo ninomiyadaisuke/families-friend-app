@@ -86,7 +86,11 @@
       &_presentAfterRibbon,
       &_phoneCircle,
       &_phoneShadow,
-      &_userList {
+      &_userList,
+      &_noteCheckbox,
+      &_noteLightBlueSmall,
+      &_noteLightBlueBig,
+      &_noteBlue {
         position: absolute;
         z-index: -1;
       }
@@ -141,9 +145,36 @@
           width: calc(50.5px + 76 * (100vw - 800px) / 1120);
         }
       }
+      // userList image
       &_userList {
         img {
           width: calc(71px + 100 * (100vw - 800px) / 1120);
+        }
+      }
+      // note images
+      &_noteCheckbox {
+        display: flex;
+        img {
+          width: calc(15.2px + 21.7 * (100vw - 800px) / 1120);
+        }
+      }
+      &_noteLightBlueSmall {
+        display: flex;
+        img {
+          width: calc(20px + 29 * (100vw - 800px) / 1120);
+        }
+      }
+      &_noteLightBlueBig {
+        z-index: -2;
+        display: flex;
+        img {
+          width: calc(63.5px + 91.5 * (100vw - 800px) / 1120);
+        }
+      }
+      &_noteBlue {
+        display: flex;
+        img {
+          width: calc(20px + 23 * (100vw - 800px) / 1120);
         }
       }
     }

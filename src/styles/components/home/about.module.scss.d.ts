@@ -2,6 +2,10 @@ export type Styles = {
   about: string;
   about__container: string;
   about__image: string;
+  about__image_noteBlue: string;
+  about__image_noteCheckbox: string;
+  about__image_noteLightBlueBig: string;
+  about__image_noteLightBlueSmall: string;
   about__image_noteShadow: string;
   about__image_phoneCircle: string;
   about__image_phoneShadow: string;

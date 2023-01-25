@@ -114,6 +114,49 @@ const userListAfter = {
   },
 };
 
+const noteCheckbox = {
+  initial: { x: '455%', y: '1235%', scale: 0.5 },
+  animate: {
+    x: '365%',
+    y: '1585%',
+    scale: 1,
+    transition: { duration: 1.5 },
+  },
+};
+const noteLightBlueSmall = {
+  initial: { x: '-150%', y: '830%', rotate: 45, scaleX: 0.5, scaleY: 1.7 },
+  animate: {
+    x: '50%',
+    y: '808%',
+    scaleX: 1,
+    scaleY: 1,
+    rotate: 0,
+    transition: { duration: 1.5 },
+  },
+};
+
+const noteBlue = {
+  initial: { x: '600%', y: '950%', rotate: -45, scaleX: 0.4, scaleY: 1.8 },
+  animate: {
+    x: '125%',
+    y: '800%',
+    scaleX: 1,
+    scaleY: 1,
+    rotate: 0,
+    transition: { duration: 1.5 },
+  },
+};
+
+const noteLightBlueBig = {
+  initial: { x: '30%', y: '610%', scaleY: 0.2 },
+  animate: {
+    x: '30%',
+    y: '518%',
+    scaleY: 1,
+    transition: { duration: 1.5 },
+  },
+};
+
 const noteShadow = {
   initial: { x: '29%', y: '465%' },
 };
@@ -219,6 +262,33 @@ const About: FC = () => {
               </motion.div>
               <motion.div variants={userListAfter} className={styles.about__image_userList}>
                 <ResponsiveImage src={'/home/animation-parts/userList.svg'} alt={'parts-1'} width={171} height={216} />
+              </motion.div>
+              <motion.div variants={noteCheckbox} className={styles.about__image_noteCheckbox}>
+                <ResponsiveImage
+                  src={'/home/animation-parts/noteCheckbox.svg'}
+                  alt={'parts-1'}
+                  width={37}
+                  height={37}
+                />
+              </motion.div>
+              <motion.div variants={noteLightBlueSmall} className={styles.about__image_noteLightBlueSmall}>
+                <ResponsiveImage
+                  src={'/home/animation-parts/noteLightBlue.svg'}
+                  alt={'parts-1'}
+                  width={48}
+                  height={49}
+                />
+              </motion.div>
+              <motion.div variants={noteBlue} className={styles.about__image_noteLightBlueSmall}>
+                <ResponsiveImage src={'/home/animation-parts/noteBlue.svg'} alt={'parts-1'} width={43} height={49} />
+              </motion.div>
+              <motion.div variants={noteLightBlueBig} className={styles.about__image_noteLightBlueBig}>
+                <ResponsiveImage
+                  src={'/home/animation-parts/noteLightBlueBig.svg'}
+                  alt={'parts-1'}
+                  width={155}
+                  height={105}
+                />
               </motion.div>
             </>
           )}
