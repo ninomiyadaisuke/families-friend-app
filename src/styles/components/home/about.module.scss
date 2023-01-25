@@ -69,11 +69,11 @@
       h2 {
         position: absolute;
         z-index: -1;
-        font-size: calc(200px + 10vw);
+        font-size: calc(135px + 195 * (100vw - 800px) / 1120);
+        color: $text-white;;
       }
     }
     &__image {
-      // max-width: 783px;
       position: relative;
       flex: 1;
       padding: 0;

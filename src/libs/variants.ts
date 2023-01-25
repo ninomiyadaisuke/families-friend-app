@@ -1,3 +1,12 @@
+export const homeAboutTitle = {
+  initial: { x: '-80%', y: '-20%' },
+  animate: {
+    x: '27%',
+    y: '-20%',
+    transition: { duration: 2 },
+  },
+};
+
 export const presentTag = {
   initial: { x: '-200%', y: '10%', opacity: 1, rotate: 0 },
   animate: {
