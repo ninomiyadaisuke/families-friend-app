@@ -1,11 +1,16 @@
 import type { NextPageWithLayout } from 'next';
 import { ReactElement } from 'react';
 
-import { Hero } from '@/components/home';
+import { Hero,HomeAbout } from '@/components/home';
 import { Layout } from '@/components/layouts';
 
 const Home: NextPageWithLayout = () => {
-  return <Hero />;
+  return (
+    <>
+      <Hero />
+      <HomeAbout />
+    </>
+  );
 };
 
 export const HomePageLayout = (page: ReactElement) => <Layout>{page}</Layout>;

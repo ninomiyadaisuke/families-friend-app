@@ -1,0 +1,182 @@
+.about {
+  position: relative;
+  margin-bottom: 72px;
+  &__textArea {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    justify-content: center;
+    padding: 37px 0;
+    background-color: $bg-blue;
+    h2,
+    h3,
+    a {
+      font-size: 61px;
+      line-height: 100%;
+      color: $text-white;
+      text-align: center;
+    }
+    h3 {
+      font-size: 25px;
+      color: $main;
+    }
+    p {
+      width: 67%;
+      margin: 0 auto;
+      font-size: 16px;
+    }
+    a {
+      font-size: 25px;
+      color: $main;
+    }
+  }
+  &__image {
+    padding: 11px 10% 0 10%;
+  }
+  @include mq('md') {
+    position: relative;
+    z-index: -1;
+    height: auto;
+    padding: 9.2% 4% 13% 4%;
+    background-color: $bg-blue;
+    &__container {
+      display: flex;
+      gap: 20px;
+      width: 100%;
+    }
+    &__textArea {
+      flex: 1;
+      gap: 0;
+      align-self: flex-end;
+      padding: 0;
+      background-color: transparent;
+      h3 {
+        margin-bottom: 20px;
+        font-size: 30px;
+        color: $main;
+        text-align: start;
+      }
+      p {
+        width: 100%;
+        margin: 0 0 14% 0;
+        font-size: 20px;
+      }
+      a {
+        font-size: 20px;
+        color: $main;
+        text-align: end;
+      }
+      h2 {
+        position: absolute;
+        z-index: -1;
+        font-size: calc(135px + 195 * (100vw - 800px) / 1120);
+        color: $text-white;;
+      }
+    }
+    &__image {
+      position: relative;
+      flex: 1;
+      padding: 0;
+      &_noteShadow,
+      &_userListShadow,
+      &_tag,
+      &_verticalRibbon,
+      &_presentBottomOfTheLid,
+      &_presentBeforeRibbon,
+      &_presentAfterRibbon,
+      &_phoneCircle,
+      &_phoneShadow,
+      &_userList,
+      &_noteCheckbox,
+      &_noteLightBlueSmall,
+      &_noteLightBlueBig,
+      &_noteBlue {
+        position: absolute;
+        z-index: -1;
+      }
+      &_noteShadow,
+      &_userListShadow {
+        z-index: -3;
+        img {
+          width: calc(53.5px + 86.5 * (100vw - 800px) / 1120);
+        }
+      }
+      &_userListShadow {
+        img {
+          width: calc(66.5px + 93.5 * (100vw - 800px) / 1120);
+        }
+      }
+      // presentImages
+      &_tag {
+        img {
+          width: calc(25px + 40 * (100vw - 800px) / 1120);
+        }
+      }
+      &_verticalRibbon {
+        img {
+          width: calc(10px + 15 * (100vw - 800px) / 1120);
+        }
+      }
+      &_presentBottomOfTheLid {
+        img {
+          width: calc(11px + 18 * (100vw - 800px) / 1120);
+        }
+      }
+      &_presentBeforeRibbon {
+        img {
+          width: calc(10px + 15 * (100vw - 800px) / 1120);
+        }
+      }
+      &_presentAfterRibbon {
+        img {
+          width: calc(10px + 15 * (100vw - 800px) / 1120);
+        }
+      }
+      // phoneImages
+      &_phoneCircle {
+        display: flex;
+        img {
+          width: calc(26.5px + 38.5 * (100vw - 800px) / 1120);
+        }
+      }
+      &_phoneShadow {
+        z-index: -2;
+        img {
+          width: calc(50.5px + 76 * (100vw - 800px) / 1120);
+        }
+      }
+      // userList image
+      &_userList {
+        img {
+          width: calc(71px + 100 * (100vw - 800px) / 1120);
+        }
+      }
+      // note images
+      &_noteCheckbox {
+        display: flex;
+        img {
+          width: calc(15.2px + 21.7 * (100vw - 800px) / 1120);
+        }
+      }
+      &_noteLightBlueSmall {
+        display: flex;
+        img {
+          width: calc(20px + 29 * (100vw - 800px) / 1120);
+        }
+      }
+      &_noteLightBlueBig {
+        z-index: -2;
+        display: flex;
+        img {
+          width: calc(63.5px + 91.5 * (100vw - 800px) / 1120);
+        }
+      }
+      &_noteBlue {
+        display: flex;
+        img {
+          width: calc(20px + 23 * (100vw - 800px) / 1120);
+        }
+      }
+    }
+  }
+}
