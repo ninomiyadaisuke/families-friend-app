@@ -103,14 +103,15 @@ const phoneShadow = {
 };
 
 const userListAfter = {
-  initial: { x: '373%', y: '9%' },
-  // animate: {
-  //   x: '510%',
-  //   y: '225%',
-  //   rotate: 0,
-  //   scaleX: 1,
-  //   transition: { duration: 1.5 },
-  // },
+  initial: { x: '430%', y: '-50%', rotate: -45, scaleX: 0.5, scaleY: 0.7 },
+  animate: {
+    x: '373%',
+    y: '9%',
+    rotate: 0,
+    scaleX: 1,
+    scaleY: 1,
+    transition: { duration: 1.5 },
+  },
 };
 
 const noteShadow = {
@@ -216,13 +217,8 @@ const About: FC = () => {
                   height={197}
                 />
               </motion.div>
-              <motion.div variants={userListAfter} className={styles.about__image_userListAfter}>
-                <ResponsiveImage
-                  src={'/home/animation-parts/userListAfter.svg'}
-                  alt={'parts-1'}
-                  width={171}
-                  height={216}
-                />
+              <motion.div variants={userListAfter} className={styles.about__image_userList}>
+                <ResponsiveImage src={'/home/animation-parts/userList.svg'} alt={'parts-1'} width={171} height={216} />
               </motion.div>
             </>
           )}

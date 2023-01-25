@@ -9,7 +9,7 @@ export type Styles = {
   about__image_presentBeforeRibbon: string;
   about__image_presentBottomOfTheLid: string;
   about__image_tag: string;
-  about__image_userListAfter: string;
+  about__image_userList: string;
   about__image_userListShadow: string;
   about__image_verticalRibbon: string;
   about__textArea: string;

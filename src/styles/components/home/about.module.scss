@@ -86,7 +86,7 @@
       &_presentAfterRibbon,
       &_phoneCircle,
       &_phoneShadow,
-      &_userListAfter {
+      &_userList {
         position: absolute;
         z-index: -1;
       }
@@ -141,8 +141,7 @@
           width: calc(50.5px + 76 * (100vw - 800px) / 1120);
         }
       }
-      &_userListAfter {
-        
+      &_userList {
         img {
           width: calc(71px + 100 * (100vw - 800px) / 1120);
         }
