@@ -1,0 +1,41 @@
+.service {
+  position: relative;
+  margin-bottom: 54px;
+  overflow: hidden;
+  h2 {
+    margin-bottom: 26px;
+    font-size: 61px;
+    color: $text-blue;
+    text-align: center;
+    opacity: 0.5;
+  }
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+    li {
+      height: auto;
+    }
+  }
+  @include mq('md') {
+    margin-bottom: 161px;
+    h2 {
+      position: absolute;
+      z-index: -1;
+      font-size: calc(135px + 230 * (100vw - 800px) / 1120);
+      color: $text-blue;
+      opacity: 0.5;
+    }
+    ul {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 81.2%;
+      margin: 0 auto;
+    }
+    li {
+      width: calc(200px + 311 * (100vw - 800px) / 1120);
+      height: calc(400px + 292 * (100vw - 800px) / 1120);
+    }
+  }
+}

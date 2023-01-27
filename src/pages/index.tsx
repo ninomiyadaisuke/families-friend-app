@@ -1,7 +1,7 @@
 import type { NextPageWithLayout } from 'next';
 import { ReactElement } from 'react';
 
-import { Hero,HomeAbout } from '@/components/home';
+import { Hero, HomeAbout, HomeService } from '@/components/home';
 import { Layout } from '@/components/layouts';
 
 const Home: NextPageWithLayout = () => {
@@ -9,6 +9,7 @@ const Home: NextPageWithLayout = () => {
     <>
       <Hero />
       <HomeAbout />
+      <HomeService />
     </>
   );
 };
