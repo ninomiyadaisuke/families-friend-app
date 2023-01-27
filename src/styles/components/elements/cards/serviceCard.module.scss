@@ -1,0 +1,31 @@
+.card {
+  display: flex;
+  width: 100%;
+  height: calc(420px + 290 * (100vw - 800px) / 1120);
+  &:hover {
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    background-color: rgba(128, 199, 253, 0.3);
+  }
+  h3,p {
+    color: $main;
+  }
+  &__container {
+    align-self: flex-end;
+  }
+  &__families,
+  &__present,
+  &__presentList {
+    display: flex;
+    margin: 0 auto;
+  }
+  &__families {
+    width: calc(100px + 187 * (100vw - 800px) / 1120);
+  }
+  &__present {
+    width: calc(126px + 249 * (100vw - 800px) / 1120);
+  }
+  &__presentList {
+    width: calc(145px + 286 * (100vw - 800px) / 1120);
+  }
+}

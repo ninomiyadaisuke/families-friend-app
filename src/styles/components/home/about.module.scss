@@ -35,9 +35,10 @@
   }
   @include mq('md') {
     position: relative;
-    z-index: -1;
+    z-index: 1;
     height: auto;
     padding: 9.2% 4% 13% 4%;
+    margin-bottom: 200px;
     background-color: $bg-blue;
     &__container {
       display: flex;
@@ -49,6 +50,7 @@
       gap: 0;
       align-self: flex-end;
       padding: 0;
+      overflow: hidden;
       background-color: transparent;
       h3 {
         margin-bottom: 20px;
@@ -70,7 +72,7 @@
         position: absolute;
         z-index: -1;
         font-size: calc(135px + 195 * (100vw - 800px) / 1120);
-        color: $text-white;;
+        color: $text-white;
       }
     }
     &__image {

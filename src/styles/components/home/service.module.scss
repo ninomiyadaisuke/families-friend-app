@@ -1,0 +1,37 @@
+.service {
+  position: relative;
+  overflow: hidden;
+  @include mq('md') {
+    margin-bottom: 161px;
+    h2 {
+      position: absolute;
+      z-index: -1;
+      font-size: calc(135px + 230 * (100vw - 800px) / 1120);
+      color: $text-blue;
+      opacity: 0.5;
+    }
+    h3 {
+      margin-top: calc(20px + 30 * (100vw - 800px) / 1120);
+      font-size: calc(16px + 20 * (100vw - 800px) / 1120);
+      text-align: center;
+    }
+    p {
+      display: flex;
+      width: 72%;
+      height: 231px;
+      margin: calc(17px + 10 * (100vw - 800px) / 1120) auto 0;
+      font-size: calc(12px + 8 * (100vw - 800px) / 1120);
+      text-overflow: ellipsis;
+    }
+    ul {
+      display: flex;
+      justify-content: space-between;
+      width: 81.2%;
+      margin: 0 auto;
+    }
+    li {
+      width: calc(200px + 311 * (100vw - 800px) / 1120);
+      height: calc(372px + 261 * (100vw - 800px) / 1120);
+    }
+  }
+}
