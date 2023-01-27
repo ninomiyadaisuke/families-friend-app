@@ -1,6 +1,7 @@
 .about {
   position: relative;
   margin-bottom: 72px;
+  overflow: hidden;
   &__textArea {
     display: flex;
     flex-direction: column;
@@ -71,8 +72,9 @@
       h2 {
         position: absolute;
         z-index: -1;
-        font-size: calc(135px + 195 * (100vw - 800px) / 1120);
+        font-size: calc(165px + 230 * (100vw - 800px) / 1120);
         color: $text-white;
+        letter-spacing: 0;
       }
     }
     &__image {
