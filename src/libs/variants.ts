@@ -1,16 +1,17 @@
 export const homeAboutTitle = {
   initial: { x: '-80%', y: '-20%' },
   animate: {
-    x: '24%',
+    x: '17%',
     y: '-20%',
     transition: { duration: 2 },
   },
 };
 
 export const homeServiceTitle = {
-  initial: { x: '100%' },
+  initial: { x: '100%', y: '-15%' },
   animate: {
-    x: '0%',
+    x: '-9%',
+    y: '-15%',
     transition: { duration: 2 },
   },
 };
