@@ -10,7 +10,7 @@ import styles from '@/styles/components/home/service.module.scss';
 const HomeService: FC = () => {
   const { tablet } = useBreakPoint();
   return (
-    <motion.section initial="initial" whileInView={'animate'} viewport={{ once: false }} className={styles.service}>
+    <motion.section initial="initial" whileInView={'animate'} viewport={{ once: true }} className={styles.service}>
       {tablet && <h2>SERVICE</h2>}
       {!tablet && <motion.h2 variants={homeServiceTitle}>SERVICE</motion.h2>}
       <ul>
