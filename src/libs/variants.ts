@@ -1,3 +1,5 @@
+// home page variants
+
 export const homeAboutTitle = {
   initial: { x: '-80%', y: '-20%' },
   animate: {
@@ -173,4 +175,75 @@ export const noteShadow = {
 
 export const userListShadow = {
   initial: { x: '390%', y: '25%' },
+};
+
+// about page variants
+export const aboutTitle = {
+  initial: { x: '11%', y: '40%', scale: 3 },
+  animate: {
+    scale: 1,
+    transition: { duration: 2 },
+  },
+};
+export const aboutPresent = {
+  initial: { x: '-150%', y: '360%' },
+  animate: {
+    x: '0%',
+    y: '5%',
+    transition: { duration: 2 },
+  },
+};
+
+export const aboutList = {
+  initial: { x: '450%', y: '340%' },
+  animate: {
+    x: '260%',
+    y: '-5%',
+    transition: { duration: 2 },
+  },
+};
+
+export const aboutNote = {
+  initial: { x: '-200%', y: '550%' },
+  animate: {
+    x: '10%',
+    y: '152%',
+    transition: { duration: 2 },
+  },
+};
+
+export const aboutPhone = {
+  initial: { x: '520%', y: '550%' },
+  animate: {
+    x: '300%',
+    y: '156%',
+    transition: { duration: 2 },
+  },
+};
+
+export const aboutLine = {
+  initial: { x: '90%', y: '15000%' },
+  animate: {
+    x: '90%',
+    y: '2500%',
+    transition: { duration: 2 },
+  },
+};
+
+export const aboutWavyLine = {
+  initial: { x: '26%', y: '650%' },
+  animate: {
+    x: '26%',
+    y: '130%',
+    transition: { duration: 2 },
+  },
+};
+
+export const aboutDottedLine = {
+  initial: { x: '70%', y: '35000%' },
+  animate: {
+    x: '70%',
+    y: '11900%',
+    transition: { duration: 2 },
+  },
 };
