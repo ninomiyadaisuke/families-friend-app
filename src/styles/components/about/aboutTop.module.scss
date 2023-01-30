@@ -1,0 +1,72 @@
+.aboutTop {
+  margin: 100px 10% 25px;
+  overflow: hidden;
+  h2 {
+    top: 20px;
+    font-size: 80px;
+    font-weight: 200;
+    color: $text-white;
+    text-align: center;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+  &__image {
+    position: relative !important;
+    top: -60px;
+    display: flex;
+  }
+  @include mq('md') {
+    margin: 0;
+    h2 {
+      position: absolute;
+      font-size: calc(165px + 300 * (100vw - 800px) / 1120);
+      font-weight: 300;
+      line-height: 1;
+    }
+    &__images{
+      position: relative;
+      width: calc(366px + 512 * (100vw - 800px) / 1120);
+      height: calc(287px + 402 * (100vw - 800px) / 1120);
+      margin: 0 auto;
+      margin-top: calc(156px + 218 * (100vw - 800px) / 1120);
+      &_list,
+      &_note,
+      &_phone,
+      &_line,
+      &_wavyLine,
+      &_dotLine,
+      &_present {
+        position: absolute !important;
+        z-index: 1;
+        display: flex;
+      }
+      &_present {
+        width: 275px;
+        width: calc(114.6px + 160.4 * (100vw - 800px) / 1120);
+      }
+      &_list {
+        width: 245px;
+        width: calc(102.1px + 142.9 * (100vw - 800px) / 1120);
+      }
+      &_note {
+        width: calc(84.2px + 117.8 * (100vw - 800px) / 1120);
+      }
+      &_phone {
+        width: 216px;
+        width: calc(90px + 126 * (100vw - 800px) / 1120);
+      }
+      &_line {
+        width: 311px;
+        width: calc(129.6px + 181.4 * (100vw - 800px) / 1120);
+      }
+      &_wavyLine {
+        width: 547px;
+        width: calc(227.9px + 319.1 * (100vw - 800px) / 1120);
+      }
+      &_dotLine {
+        width: 358px;
+        width: calc(149.2px + 208.8 * (100vw - 800px) / 1120);
+      }
+    }
+  }
+}

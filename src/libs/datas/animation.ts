@@ -1,4 +1,11 @@
 import {
+  aboutDottedLine,
+  aboutLine,
+  aboutList,
+  aboutNote,
+  aboutPhone,
+  aboutPresent,
+  aboutWavyLine,
   noteBlue,
   noteCheckbox,
   noteLightBlueBig,
@@ -15,8 +22,10 @@ import {
   userList,
   userListShadow,
 } from '@/libs/variants';
-import styles from '@/styles/components/home/about.module.scss';
+import aboutTopStyles from '@/styles/components/about/aboutTop.module.scss';
+import homePageStyles from '@/styles/components/home/about.module.scss';
 
+// home page animation data
 export const homeAnimationData = [
   //note
   {
@@ -25,7 +34,7 @@ export const homeAnimationData = [
     variants: noteBlue,
     src: '/home/animation-parts/noteBlue.svg',
     alt: 'note-animation',
-    className: styles.about__image_noteLightBlueSmall,
+    className: homePageStyles.about__image_noteLightBlueSmall,
   },
   {
     widht: 37,
@@ -33,7 +42,7 @@ export const homeAnimationData = [
     variants: noteCheckbox,
     src: '/home/animation-parts/noteCheckbox.svg',
     alt: 'note-animation',
-    className: styles.about__image_noteCheckbox,
+    className: homePageStyles.about__image_noteCheckbox,
   },
   {
     widht: 155,
@@ -41,7 +50,7 @@ export const homeAnimationData = [
     variants: noteLightBlueBig,
     src: '/home/animation-parts/noteLightBlueBig.svg',
     alt: 'note-animation',
-    className: styles.about__image_noteLightBlueBig,
+    className: homePageStyles.about__image_noteLightBlueBig,
   },
   {
     widht: 43,
@@ -49,7 +58,7 @@ export const homeAnimationData = [
     variants: noteLightBlueSmall,
     src: '/home/animation-parts/noteLightBlue.svg',
     alt: 'note-animation',
-    className: styles.about__image_noteLightBlueSmall,
+    className: homePageStyles.about__image_noteLightBlueSmall,
   },
   {
     widht: 140,
@@ -57,7 +66,7 @@ export const homeAnimationData = [
     variants: noteShadow,
     src: '/home/about-gift-note-shadow.png',
     alt: 'note-animation',
-    className: styles.about__image_noteShadow,
+    className: homePageStyles.about__image_noteShadow,
   },
 
   // phone
@@ -67,7 +76,7 @@ export const homeAnimationData = [
     variants: phoneCircle,
     src: '/home/animation-parts/phoneCircle.svg',
     alt: 'phone-animation',
-    className: styles.about__image_phoneCircle,
+    className: homePageStyles.about__image_phoneCircle,
   },
   {
     widht: 126,
@@ -75,7 +84,7 @@ export const homeAnimationData = [
     variants: phoneShadow,
     src: '/home/animation-parts/phoneShadow.svg',
     alt: 'phone-animation',
-    className: styles.about__image_phoneShadow,
+    className: homePageStyles.about__image_phoneShadow,
   },
 
   // present
@@ -85,7 +94,7 @@ export const homeAnimationData = [
     variants: presentAfterRibbon,
     src: '/home/animation-parts/presentAfterRibbon.svg',
     alt: 'present-animation',
-    className: styles.about__image_presentAfterRibbon,
+    className: homePageStyles.about__image_presentAfterRibbon,
   },
 
   {
@@ -94,7 +103,7 @@ export const homeAnimationData = [
     variants: presentBeforeRibbon,
     src: '/home/animation-parts/presentBeforeRibbon.svg',
     alt: 'present-animation',
-    className: styles.about__image_presentBeforeRibbon,
+    className: homePageStyles.about__image_presentBeforeRibbon,
   },
 
   {
@@ -103,7 +112,7 @@ export const homeAnimationData = [
     variants: presentBottomOfTheLidLeft,
     src: '/home/animation-parts/presentBottomOfTheLid.svg',
     alt: 'present-animation',
-    className: styles.about__image_presentBottomOfTheLid,
+    className: homePageStyles.about__image_presentBottomOfTheLid,
   },
 
   {
@@ -112,7 +121,7 @@ export const homeAnimationData = [
     variants: presentBottomOfTheLidRight,
     src: '/home/animation-parts/presentBottomOfTheLid.svg',
     alt: 'present-animation',
-    className: styles.about__image_presentBottomOfTheLid,
+    className: homePageStyles.about__image_presentBottomOfTheLid,
   },
 
   {
@@ -121,7 +130,7 @@ export const homeAnimationData = [
     variants: presentTag,
     src: '/home/animation-parts/presentTag.svg',
     alt: 'present-animation',
-    className: styles.about__image_tag,
+    className: homePageStyles.about__image_tag,
   },
   {
     widht: 25,
@@ -129,7 +138,7 @@ export const homeAnimationData = [
     variants: presentVerticalRibbon,
     src: '/home/animation-parts/presentVerticalRibbon.svg',
     alt: 'present-animation',
-    className: styles.about__image_verticalRibbon,
+    className: homePageStyles.about__image_verticalRibbon,
   },
 
   // user
@@ -139,7 +148,7 @@ export const homeAnimationData = [
     variants: userList,
     src: '/home/animation-parts/userList.svg',
     alt: 'user-animation',
-    className: styles.about__image_userList,
+    className: homePageStyles.about__image_userList,
   },
   {
     widht: 160,
@@ -147,6 +156,80 @@ export const homeAnimationData = [
     variants: userListShadow,
     src: '/home/about-gift-list-shadow.png',
     alt: 'user-animation',
-    className: styles.about__image_userListShadow,
+    className: homePageStyles.about__image_userListShadow,
   },
 ];
+
+// about page animation data
+
+type TVariants = {
+  [key in 'initial']: unknown;
+};
+
+type TData = {
+  src: string;
+  width: number;
+  height: number;
+  alt: string;
+  className: string;
+  variants: TVariants;
+};
+
+export const aboutAnimationData = [
+  {
+    src: '/about/about-present.svg',
+    width: 275,
+    height: 229,
+    alt: 'present-image',
+    className: aboutTopStyles.aboutTop__images_present,
+    variants: aboutPresent,
+  },
+  {
+    src: '/about/about-list.svg',
+    width: 245,
+    height: 257,
+    alt: 'list-image',
+    className: aboutTopStyles.aboutTop__images_list,
+    variants: aboutList,
+  },
+  {
+    src: '/about/about-note.svg',
+    width: 202,
+    height: 262,
+    alt: 'note-image',
+    className: aboutTopStyles.aboutTop__images_note,
+    variants: aboutNote,
+  },
+  {
+    src: '/about/about-phone.svg',
+    width: 216,
+    height: 268,
+    alt: 'phone-image',
+    className: aboutTopStyles.aboutTop__images_phone,
+    variants: aboutPhone,
+  },
+  {
+    src: '/about/line.svg',
+    width: 311,
+    height: 1,
+    alt: 'present-image',
+    className: aboutTopStyles.aboutTop__images_line,
+    variants: aboutLine,
+  },
+  {
+    src: '/about/wavyLine.svg',
+    width: 547,
+    height: 181,
+    alt: 'wavyLine-image',
+    className: aboutTopStyles.aboutTop__images_wavyLine,
+    variants: aboutWavyLine,
+  },
+  {
+    src: '/about/dottedLine.svg',
+    width: 358,
+    height: 1,
+    alt: 'dotted-image',
+    className: aboutTopStyles.aboutTop__images_dotLine,
+    variants: aboutDottedLine,
+  },
+] as const satisfies readonly TData[];
