@@ -15,7 +15,6 @@
       line-height: 100%;
       color: $text-white;
       text-align: center;
-      opacity: 0.5;
     }
     h3 {
       font-size: 25px;
@@ -74,6 +73,7 @@
         font-size: calc(165px + 230 * (100vw - 800px) / 1120);
         color: $text-white;
         letter-spacing: 0;
+        opacity: 0.5;
       }
     }
     &__image {
