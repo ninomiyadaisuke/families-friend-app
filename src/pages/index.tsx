@@ -1,6 +1,7 @@
 import type { NextPageWithLayout } from 'next';
 import { ReactElement } from 'react';
 
+import { RequiredBadge } from '@/components/elements/utils';
 import { Hero, HomeAbout, HomeService } from '@/components/home';
 import { Layout } from '@/components/layouts';
 
@@ -10,6 +11,7 @@ const Home: NextPageWithLayout = () => {
       <Hero />
       <HomeAbout />
       <HomeService />
+      <RequiredBadge />
     </>
   );
 };
