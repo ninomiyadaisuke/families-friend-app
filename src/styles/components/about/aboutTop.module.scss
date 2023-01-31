@@ -16,6 +16,7 @@
   }
   @include mq('md') {
     margin: 0;
+    overflow: hidden;
     h2 {
       position: absolute;
       font-size: calc(165px + 300 * (100vw - 800px) / 1120);

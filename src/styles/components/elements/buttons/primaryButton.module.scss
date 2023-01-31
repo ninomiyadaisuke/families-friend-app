@@ -1,0 +1,44 @@
+%button {
+  width: 112px;
+  height: 45px;
+  color: $text-white;
+  border: none;
+  border-radius: 20px;
+  @include mq('md') {
+    width: calc(112px + 48 * (100vw - 800px) / 1120);
+    height: calc(45px + 20 * (100vw - 800px) / 1120);
+  }
+}
+
+.button {
+  &__navy {
+    @extend %button;
+    background: $main;
+    &:hover {
+      background: $dark-blue;
+    }
+  }
+  &__wine_red {
+    @extend %button;
+    background: $sub;
+    &:hover {
+      background: $red-button-hover;
+    }
+  }
+  &__light_blue {
+    @extend %button;
+    background: $light-blue;
+    &:hover {
+      background: $light-blue-button-hover;
+    }
+  }
+  &__outline {
+    @extend %button;
+    color: $main;
+    background: #fffffe;
+    border: 3px solid $main;
+    &:hover {
+      box-shadow: 5px 5px 8px #cecece;
+    }
+  }
+}
