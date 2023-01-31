@@ -247,3 +247,8 @@ export const aboutDottedLine = {
     transition: { duration: 2 },
   },
 };
+
+export const japanImage = {
+  initial: { rotateX: 90 },
+  animate: { rotateX: 0, transition: { duration: 1.5 } },
+};
