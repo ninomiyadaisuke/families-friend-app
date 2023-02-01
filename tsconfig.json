@@ -19,6 +19,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "*.config.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "*.config.js", "src/styles/components/forms/primaryInput.module.scss"],
   "exclude": ["node_modules"]
 }
