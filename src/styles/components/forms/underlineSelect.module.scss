@@ -1,0 +1,82 @@
+.select,
+.selectYear {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 70px;
+  height: 22px;
+  select {
+    position: relative;
+    width: 50px;
+    height: 30px;
+    font-size: 20px;
+    text-indent: 2.5px;
+    background-color: $bg-white;
+    border: none;
+    border-bottom: 2px solid $light-grey;
+    border-radius: 0;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+  }
+  &::after {
+    position: absolute;
+    top: 15px;
+    right: 27px;
+    z-index: 1;
+    width: 8px;
+    height: 8px;
+    pointer-events: none;
+    content: '';
+    border-top: solid 2px $main;
+    border-right: solid 2px $main;
+    transform: rotate(135deg);
+  }
+  span {
+    display: block;
+    align-self: flex-end;
+    line-height: 1;
+  }
+  p {
+    position: absolute;
+    top: 30px;
+    right: 0;
+    font-size: 12px;
+    color: $sub;
+  }
+  @include mq('md') {
+    width: 100px;
+    height: 28px;
+    select {
+      width: 60px;
+      height: 40px;
+    }
+    &::after {
+      top: 15px;
+      right: 40px;
+      content: '';
+    }
+    span {
+      font-size: 20px;
+    }
+    p {
+      top: 40px;
+    }
+  }
+}
+
+.selectYear {
+  width: 100px;
+  select {
+    width: 75px;
+    text-indent: 4.5px;
+  }
+  @include mq('md') {
+    width: 120px;
+    select {
+      width: 90px;
+    }
+  }
+}
