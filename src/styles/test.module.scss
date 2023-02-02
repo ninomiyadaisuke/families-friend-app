@@ -1,16 +1,5 @@
 // test 用の スタイルシート後々消します。
 
 .test {
-  &__email {
-    width: 29.5px;
-    height: 22.5px;
-  }
-  &__pass {
-    width: 22.3px;
-    height: 29.2px;
-  }
-  &__user {
-    width: 30px;
-    height: 30px;
-  }
+  margin: 500px 9%;
 }
