@@ -1,0 +1,15 @@
+.selected {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  &__container {
+    display: flex;
+    gap: 20px;
+  }
+  @include mq('md') {
+    max-width: 633px;
+    label {
+      font-size: 25px;
+    }
+  }
+}

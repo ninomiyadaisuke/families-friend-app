@@ -1,5 +1,6 @@
 export type Styles = {
-  test: string;
+  selected: string;
+  selected__container: string;
 };
 
 export type ClassNames = keyof Styles;
