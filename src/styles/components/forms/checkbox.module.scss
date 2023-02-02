@@ -1,0 +1,49 @@
+.checkbox {
+  input {
+    display: none;
+  }
+  label {
+    position: relative;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    border: 2px solid #366a8e;
+    border-radius: 7px;
+  }
+  input:checked + label::after {
+    position: absolute;
+    top: 4px;
+    left: 7px;
+    display: block;
+    width: 8px;
+    height: 11px;
+    content: '';
+    border-right: 2px solid $main;
+    border-bottom: 2px solid $main;
+    transform: rotate(45deg);
+  }
+  label::before {
+    position: absolute;
+    top: -3px;
+    left: 40px;
+    color: $text-main;
+    white-space: nowrap;
+    content: 'ログイン状態を保持';
+  }
+  @include mq('md') {
+    label {
+      width: 30px;
+      height: 30px;
+      border: 3px solid #366a8e;
+    }
+    input:checked + label::after {
+      top: 4px;
+      left: 8px;
+    }
+    label::before {
+      top: -4px;
+      font-size: 20px;
+    }
+  }
+}
