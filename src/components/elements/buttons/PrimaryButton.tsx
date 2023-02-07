@@ -1,15 +1,20 @@
-import { FC, ReactNode } from 'react';
+import { FC } from 'react';
 
+import { Spinner } from '@/components/elements/utils';
 import styles from '@/styles/components/elements/buttons/primaryButton.module.scss';
 
 type Props = {
   onClick: () => void;
-  children: ReactNode;
+  loading?: boolean;
+  text: string;
   type: 'navy' | 'wine_red' | 'light_blue' | 'outline';
 };
 
 const PrimaryButton: FC<Props> = (props) => {
-  const { onClick, children, type } = props;
+  const { onClick, type, text, loading } = props;
+
+  const color = type === 'light_blue' || type === 'navy' ? 'red' : 'blue';
+
   const className = (() => {
     switch (type) {
       case 'navy':
@@ -25,8 +30,14 @@ const PrimaryButton: FC<Props> = (props) => {
     }
   })();
   return (
-    <button className={className} onClick={onClick}>
-      {children}
+    <button className={className} onClick={onClick} disabled={loading}>
+      {loading ? (
+        <div className={styles.spinner}>
+          <Spinner color={color} />
+        </div>
+      ) : (
+        text
+      )}
     </button>
   );
 };

@@ -10,11 +10,21 @@
   }
 }
 
+.spinner {
+  display: flex;
+  justify-content: center;
+}
+
 .button {
+
   &__navy {
-    @extend %button;
+    position: relative;
     background: $main;
+    @extend %button;
     &:hover {
+      background: $dark-blue;
+    }
+    &:disabled {
       background: $dark-blue;
     }
   }
@@ -24,11 +34,17 @@
     &:hover {
       background: $red-button-hover;
     }
+    &:disabled {
+      background: $red-button-hover;
+    }
   }
   &__light_blue {
     @extend %button;
     background: $light-blue;
     &:hover {
+      background: $light-blue-button-hover;
+    }
+    &:disabled {
       background: $light-blue-button-hover;
     }
   }
@@ -39,6 +55,9 @@
     border: 3px solid $main;
     &:hover {
       box-shadow: 5px 5px 8px #cecece;
+    }
+    &:disabled {
+      background: $light-grey;
     }
   }
 }
