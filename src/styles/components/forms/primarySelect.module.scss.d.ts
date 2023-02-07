@@ -1,5 +1,4 @@
 export type Styles = {
-  accordion: string;
   select: string;
   select__arrow: string;
   select__arrow_down: string;

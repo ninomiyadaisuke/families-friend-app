@@ -1,5 +1,4 @@
 .select {
-  cursor: pointer;
   &__label {
     display: flex;
     gap: 5px;
@@ -17,6 +16,7 @@
     right: 10%;
     width: 10px;
     height: 10px;
+    pointer-events: none;
     border-top: solid 2px $bg-white;
     border-right: solid 2px $bg-white;
     transform: rotate(-45deg);
@@ -39,6 +39,7 @@
       padding: 10px;
       color: $text-white;
       text-align: center;
+      cursor: pointer;
       background: $light-blue;
       border: 1px solid $light-grey;
     }
@@ -50,11 +51,13 @@
       height: 50px;
       padding: 10px;
       text-align: center;
+      cursor: pointer;
       background: $bg-white;
       border: 1px solid $light-grey;
       &:hover {
         background: #e5e5e5;
       }
+      
     }
   }
 
@@ -91,9 +94,4 @@
       width: calc(350px + 124 * (100vw - 800px) / 1120);
     }
   }
-}
-
-.accordion {
-  height: 0;
-  overflow: hidden;
 }

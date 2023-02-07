@@ -1,6 +1,7 @@
 import React, { FC, useState } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
+import { AccordionWrapper } from '@/components/elements/utils';
 import { useAccordion } from '@/hooks/useAccordion';
 import styles from '@/styles/components/forms/primarySelect.module.scss';
 
@@ -16,7 +17,7 @@ type Props = {
 
 const PrimarySelect: FC<Props> = (props) => {
   const { label, mandatory, selectLabel, registration, options } = props;
-  const { isOpen, setIsOpen, accordionRef } = useAccordion();
+  const { isOpen, setIsOpen } = useAccordion();
   const [selected, setSelected] = useState(selectLabel);
 
   const choiseRadio = (value: string) => {
@@ -60,24 +61,22 @@ const PrimarySelect: FC<Props> = (props) => {
         </label>
 
         <i className={isOpen ? styles.select__arrow_down : styles.select__arrow} />
-        <div id="contents" className={styles.accordion} aria-hidden={!isOpen} ref={accordionRef}>
-          <div>
-            {options.map((option) => (
-              <label key={option.value}>
-                <input
-                  {...registration}
-                  onFocus={handleFocus}
-                  onKeyDown={handleKeyDown}
-                  value={option.value}
-                  tabIndex={isOpen ? 0 : -1}
-                  type="radio"
-                />
+        <AccordionWrapper>
+          {options.map((option) => (
+            <label key={option.value}>
+              <input
+                {...registration}
+                onFocus={handleFocus}
+                onKeyDown={handleKeyDown}
+                value={option.value}
+                tabIndex={isOpen ? 0 : -1}
+                type="radio"
+              />
 
-                <span onClick={() => choiseRadio(option.value)}>{option.value}</span>
-              </label>
-            ))}
-          </div>
-        </div>
+              <span onClick={() => choiseRadio(option.value)}>{option.value}</span>
+            </label>
+          ))}
+        </AccordionWrapper>
       </div>
     </div>
   );
