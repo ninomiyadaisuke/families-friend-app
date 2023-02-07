@@ -1,6 +1,10 @@
 .checkbox {
   input {
-    display: none;
+    position: absolute;
+    -moz-opacity: 0;
+    opacity: 0;
+    -webkit-appearance: none;
+    appearance: none;
   }
   label {
     position: relative;
@@ -10,6 +14,10 @@
     cursor: pointer;
     border: 2px solid #366a8e;
     border-radius: 7px;
+  }
+  input:focus + label {
+    border-radius: 4px;
+    box-shadow: 0 0 3px 3px;
   }
   input:checked + label::after {
     position: absolute;
