@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  height: 100%;
+
+  section {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    align-items: center;
+    width: 100%;
+    padding: 102px 11% 0 11%;
+    .title {
+      width: 305px;
+      height: 68px;
+    }
+    .children {
+      align-self: flex-start;
+    }
+  }
+
+  @include mq('md') {
+    .aside {
+      width: 33%;
+      height: 100vh;
+      background-color: $main;
+    }
+    section {
+      align-items: flex-start;
+      min-width: 800px;
+      padding: calc(102px + 58 * (100vw - 800px) / 1120) calc(100px + 138 * (100vw - 800px) / 1120) 0
+        calc(76px + 104 * (100vw - 800px) / 1120);
+      .title {
+        width: 262px;
+        height: 56px;
+      }
+    }
+  }
+}
