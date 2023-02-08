@@ -20,7 +20,7 @@ type Props = {
 };
 
 const PrimaryInput: FC<Props> = (props) => {
-  const { type, required, src, alt, errorMesseage, placeholder, responsiveImageNone, iconType } = props;
+  const { type, required, src, alt, errorMesseage, placeholder, responsiveImageNone, iconType, registration } = props;
   const { tablet } = useBreakPoint();
   const checkImage = src && alt;
   const iconNone = tablet && responsiveImageNone === 'none';
@@ -50,7 +50,13 @@ const PrimaryInput: FC<Props> = (props) => {
           <RequiredBadge />
         )}
       </div>
-      <input type={type} placeholder={placeholder} className={iconNone ? styles.input__icon_none : ''} />
+      <input
+        {...registration}
+        autoComplete="on"
+        type={type}
+        placeholder={placeholder}
+        className={iconNone ? styles.input__icon_none : ''}
+      />
       {errorMesseage && <p>{errorMesseage}</p>}
     </div>
   );

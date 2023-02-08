@@ -4,10 +4,10 @@ import { Spinner } from '@/components/elements/utils';
 import styles from '@/styles/components/elements/buttons/primaryButton.module.scss';
 
 type Props = {
-  onClick: () => void;
-  loading?: boolean;
   text: string;
   type: 'navy' | 'wine_red' | 'light_blue' | 'outline';
+  onClick?: () => void;
+  loading?: boolean;
 };
 
 const PrimaryButton: FC<Props> = (props) => {

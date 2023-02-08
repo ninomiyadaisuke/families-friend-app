@@ -1,7 +1,9 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ReactNode, useEffect } from 'react';
-import { FieldValues,SubmitHandler, useForm, UseFormProps, UseFormReturn } from 'react-hook-form';
+import { FieldValues, SubmitHandler, useForm, UseFormProps, UseFormReturn } from 'react-hook-form';
 import type { ZodType, ZodTypeDef } from 'zod';
+
+import styles from '@/styles/components/forms/form.module.scss';
 
 type FormProps<TFormValues extends FieldValues, Schema> = {
   className?: string;
@@ -35,7 +37,7 @@ const Form = <
   }, [isSubmitSuccessful, reset]);
 
   return (
-    <form className={className} onSubmit={methods.handleSubmit(onSubmit)} id={id}>
+    <form className={`${styles.form} ${className}`} onSubmit={methods.handleSubmit(onSubmit)} id={id}>
       {children(methods)}
     </form>
   );

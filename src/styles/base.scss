@@ -22,6 +22,12 @@ body {
   box-sizing: border-box;
 }
 
+body,
+html,
+div#__next {
+  height: 100%;
+}
+
 article,
 aside,
 details,
@@ -187,7 +193,7 @@ li {
   font-size: 24px;
 }
 li {
-  list-style:none
+  list-style: none;
 }
 
 label,

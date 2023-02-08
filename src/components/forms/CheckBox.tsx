@@ -4,11 +4,12 @@ import type { UseFormRegisterReturn } from 'react-hook-form';
 import styles from '@/styles/components/forms/checkbox.module.scss';
 
 type Props = {
-  registration?: UseFormRegisterReturn;
+  registration: UseFormRegisterReturn;
+  label?: string;
 };
 
 const CheckBox: FC<Props> = (props) => {
-  const { registration } = props;
+  const { registration, label } = props;
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
@@ -18,9 +19,16 @@ const CheckBox: FC<Props> = (props) => {
   };
 
   return (
-    <div className={styles.checkbox}>
-      <input id="checkbox" type="checkbox" value={'retention'} {...registration} onKeyDown={handleKeyDown} />
-      <label htmlFor="checkbox"></label>
+    <div className={styles.container}>
+      <div className={styles.checkbox}>
+        <div>
+          <input id="checkbox" type="checkbox" value={'retention'} {...registration} onKeyDown={handleKeyDown} />
+          <label htmlFor="checkbox"></label>
+        </div>
+      </div>
+      <label className="" htmlFor="checkbox">
+        {label}
+      </label>
     </div>
   );
 };

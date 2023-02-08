@@ -1,0 +1,25 @@
+.forms {
+  display: flex;
+  flex-direction: column;
+  gap: 52px;
+  &__button {
+    text-align: center;
+  }
+  &__check {
+    display: block;
+    a {
+      margin-left: 45px;
+      font-size: 16px;
+    }
+  }
+  @include mq('md') {
+    gap: 100px;
+    &__check {
+      display: flex;
+      a {
+        margin-left: 0;
+        font-size: 20px;
+      }
+    }
+  }
+}
