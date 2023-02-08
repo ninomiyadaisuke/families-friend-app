@@ -13,7 +13,7 @@
     }
   }
   @include mq('md') {
-    gap: 100px;
+    gap: calc(52px + 48 * (100vw - 800px) / 1120);
     &__check {
       display: flex;
       a {
