@@ -23,7 +23,7 @@ const AuthLayout: FC<Props> = (props) => {
             height={tablet ? 68 : 50}
           />
         </h1>
-        <div className={styles.children}>{children}</div>
+        {children}
       </section>
     </div>
   );
