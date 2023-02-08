@@ -6,13 +6,24 @@ import styles from '@/styles/components/layouts/authLayout.module.scss';
 
 type Props = {
   children: ReactNode;
+  type: 'login' | 'register';
 };
 
 const AuthLayout: FC<Props> = (props) => {
-  const { children } = props;
+  const { children, type } = props;
   const { tablet } = useBreakPoint();
+  const className = (() => {
+    switch (type) {
+      case 'register':
+        return `${styles.container}`;
+      case 'login':
+        return `${styles.container__login}`;
+      default:
+        const _: never = type;
+    }
+  })();
   return (
-    <div className={styles.container}>
+    <div className={className}>
       {!tablet && <aside className={styles.aside} />}
       <section>
         <h1 className={styles.title}>

@@ -1,8 +1,5 @@
 export type Styles = {
-  aside: string;
-  container: string;
-  container__login: string;
-  title: string;
+  __next: string;
 };
 
 export type ClassNames = keyof Styles;

@@ -1,3 +1,11 @@
+
+.container {
+  display: flex;
+  gap: 21px;
+  @include mq('md') {
+    gap: 6px;
+  }
+}
 .checkbox {
   input {
     position: absolute;
@@ -30,14 +38,6 @@
     border-right: 2px solid $main;
     border-bottom: 2px solid $main;
     transform: rotate(45deg);
-  }
-  label::before {
-    position: absolute;
-    top: -3px;
-    left: 40px;
-    color: $text-main;
-    white-space: nowrap;
-    content: 'ログイン状態を保持';
   }
   @include mq('md') {
     label {

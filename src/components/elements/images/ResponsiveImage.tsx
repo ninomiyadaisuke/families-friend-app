@@ -12,7 +12,7 @@ type Props = {
 
 const ResponsiveImage: FC<Props> = (props) => {
   const { src, alt, width, height } = props;
-  return <Image src={src} alt={alt} width={width} height={height} sizes="100vw" className={styles.image} />;
+  return <Image src={src} alt={alt} width={width} height={height} sizes="100vw" className={styles.image} priority />;
 };
 
 export default ResponsiveImage;
