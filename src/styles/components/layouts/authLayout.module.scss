@@ -10,9 +10,12 @@
     align-items: center;
     width: 100%;
     padding: 102px 11% 0 11%;
-    .title {
-      width: 305px;
-      height: 68px;
+    a {
+      display: block;
+      .title {
+        width: 305px;
+        height: 68px;
+      }
     }
   }
 

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { FC, ReactNode } from 'react';
 
 import { ResponsiveImage } from '@/components/elements/images';
@@ -26,14 +27,16 @@ const AuthLayout: FC<Props> = (props) => {
     <div className={className}>
       {!tablet && <aside className={styles.aside} />}
       <section>
-        <h1 className={styles.title}>
-          <ResponsiveImage
-            src={tablet ? '/logo/auth-logo-sp.svg' : '/logo/auth-logo-pc.svg'}
-            alt="auth-logo"
-            width={tablet ? 305 : 262}
-            height={tablet ? 68 : 50}
-          />
-        </h1>
+        <Link href={'/'}>
+          <h1 className={styles.title}>
+            <ResponsiveImage
+              src={tablet ? '/logo/auth-logo-sp.svg' : '/logo/auth-logo-pc.svg'}
+              alt="auth-logo"
+              width={tablet ? 305 : 262}
+              height={tablet ? 68 : 50}
+            />
+          </h1>
+        </Link>
         {children}
       </section>
     </div>
