@@ -1,6 +1,5 @@
 export type Styles = {
   aside: string;
-  children: string;
   container: string;
   title: string;
 };

@@ -13,9 +13,6 @@
       width: 305px;
       height: 68px;
     }
-    .children {
-      align-self: flex-start;
-    }
   }
 
   @include mq('md') {
