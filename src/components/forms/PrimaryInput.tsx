@@ -21,7 +21,6 @@ type Props = {
 
 const PrimaryInput: FC<Props> = (props) => {
   const { type, required, src, alt, errorMesseage, placeholder, responsiveImageNone, iconType, registration } = props;
-  // console.log(errorMesseage)
   const { tablet } = useBreakPoint();
   const checkImage = src && alt;
   const iconNone = tablet && responsiveImageNone === 'none';
