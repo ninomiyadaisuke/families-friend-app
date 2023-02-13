@@ -21,6 +21,7 @@ type Props = {
 
 const PrimaryInput: FC<Props> = (props) => {
   const { type, required, src, alt, errorMesseage, placeholder, responsiveImageNone, iconType, registration } = props;
+  // console.log(errorMesseage)
   const { tablet } = useBreakPoint();
   const checkImage = src && alt;
   const iconNone = tablet && responsiveImageNone === 'none';
@@ -43,13 +44,16 @@ const PrimaryInput: FC<Props> = (props) => {
       {checkImage && !iconNone && (
         <FixedImage src={src} alt={alt} className={`${styles.input__icon} ${iconSizeClassName}`} />
       )}
-      <div className={styles.input__status}>
-        {required && errorMesseage ? (
-          <FixedImage src="/icon/error-icon.svg" className={styles.input__status_error} alt="error" />
-        ) : (
-          <RequiredBadge />
-        )}
-      </div>
+      {required === 'required' && (
+        <div className={styles.input__status}>
+          {errorMesseage ? (
+            <FixedImage src="/icon/error-icon.svg" className={styles.input__status_error} alt="error" />
+          ) : (
+            <RequiredBadge />
+          )}
+        </div>
+      )}
+
       <input
         {...registration}
         autoComplete="on"

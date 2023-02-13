@@ -56,7 +56,7 @@ const PrimarySelect: FC<Props> = (props) => {
       </div>
       <div className={styles.select__container}>
         <label>
-          <input id="selected" type={'checkbox'} readOnly onKeyDown={handleKeyDown} value={selected} />
+          <input id="selected" type={'checkbox'} onKeyDown={handleKeyDown} value={selected} />
           <span onClick={handleClick}>{selected}</span>
         </label>
 

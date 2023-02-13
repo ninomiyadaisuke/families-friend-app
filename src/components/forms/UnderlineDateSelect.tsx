@@ -10,9 +10,9 @@ type DateSelectKeys = 'year' | 'month' | 'day';
 type TDateSelect = { [K in DateSelectKeys]: string };
 
 type Props = {
-  register: UseFormRegister<TDateSelect>;
-  errors: Partial<FieldErrorsImpl<TDateSelect>>;
-  control: Control<TDateSelect, any>;
+  register: UseFormRegister<any>;
+  errors: Partial<FieldErrorsImpl<any>>;
+  control: Control<any, any>;
 };
 
 const UnderlineDateSelect: FC<Props> = (props) => {

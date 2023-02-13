@@ -1,0 +1,52 @@
+.forms {
+  display: flex;
+  flex-direction: column;
+  gap: 67px;
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  &__button {
+    text-align: center;
+  }
+  &__name,
+  &__pass {
+    display: flex;
+    gap: 45px;
+    justify-content: space-between;
+  }
+  &__pass {
+    display: block;
+  }
+
+  &__check {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    p {
+      a {
+        display: inline;
+      }
+    }
+  }
+  @include mq('md') {
+    gap: calc(67px + 53 * (100vw - 800px) / 1120);
+    height: 100%;
+    &__container {
+      gap: calc(24px + 24 * (100vw - 800px) / 1120);
+    }
+    &__check {
+      gap: calc(28px + 29 * (100vw - 800px) / 1120);
+    }
+    &__pass {
+      display: flex;
+    }
+    &__select {
+      width: 87%;
+    }
+    &__date {
+      width: 80%;
+    }
+  }
+}
