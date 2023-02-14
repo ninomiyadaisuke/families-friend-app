@@ -1,17 +1,16 @@
 import { FC } from 'react';
-import type { UseFormRegisterReturn } from 'react-hook-form';
 
 import styles from '@/styles/components/forms/underlineSelect.module.scss';
 
 type Props = {
   options: { value: string }[];
-  registration: UseFormRegisterReturn;
   name: 'year' | 'month' | 'day';
   errorMesseage?: string;
+  onChange: (value: string) => void;
 };
 
 const UnderlineSelect: FC<Props> = (props) => {
-  const { options, name, errorMesseage, registration } = props;
+  const { options, name, errorMesseage, onChange } = props;
 
   const yearOrMonthOrDay = (() => {
     switch (name) {
@@ -25,10 +24,16 @@ const UnderlineSelect: FC<Props> = (props) => {
         const _: never = name;
     }
   })();
+  // console.log(options)
 
   return (
     <div className={name === 'year' ? styles.selectYear : styles.select}>
-      <select id={name} {...registration}>
+      <select
+        id={name}
+        onChange={(e) => {
+          onChange(e.target.value);
+        }}
+      >
         <option hidden />
         {options.map((option) => (
           <option key={option.value} value={option.value}>
