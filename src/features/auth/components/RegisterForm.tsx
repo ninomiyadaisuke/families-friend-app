@@ -55,7 +55,9 @@ const registerSchema = z
     ]),
     birthday: z.union([
       z.literal(''),
-      z.string().regex(/^20\d{2}-(0[1-9]|1[0-2])-([0-2]\d|3[01])$/, '入力する際は全て記入してください'),
+      z
+        .string()
+        .regex(/^(19\d{2}|20\d{2})-(0[1-9]|1[0-2])-(0[1-9]|[1-2]\d|3[01])$/, '入力する際は全て記入してください'),
     ]),
     relationship: z.union([
       z.literal(''),

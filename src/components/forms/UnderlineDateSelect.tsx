@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Control, UseFormRegisterReturn } from 'react-hook-form';
 
 import { useSelectedDate } from '@/hooks/useSelectedDate';
@@ -11,10 +11,11 @@ type Props<TDate extends Record<string, unknown>> = {
   control: Control<TDate, any>;
   errorMesseage?: string;
   setValue: (value: string) => void;
+  isSubmitSuccessful?: boolean;
 };
 
 const UnderlineDateSelect = <TDate extends Record<string, unknown>>(props: Props<TDate>) => {
-  const { registration, control, setValue, errorMesseage } = props;
+  const { registration, control, setValue, errorMesseage, isSubmitSuccessful } = props;
   const { yearsData, monthData, dayData } = useSelectedDate(control);
   const [year, setYear] = useState('');
   const [month, setMonth] = useState('');
@@ -34,6 +35,15 @@ const UnderlineDateSelect = <TDate extends Record<string, unknown>>(props: Props
     setDay(value);
     setValue(`${year}-${month}-${value}`);
   };
+
+  useEffect(() => {
+    if (!isSubmitSuccessful) {
+      setYear('');
+      setMonth('');
+      setDay('');
+    }
+  }, [isSubmitSuccessful]);
+
   return (
     <div className={styles.selected}>
       <label>生年月日</label>
