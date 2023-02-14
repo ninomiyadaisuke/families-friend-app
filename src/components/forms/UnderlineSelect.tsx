@@ -24,7 +24,6 @@ const UnderlineSelect: FC<Props> = (props) => {
         const _: never = name;
     }
   })();
-  // console.log(options)
 
   return (
     <div className={name === 'year' ? styles.selectYear : styles.select}>
@@ -34,7 +33,7 @@ const UnderlineSelect: FC<Props> = (props) => {
           onChange(e.target.value);
         }}
       >
-        <option hidden />
+        <option />
         {options.map((option) => (
           <option key={option.value} value={option.value}>
             {option.value}

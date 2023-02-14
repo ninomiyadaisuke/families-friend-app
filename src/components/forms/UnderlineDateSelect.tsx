@@ -14,7 +14,7 @@ type Props<TDate extends Record<string, unknown>> = {
 };
 
 const UnderlineDateSelect = <TDate extends Record<string, unknown>>(props: Props<TDate>) => {
-  const { registration, control, setValue } = props;
+  const { registration, control, setValue, errorMesseage } = props;
   const { yearsData, monthData, dayData } = useSelectedDate(control);
   const [year, setYear] = useState('');
   const [month, setMonth] = useState('');
@@ -43,6 +43,7 @@ const UnderlineDateSelect = <TDate extends Record<string, unknown>>(props: Props
         <UnderlineSelect options={dayData} name="day" onChange={selectedDay} />
       </div>
       <input type="text" {...registration} hidden />
+      {errorMesseage && <p>{errorMesseage}</p>}
     </div>
   );
 };

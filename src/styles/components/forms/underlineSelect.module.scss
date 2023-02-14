@@ -3,7 +3,7 @@
   position: relative;
   display: flex;
   justify-content: space-between;
-  width: 60px;
+  width: 55px;
   height: 22px;
   select {
     position: relative;
@@ -19,7 +19,6 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-
   }
   &::after {
     position: absolute;
@@ -28,7 +27,7 @@
     z-index: 1;
     width: 6px;
     height: 6px;
-    
+
     pointer-events: none;
     content: '';
     border-top: solid 1px $main;
@@ -52,7 +51,7 @@
     height: 28px;
     select {
       width: 60px;
-      height: 40px;
+      height: 35px;
       font-size: 20px;
       text-indent: 20px;
     }
@@ -61,7 +60,7 @@
       width: 8px;
       height: 8px;
       border-top: solid 2px $main;
-    border-right: solid 2px $main;
+      border-right: solid 2px $main;
     }
     span {
       font-size: 20px;

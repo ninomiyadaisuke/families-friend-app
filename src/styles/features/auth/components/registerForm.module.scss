@@ -17,7 +17,8 @@
     justify-content: space-between;
   }
   &__pass {
-    display: block;
+    flex-direction: column;
+    gap: 24px;
   }
 
   &__check {
@@ -33,20 +34,14 @@
   @include mq('md') {
     gap: calc(67px + 53 * (100vw - 800px) / 1120);
     height: 100%;
-    &__container {
+    &__container,&__pass {
       gap: calc(24px + 24 * (100vw - 800px) / 1120);
     }
     &__check {
       gap: calc(28px + 29 * (100vw - 800px) / 1120);
     }
-    &__pass {
-      display: flex;
-    }
     &__select {
       width: 87%;
-    }
-    &__date {
-      width: 80%;
     }
   }
 }

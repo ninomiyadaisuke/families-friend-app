@@ -3,7 +3,6 @@ export type Styles = {
   forms__button: string;
   forms__check: string;
   forms__container: string;
-  forms__date: string;
   forms__name: string;
   forms__pass: string;
   forms__select: string;
