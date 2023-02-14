@@ -57,7 +57,6 @@
       &:hover {
         background: #e5e5e5;
       }
-      
     }
   }
 
@@ -89,6 +88,9 @@
     justify-content: space-between;
     &__label {
       align-self: center;
+      label {
+        font-size: calc(16px + 9 * (100vw - 800px) / 1120);
+      }
     }
     &__container {
       width: calc(350px + 124 * (100vw - 800px) / 1120);

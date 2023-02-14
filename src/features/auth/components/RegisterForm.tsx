@@ -17,7 +17,7 @@ const initialState = {
   last_name: '',
   first_name_kana: '',
   last_name_kana: '',
-  // barthday: undefined,
+  birthday: '',
   relationship: '',
   login_type: '',
 };
@@ -37,13 +37,29 @@ const registerSchema = z
       .min(1, 'メールアドレスを入力してください')
       .email({ message: 'メールアドレスの形式で入力してください' }),
     confirm_email: z.string().min(1, '確認用のメールアドレスを入力してください'),
-    first_name: z.string(),
-    first_name_kana: z.string(),
-    last_name: z.string(),
-    last_name_kana: z.string(),
-    relationship: z.union([
-      z.literal('世帯主'),
+    first_name: z.string().max(20, '名前は20文字以下で入力してください'),
+    first_name_kana: z.union([
       z.literal(''),
+      z
+        .string()
+        .max(20, '苗字は20文字以下で入力してください')
+        .regex(/^[\p{scx=Katakana}|ｦ-ﾟ]+$/u, 'カタカナで入力してください'),
+    ]),
+    last_name: z.string().max(20, '苗字は20文字以下で入力してください'),
+    last_name_kana: z.union([
+      z.literal(''),
+      z
+        .string()
+        .max(20, '苗字は20文字以下で入力してください')
+        .regex(/^[\p{scx=Katakana}|ｦ-ﾟ]+$/u, 'カタカナで入力してください'),
+    ]),
+    birthday: z.union([
+      z.literal(''),
+      z.string().regex(/^20\d{2}-(0[1-9]|1[0-2])-([0-2]\d|3[01])$/, '入力する際は全て記入してください'),
+    ]),
+    relationship: z.union([
+      z.literal(''),
+      z.literal('世帯主'),
       z.literal('配偶者'),
       z.literal('子供'),
       z.literal('親'),
@@ -82,7 +98,7 @@ const RegisterForm: FC = () => {
       schema={registerSchema}
       className={styles.forms}
     >
-      {({ register, formState, control }) => (
+      {({ register, formState, control, setValue }) => (
         <>
           <div className={styles.forms__container}>
             <PrimaryInput
@@ -136,6 +152,7 @@ const RegisterForm: FC = () => {
                 iconType="user"
                 src="/icon/user-icon.svg"
                 alt="user-icon"
+                errorMesseage={formState.errors.last_name?.message}
                 registration={register('last_name')}
               />
               <PrimaryInput
@@ -145,6 +162,7 @@ const RegisterForm: FC = () => {
                 responsiveImageNone="none"
                 src="/icon/user-icon.svg"
                 alt="user-icon"
+                errorMesseage={formState.errors.first_name?.message}
                 registration={register('first_name')}
               />
             </div>
@@ -155,6 +173,7 @@ const RegisterForm: FC = () => {
                 iconType="user"
                 src="/icon/user-icon.svg"
                 alt="user-icon"
+                errorMesseage={formState.errors.last_name_kana?.message}
                 registration={register('last_name_kana')}
               />
               <PrimaryInput
@@ -164,12 +183,18 @@ const RegisterForm: FC = () => {
                 responsiveImageNone="none"
                 src="/icon/user-icon.svg"
                 alt="user-icon"
+                errorMesseage={formState.errors.first_name_kana?.message}
                 registration={register('first_name_kana')}
               />
             </div>
-            {/* <div>
-              <UnderlineDateSelect register={register} errors={formState.errors} control={control} />
-            </div> */}
+            <div className={styles.forms__select}>
+              <UnderlineDateSelect
+                errorMesseage={formState.errors.birthday?.message}
+                control={control}
+                registration={register('birthday')}
+                setValue={(value) => setValue('birthday', value)}
+              />
+            </div>
             <div className={styles.forms__select}>
               <PrimarySelect
                 label="役割"
@@ -188,7 +213,7 @@ const RegisterForm: FC = () => {
             </p>
           </div>
           <div className={styles.forms__button}>
-            <PrimaryButton type="navy" text="ログイン" />
+            <PrimaryButton type="wine_red" text="登録" />
           </div>
         </>
       )}
