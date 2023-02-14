@@ -1,48 +1,48 @@
-import { FC } from 'react';
-import { Control, FieldErrorsImpl, FieldValues, FormState, UseFormRegister } from 'react-hook-form';
+import { useState } from 'react';
+import { Control, UseFormRegisterReturn } from 'react-hook-form';
 
 import { useSelectedDate } from '@/hooks/useSelectedDate';
 import styles from '@/styles/components/forms/underlineDateSelect.module.scss';
 
 import { UnderlineSelect } from '.';
 
-type DateSelectKeys = 'year' | 'month' | 'day';
-type TDateSelect = { [K in DateSelectKeys]: string };
-
-type Props = {
-  register: UseFormRegister<any>;
-  errors: Partial<FieldErrorsImpl<any>>;
-  control: Control<any, any>;
+type Props<TDate extends Record<string, unknown>> = {
+  registration: UseFormRegisterReturn;
+  control: Control<TDate, any>;
+  errorMesseage?: string;
+  setValue: (value: string) => void;
 };
 
-const UnderlineDateSelect: FC<Props> = (props) => {
-  const { register, control, errors } = props;
-
+const UnderlineDateSelect = <TDate extends Record<string, unknown>>(props: Props<TDate>) => {
+  const { registration, control, setValue } = props;
   const { yearsData, monthData, dayData } = useSelectedDate(control);
+  const [year, setYear] = useState('');
+  const [month, setMonth] = useState('');
+  const [day, setDay] = useState('');
 
+  const selectedYear = (value: string) => {
+    setYear(value);
+    setValue(`${value}-${month}-${day}`);
+  };
+
+  const selectedMonth = (value: string) => {
+    setMonth(value);
+    setValue(`${year}-${value}-${day}`);
+  };
+
+  const selectedDay = (value: string) => {
+    setDay(value);
+    setValue(`${year}-${month}-${value}`);
+  };
   return (
     <div className={styles.selected}>
       <label>生年月日</label>
       <div className={styles.selected__container}>
-        <UnderlineSelect
-          options={yearsData}
-          name="year"
-          registration={register('year')}
-          errorMesseage={errors.year?.message as string}
-        />
-        <UnderlineSelect
-          options={monthData}
-          name="month"
-          registration={register('month')}
-          errorMesseage={errors.month?.message as string}
-        />
-        <UnderlineSelect
-          options={dayData}
-          name="day"
-          registration={register('day')}
-          errorMesseage={errors.day?.message as string}
-        />
+        <UnderlineSelect options={yearsData} name="year" onChange={selectedYear} />
+        <UnderlineSelect options={monthData} name="month" onChange={selectedMonth} />
+        <UnderlineSelect options={dayData} name="day" onChange={selectedDay} />
       </div>
+      <input type="text" {...registration} hidden />
     </div>
   );
 };

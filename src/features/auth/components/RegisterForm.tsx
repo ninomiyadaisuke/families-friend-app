@@ -167,9 +167,9 @@ const RegisterForm: FC = () => {
                 registration={register('first_name_kana')}
               />
             </div>
-            <div>
+            {/* <div>
               <UnderlineDateSelect register={register} errors={formState.errors} control={control} />
-            </div>
+            </div> */}
             <div className={styles.forms__select}>
               <PrimarySelect
                 label="役割"
