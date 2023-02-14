@@ -25,12 +25,10 @@ const UnderlineDateSelect = <TDate extends Record<string, unknown>>(props: Props
     setYear(value);
     setValue(`${value}-${month}-${day}`);
   };
-
   const selectedMonth = (value: string) => {
     setMonth(value);
     setValue(`${year}-${value}-${day}`);
   };
-
   const selectedDay = (value: string) => {
     setDay(value);
     setValue(`${year}-${month}-${value}`);
