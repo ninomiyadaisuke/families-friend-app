@@ -201,6 +201,7 @@ const RegisterForm: FC = () => {
                 selectLabel="役割を選択"
                 options={options}
                 registration={register('relationship')}
+                isSubmitSuccessful={formState.isSubmitSuccessful}
               />
             </div>
           </div>

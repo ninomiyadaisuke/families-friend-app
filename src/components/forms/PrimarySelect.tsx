@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
 import { AccordionWrapper } from '@/components/elements/utils';
@@ -13,10 +13,11 @@ type Props = {
   mandatory?: boolean;
   options: { [key in 'value']: string }[];
   registration: UseFormRegisterReturn;
+  isSubmitSuccessful?: boolean;
 };
 
 const PrimarySelect: FC<Props> = (props) => {
-  const { label, mandatory, selectLabel, registration, options } = props;
+  const { label, mandatory, selectLabel, registration, options, isSubmitSuccessful } = props;
   const { isOpen, setIsOpen } = useAccordion();
   const [selected, setSelected] = useState(selectLabel);
 
@@ -41,6 +42,11 @@ const PrimarySelect: FC<Props> = (props) => {
   const handleClick = () => {
     setIsOpen((prev) => !prev);
   };
+
+  useEffect(() => {
+    if (!isSubmitSuccessful) return;
+    setSelected(selectLabel);
+  }, [isSubmitSuccessful]);
 
   return (
     <div className={styles.select}>
