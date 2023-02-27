@@ -38,5 +38,5 @@ export const assignSession = async (res: NextApiResponse, idToken: string, expir
 
 export const logout = async () => {
   // セッションCookieを削除するため、Firebase SDKでなくREST APIでログアウトさせる
-  await fetch('/api/sessionLogout', { method: 'POST' });
+  await fetch('/api/auth/sessionLogout', { method: 'POST' });
 };
