@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { FC } from 'react';
 import { z } from 'zod';
 
@@ -30,8 +31,14 @@ const loginSchema = z.object({
 type FormValues = z.infer<typeof loginSchema>;
 
 const LoginForm: FC = () => {
-  const login = (values: FormValues) => {
-    // console.log(values);
+  const router = useRouter();
+  const login = async (values: FormValues) => {
+    await fetch('/api/auth/session', {
+      method: 'POST',
+      body: JSON.stringify({ ...values, authentication: 'login' }),
+      headers: { 'Content-Type': 'application/json' },
+    });
+    router.push('/profile');
   };
   return (
     <Form<FormValues, typeof loginSchema>

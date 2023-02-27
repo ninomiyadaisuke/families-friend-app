@@ -15,7 +15,7 @@ export const singUp = async (email: string, password: string) => {
 
 export const login = async (email: string, password: string) => {
   const apiKey = process.env.FIREBASE_API_KEY;
-  const body = JSON.stringify({ email, password });
+  const body = JSON.stringify({ email, password, returnSecureToken: true });
   return await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`, {
     method: 'POST',
     headers: {
@@ -38,5 +38,5 @@ export const assignSession = async (res: NextApiResponse, idToken: string, expir
 
 export const logout = async () => {
   // セッションCookieを削除するため、Firebase SDKでなくREST APIでログアウトさせる
-  await fetch('/api/sessionLogout', { method: 'POST' });
+  await fetch('/api/auth/sessionLogout', { method: 'POST' });
 };

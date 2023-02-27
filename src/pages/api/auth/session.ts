@@ -1,13 +1,14 @@
 import type { NextApiHandler } from 'next';
 
 import { auth } from '@/firebase/firebaseAdmin';
-import { assignSession,login, singUp } from '@/libs/auth';
+import { assignSession, login, singUp } from '@/libs/auth';
 
 const handler: NextApiHandler = async (req, res) => {
   if (req.method !== 'POST') return res.status(404).send('Not Found');
   const expiresIn = 60 * 60 * 24 * 5 * 1000; // 5日
 
   const { email, password, authentication } = req.body;
+
   // SignUp
   if (authentication === 'signup') {
     const response = await singUp(email, password);

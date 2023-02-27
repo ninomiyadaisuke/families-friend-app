@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { FC } from 'react';
 import { z } from 'zod';
 
@@ -88,8 +89,15 @@ const registerSchema = z
 type FormValues = z.infer<typeof registerSchema>;
 
 const RegisterForm: FC = () => {
+  const router = useRouter();
   const login = async (values: FormValues) => {
-    // console.log(values);
+    const { email, password } = values;
+    await fetch('/api/auth/session', {
+      method: 'POST',
+      body: JSON.stringify({ email, password, authentication: 'signup' }),
+      headers: { 'Content-Type': 'application/json' },
+    });
+    router.push('/profile');
   };
   return (
     <Form<FormValues, typeof registerSchema>
