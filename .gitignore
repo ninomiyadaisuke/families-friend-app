@@ -37,3 +37,5 @@ next-env.d.ts
 
 
 .hintrc
+
+firebase-adminsdk.json
