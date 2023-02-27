@@ -15,7 +15,7 @@ export const singUp = async (email: string, password: string) => {
 
 export const login = async (email: string, password: string) => {
   const apiKey = process.env.FIREBASE_API_KEY;
-  const body = JSON.stringify({ email, password });
+  const body = JSON.stringify({ email, password, returnSecureToken: true });
   return await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`, {
     method: 'POST',
     headers: {
