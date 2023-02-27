@@ -18,3 +18,5 @@ const serviceAccount: admin.ServiceAccount = {
 
 export const firebaseAdmin =
   admin.apps[0] || admin.initializeApp({ credential: admin.credential.cert(serviceAccount) });
+
+export const auth = firebaseAdmin.auth();
