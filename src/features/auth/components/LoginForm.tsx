@@ -38,7 +38,7 @@ const LoginForm: FC = () => {
       body: JSON.stringify({ ...values, authentication: 'login' }),
       headers: { 'Content-Type': 'application/json' },
     });
-    router.push('/');
+    router.push('/profile');
   };
   return (
     <Form<FormValues, typeof loginSchema>

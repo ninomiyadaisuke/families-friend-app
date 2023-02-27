@@ -97,7 +97,7 @@ const RegisterForm: FC = () => {
       body: JSON.stringify({ email, password, authentication: 'signup' }),
       headers: { 'Content-Type': 'application/json' },
     });
-    router.push('/');
+    router.push('/profile');
   };
   return (
     <Form<FormValues, typeof registerSchema>
