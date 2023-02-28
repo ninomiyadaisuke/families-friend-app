@@ -3,8 +3,8 @@ import { FC } from 'react';
 
 import { ServiceCard } from '@/components/elements/cards';
 import { useBreakPoint } from '@/hooks/useBreakPoint';
-import { serviceCardData } from '@/libs/datas/serviceData';
-import { homeServiceTitle } from '@/libs/variants';
+import { serviceCardData } from '@/libs/animation/datas/serviceData';
+import { homeServiceTitle } from '@/libs/animation/variants';
 import styles from '@/styles/components/home/service.module.scss';
 
 const HomeService: FC = () => {

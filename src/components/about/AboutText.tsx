@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { FC } from 'react';
 
-import { japanImage } from '@/libs/variants';
+import { japanImage } from '@/libs/animation/variants';
 import styles from '@/styles/components/about/aboutText.module.scss';
 
 import { ResponsiveImage } from '../elements/images';
