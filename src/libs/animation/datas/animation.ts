@@ -21,7 +21,7 @@ import {
   presentVerticalRibbon,
   userList,
   userListShadow,
-} from '@/libs/variants';
+} from '@/libs/animation/variants';
 import aboutTopStyles from '@/styles/components/about/aboutTop.module.scss';
 import homePageStyles from '@/styles/components/home/about.module.scss';
 

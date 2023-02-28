@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { FC } from 'react';
 
 import { ResponsiveImage } from '@/components/elements/images';
-import { TServiceCard } from '@/libs/datas/serviceData';
+import { TServiceCard } from '@/libs/animation/datas/serviceData';
 import styles from '@/styles/components/elements/cards/serviceCard.module.scss';
 
 type Props = {

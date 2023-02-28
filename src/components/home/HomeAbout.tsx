@@ -4,8 +4,8 @@ import { FC } from 'react';
 
 import { ResponsiveImage } from '@/components/elements/images';
 import { useBreakPoint } from '@/hooks/useBreakPoint';
-import { homeAnimationData } from '@/libs/datas/animation';
-import { homeAboutTitle } from '@/libs/variants';
+import { homeAnimationData } from '@/libs/animation/datas/animation';
+import { homeAboutTitle } from '@/libs/animation/variants';
 import styles from '@/styles/components/home/about.module.scss';
 
 const HomeAbout: FC = () => {

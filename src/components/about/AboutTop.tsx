@@ -3,8 +3,8 @@ import { FC } from 'react';
 
 import { ResponsiveImage } from '@/components/elements/images';
 import { useBreakPoint } from '@/hooks/useBreakPoint';
-import { aboutAnimationData } from '@/libs/datas/animation';
-import { aboutTitle } from '@/libs/variants';
+import { aboutAnimationData } from '@/libs/animation/datas/animation';
+import { aboutTitle } from '@/libs/animation/variants';
 import styles from '@/styles/components/about/aboutTop.module.scss';
 
 const AboutTop: FC = () => {
