@@ -1,5 +1,7 @@
 export type Styles = {
-  test: string;
+  link: string;
+  link__active: string;
+  linkButton: string;
 };
 
 export type ClassNames = keyof Styles;
