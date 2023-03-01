@@ -1,0 +1,19 @@
+.link,
+.link__active {
+  font-size: 25px;
+  color: $main;
+  @include mq('md') {
+    align-self: flex-end;
+    height: 50%;
+    font-size: calc(16px + 9 * (100vw - 800px) / 1120);
+    line-height: 1;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s ease;
+  }
+}
+
+.link__active,
+.link:hover,
+.linkButton:focus {
+  border-color: $main;
+}
