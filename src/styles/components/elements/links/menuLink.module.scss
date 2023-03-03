@@ -1,5 +1,6 @@
 .link,
 .link__active {
+  position: relative;
   font-size: 25px;
   color: $main;
   @include mq('md') {
@@ -9,6 +10,11 @@
     line-height: 1;
     border-bottom: 2px solid transparent;
     transition: border-color 0.3s ease;
+  }
+  &__dropdawn {
+    position: absolute;
+    top: 48px;
+    left: -56px;
   }
 }
 

@@ -1,6 +1,8 @@
 export type Styles = {
   link: string;
   link__active: string;
+  link__active__dropdawn: string;
+  link__dropdawn: string;
   linkButton: string;
 };
 
