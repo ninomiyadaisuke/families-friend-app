@@ -2,7 +2,6 @@ import { FC, ReactNode } from 'react';
 
 import { Footer } from '@/components/elements/footer';
 import { Header } from '@/components/elements/headers';
-import styles from '@/styles/components/layouts/layout.module.scss';
 
 type Props = {
   children: ReactNode;
