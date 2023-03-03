@@ -12,18 +12,14 @@ type Props = {
 const DropDawnLinks: FC<Props> = (props) => {
   const { links, auth } = props;
   return (
-    <ul className={styles.links}>
+    <div className={styles.links}>
       {links.map((link) => (
-        <li key={link.text}>
-          <Link href={link.href}>{link.text}</Link>
-        </li>
+        <Link key={link.text} href={link.href}>
+          {link.text}
+        </Link>
       ))}
-      {auth && (
-        <li>
-          <button onClick={logout}>{auth}</button>
-        </li>
-      )}
-    </ul>
+      {auth && <button onClick={logout}>{auth}</button>}
+    </div>
   );
 };
 
