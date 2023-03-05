@@ -1,11 +1,14 @@
 .link,
 .link__active {
   position: relative;
+  height: 100%;
   font-size: 25px;
-  color: $main;
+  a {
+    color: $main;
+  }
   @include mq('md') {
     align-self: flex-end;
-    height: 50%;
+    height: 58%;
     font-size: calc(16px + 9 * (100vw - 800px) / 1120);
     line-height: 1;
     border-bottom: 2px solid transparent;
@@ -13,8 +16,8 @@
   }
   &__dropdawn {
     position: absolute;
-    top: 48px;
-    left: -56px;
+    top: 45px;
+    right: -50%;
   }
 }
 

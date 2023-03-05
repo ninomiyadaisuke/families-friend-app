@@ -10,7 +10,7 @@ import DropDawnLinks from './DropDawnLinks';
 type Props = {
   href: string;
   children: ReactNode;
-  dropDawn?: boolean;
+  isDropDawn?: boolean;
 };
 
 const links = [
@@ -19,7 +19,7 @@ const links = [
 ];
 
 const MenuLink: FC<Props> = (props) => {
-  const { href, children, dropDawn } = props;
+  const { href, children, isDropDawn } = props;
   const [isOpen, setIsOpen] = useState(false);
   const { tablet } = useBreakPoint();
   const router = useRouter();
@@ -33,19 +33,18 @@ const MenuLink: FC<Props> = (props) => {
   };
 
   return (
-    <Link
-      href={href}
+    <div
       className={isActive && !tablet ? styles.link__active : styles.link}
       onMouseEnter={hoverEvent}
       onMouseLeave={unHoverEvent}
     >
-      {children}
-      {dropDawn && isOpen && (
+      <Link href={href}>{children}</Link>
+      {isDropDawn && isOpen && (
         <div className={styles.link__dropdawn}>
           <DropDawnLinks links={links} />
         </div>
       )}
-    </Link>
+    </div>
   );
 };
 

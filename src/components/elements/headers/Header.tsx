@@ -3,7 +3,7 @@ import { FC } from 'react';
 
 import { RegiserButton } from '@/components/elements/buttons';
 import { FixedImage } from '@/components/elements/images';
-import { ToLoginLink } from '@/components/elements/links';
+import { MenuLink, ToLoginLink } from '@/components/elements/links';
 import { useBreakPoint } from '@/hooks/useBreakPoint';
 import styles from '@/styles/components/elements/headers/header.module.scss';
 
@@ -21,14 +21,15 @@ const Header: FC = () => {
           />
         </Link>
         <ul>
-          <li>
+          <MenuLink href="/">test</MenuLink>
+          {/* <li>
             <ToLoginLink />
           </li>
           <li>
             <Link href={'/register'}>
               <RegiserButton />
             </Link>
-          </li>
+          </li> */}
         </ul>
       </nav>
     </header>
