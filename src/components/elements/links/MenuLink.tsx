@@ -45,14 +45,14 @@ const MenuLink: FC<Props> = (props) => {
       onMouseLeave={() => unHoverEvent(tablet)}
     >
       {href !== '/list/[type]' ? (
-        <Link onClick={() => setDrawerToggle(true)} href={href}>
+        <Link className={styles.link__nextLink} onClick={() => setDrawerToggle(true)} href={href}>
           {children}
         </Link>
       ) : (
-        <a>{children}</a>
+        <a className={styles.link__atag}>{children}</a>
       )}
 
-      {isDropDawn && (
+      {isDropDawn && isOpen && (
         <div className={styles.link__dropdawn}>
           <DropDawnLinks links={links} />
         </div>
