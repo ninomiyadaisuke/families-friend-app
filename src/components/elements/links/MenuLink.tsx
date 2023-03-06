@@ -40,7 +40,7 @@ const MenuLink: FC<Props> = (props) => {
 
   return (
     <div
-      className={isActive && !tablet ? styles.link__active : styles.link}
+      className={isActive ? styles.link__active : styles.link}
       onMouseEnter={() => hoverEvent(tablet)}
       onMouseLeave={() => unHoverEvent(tablet)}
     >
@@ -52,7 +52,7 @@ const MenuLink: FC<Props> = (props) => {
         <a>{children}</a>
       )}
 
-      {isDropDawn && isOpen && (
+      {isDropDawn && (
         <div className={styles.link__dropdawn}>
           <DropDawnLinks links={links} />
         </div>

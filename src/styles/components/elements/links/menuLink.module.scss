@@ -7,6 +7,11 @@
   a {
     color: $main;
   }
+  &__dropdawn {
+    position: absolute;
+    top: 45px;
+    right: 18%;
+  }
   @include mq('md') {
     align-self: flex-end;
     height: 58%;
@@ -14,16 +19,16 @@
     line-height: 1;
     border-bottom: 2px solid transparent;
     transition: border-color 0.3s ease;
-  }
-  &__dropdawn {
-    position: absolute;
-    top: 45px;
-    right: -50%;
+
+    &__dropdawn {
+      position: absolute;
+      top: 45px;
+      right: -50%;
+    }
   }
 }
 
 .link__active,
-.link:hover,
-.linkButton:focus {
+.link:hover {
   border-color: $main;
 }

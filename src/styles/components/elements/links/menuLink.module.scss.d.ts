@@ -3,7 +3,6 @@ export type Styles = {
   link__active: string;
   link__active__dropdawn: string;
   link__dropdawn: string;
-  linkButton: string;
 };
 
 export type ClassNames = keyof Styles;
