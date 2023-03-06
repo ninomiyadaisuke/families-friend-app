@@ -11,9 +11,8 @@
     color: $main;
   }
   &__dropdawn {
-    position: absolute;
-    top: 45px;
-    right: 18%;
+    display: flex;
+    justify-content: center;
   }
   @include mq('md') {
     align-self: flex-end;

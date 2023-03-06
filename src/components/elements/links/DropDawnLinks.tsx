@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { FC } from 'react';
 
+import { useBreakPoint } from '@/hooks/useBreakPoint';
 import { logout } from '@/libs/auth';
 import styles from '@/styles/components/elements/links/DropDawnLinks.module.scss';
 
@@ -17,13 +18,15 @@ type Props = {
         };
   }[];
   auth?: 'ログアウト';
+  type?: 'menu';
 };
 
 const DropDawnLinks: FC<Props> = (props) => {
-  const { links, auth } = props;
+  const { links, auth, type } = props;
+  const { tablet } = useBreakPoint();
 
   return (
-    <div className={styles.links}>
+    <div className={tablet && type === 'menu' ? styles.drawerLinks : styles.links}>
       {links.map((link) => (
         <Link key={link.text} href={link.href}>
           {link.text}

@@ -54,7 +54,7 @@ const MenuLink: FC<Props> = (props) => {
 
       {isDropDawn && isOpen && (
         <div className={styles.link__dropdawn}>
-          <DropDawnLinks links={links} />
+          <DropDawnLinks links={links} type={'menu'} />
         </div>
       )}
     </div>
