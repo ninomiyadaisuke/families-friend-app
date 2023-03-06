@@ -48,7 +48,7 @@ const AuthenticatedHeader: FC = () => {
             </Link>
           </h1>
           {isLinks && (
-            <div className={styles.header__container__menu}>
+            <div className={tablet ? styles.header__container_menu : styles.header__container_menu_pc}>
               <ul>
                 {menuLinks.map((link) => {
                   const isDropDawn = link.text === '記録一覧';
