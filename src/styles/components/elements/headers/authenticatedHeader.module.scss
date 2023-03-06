@@ -25,6 +25,16 @@
       display: flex;
       gap: 2%;
     }
+    &__menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: grid;
+      place-items: center;
+      width: 100%;
+      height: 100%;
+      background-color: $bg-blue;
+    }
   }
   @include mq('md') {
     height: 84px;
@@ -32,6 +42,10 @@
     &__container {
       h1 {
         width: calc(110px + 152 * (100vw - 800px) / 1120);
+      }
+      &__menu {
+        position: unset;
+        background-color: unset;
       }
       ul {
         display: flex;

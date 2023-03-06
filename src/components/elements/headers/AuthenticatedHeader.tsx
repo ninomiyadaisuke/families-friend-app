@@ -13,12 +13,21 @@ import { HamburgerButton } from '../buttons';
 const menuLinks = [
   { text: '家族一覧', href: '/' },
   { text: 'お年玉・プレゼント登録', href: '/about' },
-  { text: '記録一覧', href: '#' },
+  { text: '記録一覧', href: '/list/[type]' },
 ];
 
 const AuthenticatedHeader: FC = () => {
   const drawerToggle = useAtomValue(drawerToggleContext);
   const { tablet } = useBreakPoint();
+
+  const isLinks = (() => {
+    if (tablet) {
+      if (!drawerToggle) return true;
+      if (drawerToggle) return false;
+    }
+    return true;
+  })();
+
   return (
     <>
       <header className={styles.header}>
@@ -28,7 +37,6 @@ const AuthenticatedHeader: FC = () => {
               <HamburgerButton />
             </div>
           )}
-
           <h1>
             <Link href={'/'}>
               <ResponsiveImage
@@ -39,17 +47,19 @@ const AuthenticatedHeader: FC = () => {
               />
             </Link>
           </h1>
-          {!tablet && (
-            <ul>
-              {menuLinks.map((link) => {
-                const isDropDawn = link.text === '記録一覧';
-                return (
-                  <MenuLink key={link.text} href={link.href} isDropDawn={isDropDawn}>
-                    {link.text}
-                  </MenuLink>
-                );
-              })}
-            </ul>
+          {isLinks && (
+            <div className={styles.header__container__menu}>
+              <ul>
+                {menuLinks.map((link) => {
+                  const isDropDawn = link.text === '記録一覧';
+                  return (
+                    <MenuLink key={link.text} href={link.href} isDropDawn={isDropDawn}>
+                      {link.text}
+                    </MenuLink>
+                  );
+                })}
+              </ul>
+            </div>
           )}
           <div className={styles.header__container_profile}>
             <ProfileIcon image="/icon/profile-icon-demo.jpg" />
