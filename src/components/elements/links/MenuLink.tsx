@@ -1,10 +1,7 @@
-import { useSetAtom } from 'jotai';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { FC, ReactNode, useState } from 'react';
+import { FC, ReactNode } from 'react';
 
-import { drawerToggleContext } from '@/contexts/drawerToggle';
-import { useBreakPoint } from '@/hooks/useBreakPoint';
+import { useLayout } from '@/hooks/useLayout';
 import styles from '@/styles/components/elements/links/menuLink.module.scss';
 
 import DropDawnLinks from './DropDawnLinks';
@@ -22,28 +19,16 @@ const links = [
 
 const MenuLink: FC<Props> = (props) => {
   const { href, children, isDropDawn } = props;
-  const setDrawerToggle = useSetAtom(drawerToggleContext);
-  const [isOpen, setIsOpen] = useState(false);
-  const { tablet } = useBreakPoint();
-  const router = useRouter();
+  const { setDrawerToggle, router, tablet, isOpen, hoverEvent, unHoverEvent } = useLayout();
 
   const isActive = router.pathname === href;
-
-  const hoverEvent = (tablet: boolean) => {
-    if (tablet) return;
-    setIsOpen(true);
-  };
-  const unHoverEvent = (tablet: boolean) => {
-    if (tablet) return;
-    setIsOpen(false);
-  };
 
   const initialLinks = ((tablet: boolean) => {
     if (!tablet) return;
     return true;
   })(tablet);
 
-  const openLinks = tablet ? initialLinks : isOpen;
+  const isOpenLinks = tablet ? initialLinks : isOpen;
 
   return (
     <div
@@ -59,7 +44,7 @@ const MenuLink: FC<Props> = (props) => {
         <a className={styles.link__atag}>{children}</a>
       )}
 
-      {isDropDawn && openLinks && (
+      {isDropDawn && isOpenLinks && (
         <div className={styles.link__dropdawn}>
           <DropDawnLinks links={links} type={'menu'} />
         </div>

@@ -4,6 +4,7 @@ import { FC } from 'react';
 
 import { drawerToggleContext } from '@/contexts/drawerToggle';
 import { useBreakPoint } from '@/hooks/useBreakPoint';
+import { useLayout } from '@/hooks/useLayout';
 import { logout } from '@/libs/auth';
 import styles from '@/styles/components/elements/links/DropDawnLinks.module.scss';
 
@@ -25,8 +26,7 @@ type Props = {
 
 const DropDawnLinks: FC<Props> = (props) => {
   const { links, auth, type } = props;
-  const { tablet } = useBreakPoint();
-  const setDrawerToggle = useSetAtom(drawerToggleContext);
+  const { tablet, setDrawerToggle } = useLayout();
 
   return (
     <div className={tablet && type === 'menu' ? styles.drawerLinks : styles.links}>

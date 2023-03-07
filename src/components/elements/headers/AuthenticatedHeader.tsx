@@ -1,11 +1,9 @@
-import { useAtomValue } from 'jotai';
 import Link from 'next/link';
 import { FC } from 'react';
 
 import { ProfileIcon, ResponsiveImage } from '@/components/elements/images';
 import { MenuLink } from '@/components/elements/links';
-import { drawerToggleContext } from '@/contexts/drawerToggle';
-import { useBreakPoint } from '@/hooks/useBreakPoint';
+import { useLayout } from '@/hooks/useLayout';
 import styles from '@/styles/components/elements/headers/authenticatedHeader.module.scss';
 
 import { HamburgerButton } from '../buttons';
@@ -17,8 +15,7 @@ const menuLinks = [
 ];
 
 const AuthenticatedHeader: FC = () => {
-  const drawerToggle = useAtomValue(drawerToggleContext);
-  const { tablet } = useBreakPoint();
+  const { drawerToggle, tablet } = useLayout();
 
   const isLinks = (() => {
     if (tablet) {
