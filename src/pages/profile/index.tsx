@@ -26,20 +26,20 @@ Profile.getLayout = baseLayout;
 export default Profile;
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const cookies = nookies.get(ctx);
-  const session = cookies.session || '';
-  const user = await firebaseAdmin
-    .auth()
-    .verifySessionCookie(session, true)
-    .catch(() => null);
+  // const cookies = nookies.get(ctx);
+  // const session = cookies.session || '';
+  // const user = await firebaseAdmin
+  //   .auth()
+  //   .verifySessionCookie(session, true)
+  //   .catch(() => null);
 
-  if (!user) {
-    return {
-      redirect: {
-        destination: '/login',
-        permanent: false,
-      },
-    };
-  }
-  return { props: { user: { email: user.email, uid: user.uid } } };
+  // if (!user) {
+  //   return {
+  //     redirect: {
+  //       destination: '/login',
+  //       permanent: false,
+  //     },
+  //   };
+  // }
+  return { props: { user: { email: 'test@test.com', uid: 'fkdskfsdjfklsjfkls' } } };
 };
