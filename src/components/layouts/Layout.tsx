@@ -14,7 +14,6 @@ const Layout: FC<Props> = (props) => {
   return (
     <>
       {user ? <AuthenticatedHeader /> : <Header />}
-
       <main>{children}</main>
       <Footer />
     </>
