@@ -12,7 +12,7 @@ import { HamburgerButton } from '../buttons';
 
 const menuLinks = [
   { text: '家族一覧', href: '/' },
-  { text: 'お年玉・プレゼント登録', href: '/about' },
+  { text: 'お年玉・プレゼント登録', href: '/present' },
   { text: '記録一覧', href: '/list/[type]' },
 ];
 

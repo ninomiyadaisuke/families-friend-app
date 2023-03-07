@@ -38,6 +38,13 @@ const MenuLink: FC<Props> = (props) => {
     setIsOpen(false);
   };
 
+  const initialLinks = ((tablet: boolean) => {
+    if (!tablet) return;
+    return true;
+  })(tablet);
+
+  const openLinks = tablet ? initialLinks : isOpen;
+
   return (
     <div
       className={isActive ? styles.link__active : styles.link}
@@ -52,7 +59,7 @@ const MenuLink: FC<Props> = (props) => {
         <a className={styles.link__atag}>{children}</a>
       )}
 
-      {isDropDawn && isOpen && (
+      {isDropDawn && openLinks && (
         <div className={styles.link__dropdawn}>
           <DropDawnLinks links={links} type={'menu'} />
         </div>
