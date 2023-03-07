@@ -10,8 +10,8 @@ type Props = {
 };
 
 const links = [
-  { text: 'マイページ', href: '/' },
-  { text: 'プロフィール編集', href: '/' },
+  { text: 'マイページ', href: '/profile' },
+  { text: 'プロフィール編集', href: '/profile/edit' },
 ];
 
 const ProfileIcon: FC<Props> = (props) => {

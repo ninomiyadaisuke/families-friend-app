@@ -1,25 +1,36 @@
-.link,
-.link__active {
+.link__active,
+.link {
   position: relative;
+  height: 100%;
   font-size: 25px;
-  color: $main;
+  cursor: pointer;
+  &__nextLink,
+  &__atag {
+    display: block;
+    height: 100%;
+    color: $main;
+  }
+  &__dropdawn {
+    display: flex;
+    justify-content: center;
+  }
   @include mq('md') {
     align-self: flex-end;
-    height: 50%;
+    height: 58%;
     font-size: calc(16px + 9 * (100vw - 800px) / 1120);
     line-height: 1;
     border-bottom: 2px solid transparent;
     transition: border-color 0.3s ease;
-  }
-  &__dropdawn {
-    position: absolute;
-    top: 48px;
-    left: -56px;
+
+    &__dropdawn {
+      position: absolute;
+      top: 45px;
+      right: -50%;
+    }
   }
 }
 
 .link__active,
-.link:hover,
-.linkButton:focus {
+.link:hover {
   border-color: $main;
 }

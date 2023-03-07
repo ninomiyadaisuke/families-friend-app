@@ -1,6 +1,5 @@
 export type Styles = {
-  drawerLinks: string;
-  links: string;
+  hamburger: string;
 };
 
 export type ClassNames = keyof Styles;

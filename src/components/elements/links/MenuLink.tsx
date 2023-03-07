@@ -1,8 +1,7 @@
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { FC, ReactNode, useState } from 'react';
+import { FC, ReactNode } from 'react';
 
-import { useBreakPoint } from '@/hooks/useBreakPoint';
+import { useLayout } from '@/hooks/useLayout';
 import styles from '@/styles/components/elements/links/menuLink.module.scss';
 
 import DropDawnLinks from './DropDawnLinks';
@@ -10,42 +9,47 @@ import DropDawnLinks from './DropDawnLinks';
 type Props = {
   href: string;
   children: ReactNode;
-  dropDawn?: boolean;
+  isDropDawn?: boolean;
 };
 
 const links = [
-  { text: 'お年玉一覧', href: '/' },
-  { text: 'プレゼント一覧', href: '/' },
+  { text: 'お年玉一覧', href: { pathname: '/list/[type]', query: { type: 'otosidama' } } },
+  { text: 'プレゼント一覧', href: { pathname: '/list/[type]', query: { type: 'present' } } },
 ];
 
 const MenuLink: FC<Props> = (props) => {
-  const { href, children, dropDawn } = props;
-  const [isOpen, setIsOpen] = useState(false);
-  const { tablet } = useBreakPoint();
-  const router = useRouter();
+  const { href, children, isDropDawn } = props;
+  const { setDrawerToggle, router, tablet, isOpen, hoverEvent, unHoverEvent } = useLayout();
+
   const isActive = router.pathname === href;
 
-  const hoverEvent = () => {
-    setIsOpen(true);
-  };
-  const unHoverEvent = () => {
-    setIsOpen(false);
-  };
+  const initialLinks = ((tablet: boolean) => {
+    if (!tablet) return;
+    return true;
+  })(tablet);
+
+  const isOpenLinks = tablet ? initialLinks : isOpen;
 
   return (
-    <Link
-      href={href}
-      className={isActive && !tablet ? styles.link__active : styles.link}
-      onMouseEnter={hoverEvent}
-      onMouseLeave={unHoverEvent}
+    <div
+      className={isActive ? styles.link__active : styles.link}
+      onMouseEnter={() => hoverEvent(tablet)}
+      onMouseLeave={() => unHoverEvent(tablet)}
     >
-      {children}
-      {dropDawn && isOpen && (
+      {href !== '/list/[type]' ? (
+        <Link className={styles.link__nextLink} onClick={() => setDrawerToggle(true)} href={href}>
+          {children}
+        </Link>
+      ) : (
+        <a className={styles.link__atag}>{children}</a>
+      )}
+
+      {isDropDawn && isOpenLinks && (
         <div className={styles.link__dropdawn}>
-          <DropDawnLinks links={links} />
+          <DropDawnLinks links={links} type={'menu'} />
         </div>
       )}
-    </Link>
+    </div>
   );
 };
 
