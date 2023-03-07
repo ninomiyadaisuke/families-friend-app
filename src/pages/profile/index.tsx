@@ -17,9 +17,9 @@ const Profile: NextPageWithLayout<Props> = ({ user }) => {
   return <div>{user.uid}</div>;
 };
 
-export const baseLayout = (page: ReactElement<{ children: ReactElement<Props> }>) => (
-  <Layout user={page.props.children.props.user}>{page}</Layout>
-);
+export const baseLayout = (page: ReactElement<{ children: ReactElement<Props> }>) => {
+  return <Layout user={page.props.children.props.user}>{page}</Layout>;
+};
 
 Profile.getLayout = baseLayout;
 
