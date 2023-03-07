@@ -5,7 +5,7 @@ import { AuthenticatedHeader, Header } from '@/components/elements/headers';
 
 type Props = {
   children: ReactNode;
-  user?: any;
+  user?: { email: string; uid: string };
 };
 
 const Layout: FC<Props> = (props) => {
