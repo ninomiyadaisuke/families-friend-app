@@ -1,11 +1,11 @@
-import { FC, JSXElementConstructor, ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 
 import { Footer } from '@/components/elements/footer';
 import { AuthenticatedHeader, Header } from '@/components/elements/headers';
 
 type Props = {
   children: ReactNode;
-  user: JSXElementConstructor<any>;
+  user?: { email: string; uid: string };
 };
 
 const Layout: FC<Props> = (props) => {
