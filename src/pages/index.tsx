@@ -4,7 +4,7 @@ import { ReactElement } from 'react';
 import { Hero, HomeAbout, HomeService } from '@/components/home';
 import { Layout } from '@/components/layouts';
 
-import { checkUser } from './libs/serverUtils';
+import { checkUser } from '../server/libs/serverUtils';
 
 type Props = {
   user: {

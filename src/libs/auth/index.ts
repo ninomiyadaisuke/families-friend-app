@@ -2,7 +2,7 @@ import { NextApiResponse } from 'next';
 import { setCookie } from 'nookies';
 import nookies from 'nookies';
 
-import { auth } from '@/firebase/firebaseAdmin';
+import { auth } from '@/server/firebase/firebaseAdmin';
 
 export const singUp = async (email: string, password: string) => {
   const apiKey = process.env.FIREBASE_API_KEY;

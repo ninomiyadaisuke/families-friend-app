@@ -1,7 +1,7 @@
 import type { GetServerSideProps, NextPageWithLayout } from 'next';
 
 import { baseLayout } from '@/pages';
-import { checkUser } from '@/pages/libs/serverUtils';
+import { checkUser } from '@/server/libs/serverUtils';
 
 const List: NextPageWithLayout = () => {
   return <>お年玉orプレゼントリストページ</>;

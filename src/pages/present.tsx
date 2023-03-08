@@ -2,7 +2,7 @@ import type { GetServerSideProps, NextPageWithLayout } from 'next';
 
 import { baseLayout } from '@/pages/index';
 
-import { checkUser } from './libs/serverUtils';
+import { checkUser } from '../server/libs/serverUtils';
 
 const Present: NextPageWithLayout = () => {
   return <div></div>;

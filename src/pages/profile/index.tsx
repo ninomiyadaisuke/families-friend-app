@@ -2,7 +2,7 @@ import type { NextPageWithLayout } from 'next';
 import { GetServerSideProps } from 'next';
 
 import { baseLayout } from '@/pages/index';
-import { checkUser } from '@/pages/libs/serverUtils';
+import { checkUser } from '@/server/libs/serverUtils';
 
 type Props = {
   user: {

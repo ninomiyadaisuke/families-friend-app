@@ -1,7 +1,7 @@
 import type { GetServerSideProps, NextPageWithLayout } from 'next';
 
 import { baseLayout } from '@/pages/index';
-import { checkUser } from '@/pages/libs/serverUtils';
+import { checkUser } from '@/server/libs/serverUtils';
 
 const ProfileEdit: NextPageWithLayout = () => {
   return <div></div>;

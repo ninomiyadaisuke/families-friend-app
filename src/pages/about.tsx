@@ -4,7 +4,7 @@ import { AboutText, AboutTop } from '@/components/about';
 import { baseLayout } from '@/pages/index';
 import styles from '@/styles/pages/about.module.scss';
 
-import { checkUser } from './libs/serverUtils';
+import { checkUser } from '../server/libs/serverUtils';
 
 const About: NextPageWithLayout = () => {
   return (

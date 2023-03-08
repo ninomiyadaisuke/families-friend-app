@@ -1,7 +1,7 @@
 import { GetServerSidePropsContext } from 'next';
 import nookies from 'nookies';
 
-import { auth } from '@/firebase/firebaseAdmin';
+import { auth } from '@/server/firebase/firebaseAdmin';
 
 export const checkUser = async (ctx: GetServerSidePropsContext, isProtected: boolean) => {
   const cookies = nookies.get(ctx);
