@@ -1,8 +1,10 @@
-import type { NextPageWithLayout } from 'next';
+import type { GetServerSideProps, NextPageWithLayout } from 'next';
 
 import { AboutText, AboutTop } from '@/components/about';
 import { baseLayout } from '@/pages/index';
 import styles from '@/styles/pages/about.module.scss';
+
+import { checkUser } from './libs/serverUtils';
 
 const About: NextPageWithLayout = () => {
   return (
@@ -16,3 +18,7 @@ const About: NextPageWithLayout = () => {
 About.getLayout = baseLayout;
 
 export default About;
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  return await checkUser(ctx, true); //認証必須ではないのでtrue
+};
