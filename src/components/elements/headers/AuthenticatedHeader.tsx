@@ -9,7 +9,7 @@ import styles from '@/styles/components/elements/headers/authenticatedHeader.mod
 import { HamburgerButton } from '../buttons';
 
 const menuLinks = [
-  { text: '家族一覧', href: '/' },
+  { text: '家族一覧', href: '/contacts' },
   { text: 'お年玉・プレゼント登録', href: '/present' },
   { text: '記録一覧', href: '/list/[type]' },
 ];

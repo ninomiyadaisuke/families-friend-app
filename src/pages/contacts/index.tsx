@@ -3,13 +3,13 @@ import type { GetServerSideProps, NextPageWithLayout } from 'next';
 import { baseLayout } from '@/pages/index';
 import { checkUser } from '@/server/libs/serverUtils';
 
-const Present: NextPageWithLayout = () => {
+const Contacts: NextPageWithLayout = () => {
   return <div></div>;
 };
 
-Present.getLayout = baseLayout;
+Contacts.getLayout = baseLayout;
 
-export default Present;
+export default Contacts;
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   return await checkUser(ctx, false); //認証必須ページはfalseを設定

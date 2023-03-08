@@ -2,9 +2,8 @@ import type { GetServerSideProps, NextPageWithLayout } from 'next';
 
 import { AboutText, AboutTop } from '@/components/about';
 import { baseLayout } from '@/pages/index';
+import { checkUser } from '@/server/libs/serverUtils';
 import styles from '@/styles/pages/about.module.scss';
-
-import { checkUser } from '../server/libs/serverUtils';
 
 const About: NextPageWithLayout = () => {
   return (
