@@ -1,14 +1,17 @@
-import type { NextPageWithLayout } from 'next';
-import { ReactElement } from 'react';
+import type { GetServerSideProps, NextPageWithLayout } from 'next';
 
-import { Layout } from '@/components/layouts';
+import { baseLayout } from '@/pages/index';
+
+import { checkUser } from '../server/libs/serverUtils';
 
 const Present: NextPageWithLayout = () => {
   return <div></div>;
 };
 
-export const baseLayout = (page: ReactElement) => <Layout>{page}</Layout>;
-
 Present.getLayout = baseLayout;
 
 export default Present;
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  return await checkUser(ctx, false); //認証必須ページはfalseを設定
+};

@@ -1,7 +1,7 @@
 import type { NextApiHandler } from 'next';
 
-import { auth } from '@/firebase/firebaseAdmin';
 import { assignSession, login, singUp } from '@/libs/auth';
+import { auth } from '@/server/firebase/firebaseAdmin';
 
 const handler: NextApiHandler = async (req, res) => {
   if (req.method !== 'POST') return res.status(404).send('Not Found');

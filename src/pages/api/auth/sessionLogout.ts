@@ -1,7 +1,7 @@
 import type { NextApiHandler } from 'next';
 import { destroyCookie, parseCookies } from 'nookies';
 
-import { auth } from '@/firebase/firebaseAdmin';
+import { auth } from '@/server/firebase/firebaseAdmin';
 
 const handler: NextApiHandler = async (req, res) => {
   // POSTじゃなければ、"404 Not Found"を返す
