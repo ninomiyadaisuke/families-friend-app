@@ -20,12 +20,10 @@ const initialState = {
   last_name_kana: '',
   birthday: '',
   relationship: '',
-  login_type: '',
 };
 
 const registerSchema = z
   .object({
-    login_type: z.union([z.literal(''), z.literal('retention')]),
     password: z
       .string()
       .min(1, 'パスワードを入力してください')
@@ -215,8 +213,7 @@ const RegisterForm: FC = () => {
               />
             </div>
           </div>
-          <div className={styles.forms__check}>
-            <CheckBox label="ログイン状態を保持" registration={register('login_type')} />
+          <div className={styles.forms__terms}>
             <p>
               登録ボタンをクリックすることで、<Link href={'/terms'}>利用規約</Link>と
               <Link href={'/'}>個人情報保護方針</Link>

@@ -6,6 +6,7 @@ export type Styles = {
   forms__name: string;
   forms__pass: string;
   forms__select: string;
+  forms__terms: string;
 };
 
 export type ClassNames = keyof Styles;
