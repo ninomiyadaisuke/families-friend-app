@@ -15,7 +15,6 @@ const initialState = {
 };
 
 const loginSchema = z.object({
-  login_type: z.union([z.literal(''), z.literal('retention')]),
   password: z
     .string()
     .min(1, 'パスワードを入力してください')
