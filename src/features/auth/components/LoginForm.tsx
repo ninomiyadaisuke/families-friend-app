@@ -4,13 +4,12 @@ import { FC } from 'react';
 import { z } from 'zod';
 
 import { PrimaryButton } from '@/components/elements/buttons';
-import { CheckBox, Form, PrimaryInput } from '@/components/forms';
+import { Form, PrimaryInput } from '@/components/forms';
 import styles from '@/styles/features/auth/components/loginForm.module.scss';
 
 const initialState = {
   email: '',
   password: '',
-  login_type: '',
 } as const satisfies {
   [key: string]: string;
 };
@@ -69,10 +68,7 @@ const LoginForm: FC = () => {
             registration={register('password')}
             required="required"
           />
-          <div className={styles.forms__check}>
-            <CheckBox label="ログイン状態を保持" registration={register('login_type')} />
-            <Link href={'/'}>パスワードを忘れた場合</Link>
-          </div>
+          <Link href={'/'}>パスワードを忘れた場合</Link>
           <div className={styles.forms__button}>
             <PrimaryButton type="navy" text="ログイン" />
           </div>
