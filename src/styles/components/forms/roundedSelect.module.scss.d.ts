@@ -1,5 +1,6 @@
 export type Styles = {
   selectContainer: string;
+  selectContainer__select: string;
 };
 
 export type ClassNames = keyof Styles;

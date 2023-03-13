@@ -1,35 +1,22 @@
-import cx from 'classnames';
 import { FC } from 'react';
 
 import styles from '@/styles/components/forms/roundedSelect.module.scss';
 
 type Props = {
   options: { value: string }[];
-  name: 'year' | 'month' | 'day';
+  id?: string;
   errorMesseage?: string;
   onChange: (value: string) => void;
 };
 
 const RoundedSelect: FC<Props> = (props) => {
-  const { options, name, errorMesseage, onChange } = props;
-
-  const yearOrMonthOrDay = (() => {
-    switch (name) {
-      case 'year':
-        return '年';
-      case 'month':
-        return '月';
-      case 'day':
-        return '日';
-      default:
-        const _: never = name;
-    }
-  })();
+  const { options, id, errorMesseage, onChange } = props;
 
   return (
-    <div className={cx(styles.selectContainer)}>
+    <div className={styles.selectContainer}>
       <select
-        id={name}
+        className={styles.selectContainer__select}
+        id={id}
         onChange={(e) => {
           onChange(e.target.value);
         }}
@@ -41,7 +28,6 @@ const RoundedSelect: FC<Props> = (props) => {
           </option>
         ))}
       </select>
-      <span>{yearOrMonthOrDay}</span>
       {errorMesseage && <p>{errorMesseage}</p>}
     </div>
   );
