@@ -1,0 +1,14 @@
+.tes {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 23px;
+  @include mq('md') {
+    width: calc(700px + 100 * (100vw - 800px) / 1120);
+  }
+}

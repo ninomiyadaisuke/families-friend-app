@@ -1,5 +1,12 @@
 export type Styles = {
-  label: string;
+  inputContainer: string;
+  inputContainer_block: string;
+  inputContainer_flex: string;
+  labelContainer: string;
+  labelContainer__badge: string;
+  labelContainer__label: string;
+  labelContainer__label_center: string;
+  labelContainer__label_start: string;
 };
 
 export type ClassNames = keyof Styles;

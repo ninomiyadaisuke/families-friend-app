@@ -9,31 +9,30 @@ import { FixedImage } from '../elements/images';
 type Props = {
   type: HTMLInputTypeAttribute;
   registration?: UseFormRegisterReturn;
-  iconType: 'user';
-  src: string;
-  alt: string;
+  iconType?: 'user';
+  src?: string;
+  alt?: string;
   placeholder: string;
   errorMesseage?: string;
-  required?: 'required';
   responsiveImageNone?: 'none';
+  id?: string;
+  width?: string;
 };
 
 const RoundedInput: FC<Props> = (props) => {
-  const { type, src, alt, errorMesseage, placeholder, responsiveImageNone, iconType, registration } = props;
+  const { type, src, alt, errorMesseage, placeholder, responsiveImageNone, iconType, registration, id, width } = props;
   const { tablet } = useBreakPoint();
   const checkImage = src && alt;
-  const iconNone = tablet && responsiveImageNone === 'none';
+  const iconNone = (tablet && responsiveImageNone === 'none') || !iconType;
 
   const iconSizeClassName = (() => {
     switch (iconType) {
       case 'user':
         return `${styles.input__icon_user}`;
-      default:
-        const check: never = iconType;
     }
   })();
   return (
-    <div className={styles.input}>
+    <div className={`${styles.input} ${width}`}>
       {checkImage && !iconNone && (
         <FixedImage src={src} alt={alt} className={`${styles.input__icon} ${iconSizeClassName}`} />
       )}
@@ -45,6 +44,7 @@ const RoundedInput: FC<Props> = (props) => {
         </>
       )}
       <input
+        id={id}
         {...registration}
         autoComplete="on"
         type={type}
