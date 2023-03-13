@@ -1,0 +1,46 @@
+.labelContainer {
+  position: relative;
+  width: 100%;
+  font-size: 16px;
+  &__label {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  &__badge {
+    align-self: center;
+  }
+  .inputContainer {
+    display: flex;
+    width: 100%;
+    &_flex {
+      gap: 24px;
+    }
+    &_block {
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+  @include mq('md') {
+    display: flex;
+    font-size: 20px;
+
+    &__label {
+      width: 32%;
+      &_start {
+        align-self: flex-start;
+        margin-top: 10px;
+      }
+      &_center {
+        align-self: center;
+      }
+    }
+    .inputContainer {
+      gap: 36px;
+      width: 68%;
+      &_block {
+        gap: 20px;
+      }
+    }
+  }
+}
