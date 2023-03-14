@@ -5,7 +5,7 @@ import styles from '@/styles/components/elements/texts/errorText.module.scss';
 
 type Props = {
   children: ReactNode;
-  positon: string;
+  positon?: string;
 };
 
 const ErrorText: FC<Props> = (props) => {
