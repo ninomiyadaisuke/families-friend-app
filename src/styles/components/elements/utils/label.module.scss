@@ -12,7 +12,6 @@
   }
   .inputContainer {
     display: flex;
-    width: 100%;
     &_flex {
       gap: 24px;
     }
@@ -26,7 +25,7 @@
     font-size: 20px;
 
     &__label {
-      width: 32%;
+      width: 260px !important;
       &_start {
         align-self: flex-start;
         margin-top: 10px;
@@ -37,7 +36,6 @@
     }
     .inputContainer {
       gap: 36px;
-      width: 68%;
       &_block {
         gap: 20px;
       }

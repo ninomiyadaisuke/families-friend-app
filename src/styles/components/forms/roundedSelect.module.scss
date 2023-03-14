@@ -6,15 +6,20 @@
   &__select {
     width: 100%;
     height: 100%;
+    padding-right: 20px;
     color: $text-main;
-    text-indent: 36px;
+    text-align: right;
+    
     background-color: $bg-white;
     border: 2px solid $main;
     border-radius: 30px;
     outline: none;
     transition: all 0.3s ease-in-out;
     appearance: none;
-    caret-color: $main; 
+    caret-color: $main;
+    &:disabled {
+      border: 2px solid $light-grey;
+    }
     &:focus {
       border: 2px solid $light-blue;
     }
@@ -24,16 +29,32 @@
   }
   &::after {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 30px;
+    right: 15px;
     z-index: 10;
     width: 6px;
     height: 6px;
     pointer-events: none;
     content: '';
-    border-top: solid 1px $main;
-    border-right: solid 1px $main;
+    border-top: solid 2px $main;
+    border-right: solid 2px $main;
     transform: rotate(135deg);
   }
 }
 
+.selectContainer_disabled {
+  &::after {
+    border-top: solid 2px $light-grey;
+    border-right: solid 2px $light-grey;
+  }
+}
+
+.selectContainer_short {
+  width: 20%;
+  max-width: 68px;
+}
+
+.selectContainer_midule {
+  width: 40%;
+  width: 100px;
+}

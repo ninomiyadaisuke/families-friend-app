@@ -1,3 +1,4 @@
+import cx from 'classnames';
 import { FC, ReactNode } from 'react';
 
 import styles from '@/styles/components/elements/utils/label.module.scss';
@@ -9,16 +10,18 @@ type Props = {
   required?: 'required';
   label: string;
   type: 'flex' | 'block';
+  widthStyle?: string;
 };
 
 const Label: FC<Props> = (props) => {
-  const { children, label, required, type } = props;
+  const { children, label, required, type, widthStyle } = props;
+
   const className = (() => {
     switch (type) {
       case 'flex':
-        return `${styles.inputContainer} ${styles.inputContainer_flex}`;
+        return cx(styles.inputContainer, styles.inputContainer_flex);
       case 'block':
-        return `${styles.inputContainer} ${styles.inputContainer_block}`;
+        return cx(styles.inputContainer, styles.inputContainer_block);
       default:
         const _: never = type;
     }
@@ -40,7 +43,7 @@ const Label: FC<Props> = (props) => {
         )}
       </label>
 
-      <div className={className}>{children(label)}</div>
+      <div className={cx(className, widthStyle)}>{children(label)}</div>
     </div>
   );
 };
