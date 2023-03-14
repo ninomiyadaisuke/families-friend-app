@@ -7,6 +7,9 @@ const nextConfig = {
     includePaths: [path.join(__dirname, 'styles')],
     additionalData: `@use './src/styles/variables.scss' as *;`,
   },
+  images: {
+    domains: ['firebasestorage.googleapis.com'],
+  },
 };
 
 module.exports = nextConfig;
