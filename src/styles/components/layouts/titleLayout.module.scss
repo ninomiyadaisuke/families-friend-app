@@ -1,3 +1,11 @@
 .title {
-  font-size: 30px;
+  padding-top: 102px;
+  padding-bottom: 38px;
+  font-size: 24px;
+  text-align: center;
+  @include mq('md') {
+    padding-top: calc(102px + 38 * (100vw - 800px) / 1120);
+    padding-bottom: calc(38px + 22 * (100vw - 800px) / 1120);
+    font-size: calc(24px + 16 * (100vw - 800px) / 1120)
+  }
 }
