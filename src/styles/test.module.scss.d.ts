@@ -1,6 +1,5 @@
 export type Styles = {
-  tes: string;
-  wrapper: string;
+  inputContainer_input: string;
 };
 
 export type ClassNames = keyof Styles;
