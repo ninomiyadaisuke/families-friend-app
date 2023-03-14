@@ -1,13 +1,20 @@
 import type { GetServerSideProps, NextPageWithLayout } from 'next';
+import { ReactElement } from 'react';
 
-import { baseLayout } from '@/pages/index';
+import { Layout, TitleLayout } from '@/components/layouts';
 import { checkUser } from '@/server/libs/serverUtils';
+import { TAuthUser } from '@/types/users';
 
 const ProfileEdit: NextPageWithLayout = () => {
   return <div></div>;
 };
 
-ProfileEdit.getLayout = baseLayout;
+export const getLayout = (page: ReactElement<{ children: ReactElement<TAuthUser> }>, title: string) => (
+  <Layout user={page.props.children.props.user}>
+    <TitleLayout title={title}>{page}</TitleLayout>
+  </Layout>
+);
+ProfileEdit.getLayout = (page: ReactElement) => getLayout(page, 'プロフィール編集');
 
 export default ProfileEdit;
 
