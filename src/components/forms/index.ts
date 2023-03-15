@@ -1,5 +1,6 @@
 export { default as CheckBox } from './CheckBox';
 export { default as Form } from './Form';
+export { default as ImageUploader } from './ImageUploader';
 export { default as PrimaryInput } from './PrimaryInput';
 export { default as PrimarySelect } from './PrimarySelect';
 export { default as RoundedDateSelect } from './RoundedDateSelect';

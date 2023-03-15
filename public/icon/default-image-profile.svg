@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="160" viewBox="0 0 120 160">
+  <g id="IMG" transform="translate(-1482 -391)">
+    <g id="長方形_557" data-name="長方形 557" transform="translate(1482 391)" fill="#fff" stroke="#707070" stroke-width="1">
+      <rect width="120" height="160" stroke="none"/>
+      <rect x="0.5" y="0.5" width="119" height="159" fill="none"/>
+    </g>
+    <path id="Icon_awesome-user-alt" data-name="Icon awesome-user-alt" d="M33.086,37.222A18.611,18.611,0,1,0,14.475,18.611,18.616,18.616,0,0,0,33.086,37.222Zm16.543,4.136H42.508a22.5,22.5,0,0,1-18.844,0H16.543A16.542,16.542,0,0,0,0,57.9v2.068a6.205,6.205,0,0,0,6.2,6.2H59.969a6.205,6.205,0,0,0,6.2-6.2V57.9A16.542,16.542,0,0,0,49.629,41.358Z" transform="translate(1511.828 437.914)" fill="#cecece"/>
+  </g>
+</svg>
