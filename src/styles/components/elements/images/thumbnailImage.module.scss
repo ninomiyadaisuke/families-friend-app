@@ -1,0 +1,9 @@
+.thumbnailContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  &__image {
+    width: 60px;
+    height: 80px;
+  }
+}

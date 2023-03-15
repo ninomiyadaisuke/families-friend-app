@@ -1,7 +1,8 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
-import { FixedImage } from '@/components/elements/images';
+import { FixedImage, ThumbnailImage } from '@/components/elements/images';
+import { useImageUpload } from '@/hooks/useImageUpload';
 import styles from '@/styles/components/forms/ImageUploader.module.scss';
 
 import { ErrorText } from '../elements/texts';
@@ -16,8 +17,7 @@ type Props = {
 const ImageUploader: FC<Props> = (props) => {
   const { registration, errorMessage, imageUrl, setValue } = props;
   const { onChange, ...rest } = registration;
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-  const [image, setImage] = useState(false);
+  const { previewUrl, setImage, image, setPreviewUrl } = useImageUpload();
 
   const fileChangedHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setImage(true);
@@ -67,18 +67,9 @@ const ImageUploader: FC<Props> = (props) => {
       </div>
       {errorMessage && <ErrorText>{errorMessage}</ErrorText>}
       {previewUrl && image && (
-        <>
-          <FixedImage src={previewUrl} alt="image" className={styles.thumbnailImage} />
-          <a
-            className={styles.deleteImage}
-            onClick={() => {
-              setImage(false);
-              setValue('');
-            }}
-          >
-            削除
-          </a>
-        </>
+        <div>
+          <ThumbnailImage setValue={setValue} />
+        </div>
       )}
     </div>
   );
