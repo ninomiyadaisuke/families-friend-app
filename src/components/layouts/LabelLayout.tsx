@@ -3,7 +3,7 @@ import { FC, ReactNode } from 'react';
 
 import styles from '@/styles/components/elements/utils/label.module.scss';
 
-import { RequiredBadge } from './';
+import { RequiredBadge } from '../elements/utils';
 
 type Props = {
   children: (label: string) => ReactNode;
@@ -13,7 +13,7 @@ type Props = {
   widthStyle?: string;
 };
 
-const Label: FC<Props> = (props) => {
+const LabelLayout: FC<Props> = (props) => {
   const { children, label, required, type, widthStyle } = props;
 
   const className = (() => {
@@ -48,4 +48,4 @@ const Label: FC<Props> = (props) => {
   );
 };
 
-export default Label;
+export default LabelLayout;

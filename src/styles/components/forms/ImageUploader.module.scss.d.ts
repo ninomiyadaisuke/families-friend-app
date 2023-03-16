@@ -1,14 +1,10 @@
 export type Styles = {
-  buttonContainer: string;
-  buttonContainer__input: string;
-  buttonContainer__label: string;
-  deleteImage: string;
   profileImage: string;
-  thumbnailImage: string;
   uploaderContainer: string;
   uploaderContainer__imageAndButton: string;
-  uploaderContainer__text: string;
-  uploaderContainer_imagePostion: string;
+  uploaderContainer__imageAndButton_postion: string;
+  uploaderContainer__label: string;
+  uploaderContainer__thumbnail: string;
 };
 
 export type ClassNames = keyof Styles;

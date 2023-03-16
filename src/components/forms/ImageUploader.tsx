@@ -1,9 +1,12 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
-import { FixedImage } from '@/components/elements/images';
+import { FixedImage, ThumbnailImage } from '@/components/elements/images';
+import { ImaegLabel } from '@/components/elements/labels';
+import { useImageUpload } from '@/hooks/useImageUpload';
 import styles from '@/styles/components/forms/ImageUploader.module.scss';
 
+import { UploadButton } from '../elements/buttons';
 import { ErrorText } from '../elements/texts';
 
 type Props = {
@@ -15,24 +18,7 @@ type Props = {
 
 const ImageUploader: FC<Props> = (props) => {
   const { registration, errorMessage, imageUrl, setValue } = props;
-  const { onChange, ...rest } = registration;
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-  const [image, setImage] = useState(false);
-
-  const fileChangedHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setImage(true);
-    const files = event.target.files;
-    if (files && files.length > 0) {
-      const file = files[0];
-      if (file.type.startsWith('image/')) {
-        const reader = new FileReader();
-        reader.onload = () => {
-          setPreviewUrl(reader.result as string);
-        };
-        reader.readAsDataURL(file);
-      }
-    }
-  };
+  const { previewUrl, image, setImage } = useImageUpload();
 
   useEffect(() => {
     setImage(false);
@@ -40,45 +26,24 @@ const ImageUploader: FC<Props> = (props) => {
 
   return (
     <div className={styles.uploaderContainer}>
-      <label htmlFor="fileUpload" className={styles.uploaderContainer__text}>
-        <span>顔写真:</span> <span>(対応形式</span> <span>JPG/JPEG/</span> <span>PNG)</span>
-      </label>
+      <div className={styles.uploaderContainer__label}>
+        <ImaegLabel title="顔写真" block={true} />
+      </div>
       <div className={styles.uploaderContainer__imageAndButton}>
-        <div className={styles.uploaderContainer_imagePostion}>
+        <div className={styles.uploaderContainer__imageAndButton_postion}>
           <FixedImage
             src={imageUrl ? imageUrl : '/icon/default-image-profile.svg'}
             alt="image"
             className={styles.profileImage}
           />
         </div>
-        <div className={styles.buttonContainer}>
-          <label htmlFor="fileUpload" className={styles.buttonContainer__label}>
-            ファイルを選択する
-          </label>
-          <input
-            type="file"
-            accept=".jpeg,.png,.jpg"
-            onChange={fileChangedHandler}
-            {...rest}
-            id="fileUpload"
-            className={styles.buttonContainer__input}
-          />
-        </div>
+        <UploadButton registration={registration} />
       </div>
       {errorMessage && <ErrorText>{errorMessage}</ErrorText>}
       {previewUrl && image && (
-        <>
-          <FixedImage src={previewUrl} alt="image" className={styles.thumbnailImage} />
-          <a
-            className={styles.deleteImage}
-            onClick={() => {
-              setImage(false);
-              setValue('');
-            }}
-          >
-            削除
-          </a>
-        </>
+        <div className={styles.uploaderContainer__thumbnail}>
+          <ThumbnailImage setValue={setValue} />
+        </div>
       )}
     </div>
   );
