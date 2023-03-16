@@ -12,6 +12,7 @@ const UploadButton: FC<Props> = (props) => {
   const { registration } = props;
   const { onChange, ...rest } = registration;
   const { fileChangedHandler } = useImageUpload();
+
   return (
     <div className={styles.buttonContainer}>
       <label htmlFor="fileUpload" className={styles.buttonContainer__label}>

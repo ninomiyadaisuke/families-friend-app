@@ -5,6 +5,7 @@ import { FixedImage, ThumbnailImage } from '@/components/elements/images';
 import { useImageUpload } from '@/hooks/useImageUpload';
 import styles from '@/styles/components/forms/ImageUploader.module.scss';
 
+import { UploadButton } from '../elements/buttons';
 import { ErrorText } from '../elements/texts';
 
 type Props = {
@@ -16,23 +17,7 @@ type Props = {
 
 const ImageUploader: FC<Props> = (props) => {
   const { registration, errorMessage, imageUrl, setValue } = props;
-  const { onChange, ...rest } = registration;
-  const { previewUrl, setImage, image, setPreviewUrl } = useImageUpload();
-
-  const fileChangedHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setImage(true);
-    const files = event.target.files;
-    if (files && files.length > 0) {
-      const file = files[0];
-      if (file.type.startsWith('image/')) {
-        const reader = new FileReader();
-        reader.onload = () => {
-          setPreviewUrl(reader.result as string);
-        };
-        reader.readAsDataURL(file);
-      }
-    }
-  };
+  const { previewUrl, image, setImage } = useImageUpload();
 
   useEffect(() => {
     setImage(false);
@@ -51,19 +36,7 @@ const ImageUploader: FC<Props> = (props) => {
             className={styles.profileImage}
           />
         </div>
-        <div className={styles.buttonContainer}>
-          <label htmlFor="fileUpload" className={styles.buttonContainer__label}>
-            ファイルを選択する
-          </label>
-          <input
-            type="file"
-            accept=".jpeg,.png,.jpg"
-            onChange={fileChangedHandler}
-            {...rest}
-            id="fileUpload"
-            className={styles.buttonContainer__input}
-          />
-        </div>
+        <UploadButton registration={registration} />
       </div>
       {errorMessage && <ErrorText>{errorMessage}</ErrorText>}
       {previewUrl && image && (
