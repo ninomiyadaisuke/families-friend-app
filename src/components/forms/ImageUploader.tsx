@@ -2,6 +2,7 @@ import { FC, useEffect } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
 import { FixedImage, ThumbnailImage } from '@/components/elements/images';
+import { ImaegLabel } from '@/components/elements/labels';
 import { useImageUpload } from '@/hooks/useImageUpload';
 import styles from '@/styles/components/forms/ImageUploader.module.scss';
 
