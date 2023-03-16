@@ -25,25 +25,17 @@
   &_imagePostion {
     align-self: center;
   }
+  &__thumbnail {
+    position: absolute;
+    top: 20%;
+    left: 300px;
+  }
 }
-.deleteImage {
-  position: absolute;
-  top: 60%;
-  left: 63%;
-  cursor: pointer;
-}
+
 .profileImage {
   position: relative;
   width: 120px;
   height: 160px;
-}
-
-.thumbnailImage {
-  position: absolute;
-  top: 15%;
-  left: 60%;
-  width: 60px;
-  height: 80px;
 }
 
 .buttonContainer {

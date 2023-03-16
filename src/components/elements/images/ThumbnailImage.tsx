@@ -16,6 +16,7 @@ const ThumbnailImage: FC<Props> = (props) => {
     <div className={styles.thumbnailContainer}>
       <FixedImage src={previewUrl} alt="image" className={styles.thumbnailContainer__image} />
       <a
+        className={styles.thumbnailContainer__link}
         onClick={() => {
           setImage(false);
           setValue('');

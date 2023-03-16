@@ -67,7 +67,7 @@ const ImageUploader: FC<Props> = (props) => {
       </div>
       {errorMessage && <ErrorText>{errorMessage}</ErrorText>}
       {previewUrl && image && (
-        <div>
+        <div className={styles.uploaderContainer__thumbnail}>
           <ThumbnailImage setValue={setValue} />
         </div>
       )}
