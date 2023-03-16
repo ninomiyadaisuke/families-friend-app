@@ -26,11 +26,11 @@ const ImageUploader: FC<Props> = (props) => {
 
   return (
     <div className={styles.uploaderContainer}>
-      <label htmlFor="fileUpload" className={styles.uploaderContainer__text}>
-        <span>顔写真:</span> <span>(対応形式</span> <span>JPG/JPEG/</span> <span>PNG)</span>
-      </label>
+      <div className={styles.uploaderContainer__label}>
+        <ImaegLabel title="顔写真" block={true} />
+      </div>
       <div className={styles.uploaderContainer__imageAndButton}>
-        <div className={styles.uploaderContainer_imagePostion}>
+        <div className={styles.uploaderContainer__imageAndButton_postion}>
           <FixedImage
             src={imageUrl ? imageUrl : '/icon/default-image-profile.svg'}
             alt="image"

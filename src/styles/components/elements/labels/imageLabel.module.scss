@@ -1,11 +1,16 @@
 .label {
-  align-self: center;
   line-height: 1;
   span {
     font-size: 16px;
     letter-spacing: 0;
   }
-  span:first-child  {
+  span:first-child {
+    display: block;
+  }
+}
+
+.label__block {
+  span:first-child {
     font-size: 20px;
   }
   span::after {
