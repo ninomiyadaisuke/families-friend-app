@@ -1,6 +1,8 @@
 export type Styles = {
-  inputContainer_input: string;
-  test: string;
+  input: string;
+  input__label: string;
+  inputLabelDisabled: string;
+  radioContainer: string;
 };
 
 export type ClassNames = keyof Styles;
