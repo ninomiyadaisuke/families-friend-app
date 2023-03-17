@@ -1,4 +1,7 @@
 export type Styles = {
+  input: string;
+  input__label: string;
+  inputLabelDisabled: string;
   radioContainer: string;
 };
 
