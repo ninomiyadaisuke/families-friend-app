@@ -1,10 +1,10 @@
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { FC } from 'react';
-import { z } from 'zod';
 
 import { PrimaryButton } from '@/components/elements/buttons';
-import { CheckBox, Form, PrimaryInput, PrimarySelect, UnderlineDateSelect } from '@/components/forms';
+import { Form, PrimaryInput, PrimarySelect, UnderlineDateSelect } from '@/components/forms';
+import type { FormValues } from '@/features/auth/api/register';
+import { login, registerSchema } from '@/features/auth/api/register';
 import styles from '@/styles/features/auth/components/registerForm.module.scss';
 
 const options = [{ value: '世帯主' }, { value: '配偶書' }, { value: '子供' }, { value: '親' }, { value: '同居人' }];
@@ -22,81 +22,7 @@ const initialState = {
   relationship: '',
 };
 
-const registerSchema = z
-  .object({
-    password: z
-      .string()
-      .min(1, 'パスワードを入力してください')
-      .min(8, 'パスワードは8文字以上で入力してください')
-      .regex(/^(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}$/i, 'パスワードは半角英数字混合で入力してください')
-      .default(''),
-    confirm_password: z.string().min(1, '確認用のパスワードを入力してください'),
-    email: z
-      .string()
-      .min(1, 'メールアドレスを入力してください')
-      .email({ message: 'メールアドレスの形式で入力してください' }),
-    confirm_email: z.string().min(1, '確認用のメールアドレスを入力してください'),
-    first_name: z.string().max(20, '名前は20文字以下で入力してください'),
-    first_name_kana: z.union([
-      z.literal(''),
-      z
-        .string()
-        .max(20, '苗字は20文字以下で入力してください')
-        .regex(/^[\p{scx=Katakana}|ｦ-ﾟ]+$/u, 'カタカナで入力してください'),
-    ]),
-    last_name: z.string().max(20, '苗字は20文字以下で入力してください'),
-    last_name_kana: z.union([
-      z.literal(''),
-      z
-        .string()
-        .max(20, '苗字は20文字以下で入力してください')
-        .regex(/^[\p{scx=Katakana}|ｦ-ﾟ]+$/u, 'カタカナで入力してください'),
-    ]),
-    birthday: z.union([
-      z.literal(''),
-      z
-        .string()
-        .regex(/^(19\d{2}|20\d{2})-(0[1-9]|1[0-2])-(0[1-9]|[1-2]\d|3[01])$/, '入力する際は全て記入してください'),
-    ]),
-    relationship: z.union([
-      z.literal(''),
-      z.literal('世帯主'),
-      z.literal('配偶者'),
-      z.literal('子供'),
-      z.literal('親'),
-      z.literal('同居人'),
-    ]),
-  })
-  .superRefine(({ password, confirm_password, email, confirm_email }, ctx) => {
-    if (password !== confirm_password) {
-      ctx.addIssue({
-        path: ['confirm_password'],
-        code: 'custom',
-        message: 'パスワードが一致しません',
-      });
-    }
-    if (email !== confirm_email) {
-      ctx.addIssue({
-        path: ['confirm_email'],
-        code: 'custom',
-        message: 'メールアドレスが一致しません',
-      });
-    }
-  });
-
-type FormValues = z.infer<typeof registerSchema>;
-
 const RegisterForm: FC = () => {
-  const router = useRouter();
-  const login = async (values: FormValues) => {
-    const { email, password } = values;
-    await fetch('/api/auth/session', {
-      method: 'POST',
-      body: JSON.stringify({ email, password, authentication: 'signup' }),
-      headers: { 'Content-Type': 'application/json' },
-    });
-    router.push('/profile');
-  };
   return (
     <Form<FormValues, typeof registerSchema>
       onSubmit={login}

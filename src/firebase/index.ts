@@ -1,5 +1,5 @@
 import { FirebaseOptions, initializeApp } from 'firebase/app';
-import { collection, Firestore, getFirestore } from 'firebase/firestore';
+import { collection, Firestore, getFirestore, serverTimestamp } from 'firebase/firestore';
 
 export const firebaseConfig: FirebaseOptions = {
   apiKey: process.env.NEXT_PUBLIC_API_KEY,
@@ -18,3 +18,5 @@ export const firestore: Firestore = getFirestore(app);
 export const db = getFirestore(app);
 
 export const usersRef = collection(db, 'users');
+export const familiesRef = collection(db, 'families');
+export const timeStamp = serverTimestamp();
