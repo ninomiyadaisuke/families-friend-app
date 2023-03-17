@@ -6,7 +6,11 @@ import { Layout } from '@/components/layouts';
 import { checkUser } from '@/server/libs/serverUtils';
 import { TAuthUser } from '@/types/users';
 
-const Home: NextPageWithLayout = () => {
+type HomeProps = {
+  bgColor?: boolean;
+};
+
+const Home: NextPageWithLayout = ({ bgColor }: HomeProps) => {
   return (
     <>
       <Hero />
@@ -16,11 +20,13 @@ const Home: NextPageWithLayout = () => {
   );
 };
 
-export const baseLayout = (page: ReactElement<{ children: ReactElement<TAuthUser> }>) => (
-  <Layout user={page.props.children.props.user}>{page}</Layout>
+export const baseLayout = (page: ReactElement<{ children: ReactElement<TAuthUser> }>, bgColor?: 'bgBlue') => (
+  <Layout user={page.props.children.props.user} bgColor={bgColor}>
+    {page}
+  </Layout>
 );
 
-Home.getLayout = baseLayout;
+Home.getLayout = (page) => baseLayout(page);
 
 export default Home;
 
