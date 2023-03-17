@@ -1,16 +1,11 @@
 import Router from 'next/router';
 import { z } from 'zod';
 
+import { email, password } from '@/libs/validation';
+
 export const loginSchema = z.object({
-  password: z
-    .string()
-    .min(1, 'パスワードを入力してください')
-    .min(8, 'パスワードは8文字以上で入力してください')
-    .regex(/^(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}$/i, 'パスワードは半角英数字混合で入力してください'),
-  email: z
-    .string()
-    .min(1, 'メールアドレスを入力してください')
-    .email({ message: 'メールアドレスの形式で入力してください' }),
+  password: password,
+  email: email,
 });
 
 export type FormValues = z.infer<typeof loginSchema>;
