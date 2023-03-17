@@ -18,7 +18,9 @@ const handler: NextApiHandler = async (req, res) => {
     const { idToken } = await response.json();
     const sessionCookie = await auth.createSessionCookie(idToken, { expiresIn });
     await assignSession(res, sessionCookie, expiresIn);
-    return res.send(JSON.stringify({ status: 'success' }));
+    const user = await auth.verifySessionCookie(sessionCookie, true).catch(() => null);
+    if (!user) return;
+    return res.send({ uid: user.uid });
   }
 
   // Login
