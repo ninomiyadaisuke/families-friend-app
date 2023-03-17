@@ -14,7 +14,7 @@ const About: NextPageWithLayout = () => {
   );
 };
 
-About.getLayout = baseLayout;
+About.getLayout = (page) => baseLayout(page, 'bgBlue');
 
 export default About;
 
