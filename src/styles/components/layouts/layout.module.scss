@@ -1,4 +1,6 @@
-.bgBlue {
+.bgBlue,.bgWhite {
+  position: relative;
+  z-index: -3;
   background-color: $bg-blue;
 }
 
