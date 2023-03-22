@@ -1,4 +1,3 @@
-import { Merge } from 'type-fest';
 import { z } from 'zod';
 
 import { birthday, email, firstName, firstNameKana, lastName, lastNameKana, relationship } from '../../libs/validation';
@@ -26,5 +25,3 @@ export const userSchema = z.object({
 });
 
 export type TUser = z.infer<typeof userSchema>;
-
-export type TUserDecoded = Merge<TUser, { created_at: Date; updated_at: Date }>;
