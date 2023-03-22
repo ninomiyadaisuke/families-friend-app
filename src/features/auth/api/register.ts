@@ -1,8 +1,8 @@
-import { doc, setDoc } from 'firebase/firestore';
+import { doc } from 'firebase/firestore';
 import Router from 'next/router';
 import { z } from 'zod';
 
-import { familiesRef, timeStamp, usersRef } from '@/firebase';
+import { usersRef } from '@/firebase';
 import { userSchema } from '@/firebase/schema/userSchema';
 import { confirmEmail, confirmPassword, password } from '@/libs/validation';
 
@@ -52,26 +52,18 @@ export const login = async (values: FormValues) => {
   }).then(async (res) => {
     const user = await res.json();
     const uid = user.uid;
-    const familyId = doc(familiesRef).id;
-    const userData = {
+    // const familyId = doc(familiesRef).id;
+    await usersRef.doc(uid).create({
       uid,
+      family_id: 'jkljkjklj',
+      email,
       first_name,
       first_name_kana,
       last_name,
       last_name_kana,
       birthday,
       relationship,
-      created_at: timeStamp,
-      updated_at: timeStamp,
-    };
-    const familyData = {
-      uid,
-      family_id: familyId,
-      created_at: timeStamp,
-      updated_at: timeStamp,
-    };
-    await setDoc(doc(usersRef, uid), userData);
-    await setDoc(doc(familiesRef, familyId), familyData);
+    });
   });
   Router.push('/profile');
 };
