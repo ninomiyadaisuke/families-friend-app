@@ -1,6 +1,6 @@
 import { FirestoreModel, rules } from 'fireschema';
 
-import { UserModel } from './model/userModel';
+import { UserModel } from './userModel';
 
 export const firestoreModel = new FirestoreModel({
   'function isAdmin()': `

@@ -15,7 +15,8 @@
     "test": "eslint --fix -f table './src/**/*.ts' './src/**/*.tsx'",
     "pretty-quick": "pretty-quick",
     "lint-staged": "lint-staged",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "roules": "fireschema rules src/firebase/model/firestoreModel.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^2.9.10",
