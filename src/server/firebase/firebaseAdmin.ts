@@ -1,4 +1,7 @@
 import admin from 'firebase-admin';
+import { TypedFirestoreUniv } from 'fireschema';
+
+import firestoreModel from '@/firebase/model/firestoreModel'; // exportしたものをimportする
 
 /**
  * @description Firebaseの管理画面から取得した管理者アカウント情報
@@ -18,5 +21,20 @@ const serviceAccount: admin.ServiceAccount = {
 
 export const firebaseAdmin =
   admin.apps[0] || admin.initializeApp({ credential: admin.credential.cert(serviceAccount) });
+
+const createFirestoreStaticAdmin = (raw: any) => {
+  return {
+    arrayRemove: raw.FieldValue.arrayRemove.bind(raw.FieldValue),
+    arrayUnion: raw.FieldValue.arrayUnion.bind(raw.FieldValue),
+    deleteField: raw.FieldValue.delete.bind(raw.FieldValue),
+    documentId: raw.FieldPath.documentId.bind(raw.FieldPath),
+    increment: raw.FieldValue.increment.bind(raw.FieldValue),
+    serverTimestamp: raw.FieldValue.serverTimestamp.bind(raw.FieldValue),
+    Timestamp: raw.Timestamp,
+  };
+};
+
+export const db = admin.firestore();
+export const typedFirestore = new TypedFirestoreUniv(firestoreModel, createFirestoreStaticAdmin(admin.firestore), db);
 
 export const auth = firebaseAdmin.auth();
