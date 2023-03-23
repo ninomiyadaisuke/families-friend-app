@@ -1,10 +1,11 @@
+import { useMutation } from '@tanstack/react-query';
 import Link from 'next/link';
 import { FC } from 'react';
 
 import { PrimaryButton } from '@/components/elements/buttons';
 import { Form, PrimaryInput, PrimarySelect, UnderlineDateSelect } from '@/components/forms';
 import type { FormValues } from '@/features/auth/api/register';
-import { login, registerSchema } from '@/features/auth/api/register';
+import { registerSchema,signup } from '@/features/auth/api/register';
 import styles from '@/styles/features/auth/components/registerForm.module.scss';
 
 const options = [{ value: '世帯主' }, { value: '配偶書' }, { value: '子供' }, { value: '親' }, { value: '同居人' }];
@@ -23,9 +24,10 @@ const initialState = {
 };
 
 const RegisterForm: FC = () => {
+  const mutation = useMutation(signup);
   return (
     <Form<FormValues, typeof registerSchema>
-      onSubmit={login}
+      onSubmit={(values) => mutation.mutate(values)}
       options={{
         defaultValues: initialState as Record<string, unknown>,
       }}
@@ -147,7 +149,7 @@ const RegisterForm: FC = () => {
             </p>
           </div>
           <div className={styles.forms__button}>
-            <PrimaryButton type="wine_red" text="登録" />
+            <PrimaryButton type="wine_red" text="登録" loading={mutation.isLoading} />
           </div>
         </>
       )}
