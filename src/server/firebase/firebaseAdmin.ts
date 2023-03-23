@@ -1,7 +1,7 @@
 import admin from 'firebase-admin';
 import { TypedFirestoreUniv } from 'fireschema';
 
-import firestoreModel from '@/firebase/model/firestoreModel'; // exportしたものをimportする
+import firestoreModel from '@/server/model/firestoreModel'; // exportしたものをimportする
 
 /**
  * @description Firebaseの管理画面から取得した管理者アカウント情報
