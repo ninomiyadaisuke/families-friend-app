@@ -1,8 +1,8 @@
 import Router from 'next/router';
 import { z } from 'zod';
 
-import { userSchema } from '@/firebase/schema/userSchema';
 import { confirmEmail, confirmPassword, password } from '@/libs/validation';
+import { userSchema } from '@/schema/userSchema';
 
 const userRegistrationSchema = userSchema.pick({
   email: true,

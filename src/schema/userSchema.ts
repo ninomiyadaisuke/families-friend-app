@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { birthday, email, firstName, firstNameKana, lastName, lastNameKana, relationship } from '../../libs/validation';
+import { birthday, email, firstName, firstNameKana, lastName, lastNameKana, relationship } from '../libs/validation';
 
 export const userSchema = z.object({
   uid: z.string(),
