@@ -42,9 +42,9 @@ export const registerSchema = userRegistrationSchema
 export type FormValues = z.infer<typeof registerSchema>;
 
 export const login = async (values: FormValues) => {
-  await fetch('/api/auth/session', {
+  await fetch('/api/auth/sessionSignup', {
     method: 'POST',
-    body: JSON.stringify({ values, authentication: 'signup' }),
+    body: JSON.stringify({ ...values }),
     headers: { 'Content-Type': 'application/json' },
   });
   Router.push('/profile');
