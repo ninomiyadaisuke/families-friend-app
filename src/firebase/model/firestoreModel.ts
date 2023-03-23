@@ -1,11 +1,9 @@
 import { FirestoreModel, rules } from 'fireschema';
 
+import { FamilyModel } from './familyModel';
 import { UserModel } from './userModel';
 
 export const firestoreModel = new FirestoreModel({
-  'function isAdmin()': `
-    return exists(${rules.basePath}/admins/$(request.auth.uid));
-`,
   'function requestUserIs(uid)': `
       return request.auth.uid == uid;
 `,
@@ -14,8 +12,15 @@ export const firestoreModel = new FirestoreModel({
   '/users/{uid}': {
     model: UserModel,
     allow: {
-      read: rules.or('requestUserIs(uid)', 'isAdmin()'),
-      write: rules.or('requestUserIs(uid)', 'isAdmin()'),
+      read: 'requestUserIs(uid)',
+      write: 'requestUserIs(uid)',
+    },
+  },
+  '/families/{familyId}': {
+    model: FamilyModel,
+    allow: {
+      read: 'requestUserIs(uid)',
+      write: 'requestUserIs(uid)',
     },
   },
 });

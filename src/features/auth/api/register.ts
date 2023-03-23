@@ -1,8 +1,6 @@
-import { doc, serverTimestamp } from 'firebase/firestore';
 import Router from 'next/router';
 import { z } from 'zod';
 
-import { usersRef } from '@/firebase';
 import { userSchema } from '@/firebase/schema/userSchema';
 import { confirmEmail, confirmPassword, password } from '@/libs/validation';
 
@@ -44,26 +42,10 @@ export const registerSchema = userRegistrationSchema
 export type FormValues = z.infer<typeof registerSchema>;
 
 export const login = async (values: FormValues) => {
-  const { email, password, first_name, first_name_kana, last_name, last_name_kana, birthday, relationship } = values;
   await fetch('/api/auth/session', {
     method: 'POST',
-    body: JSON.stringify({ email, password, authentication: 'signup' }),
+    body: JSON.stringify({ values, authentication: 'signup' }),
     headers: { 'Content-Type': 'application/json' },
-  }).then(async (res) => {
-    const user = await res.json();
-    const uid = user.uid;
-    // const familyId = doc(familiesRef).id;
-    await usersRef.doc(uid).create({
-      uid,
-      family_id: 'jkljkjklj',
-      email,
-      first_name,
-      first_name_kana,
-      last_name,
-      last_name_kana,
-      birthday,
-      relationship,
-    });
   });
   Router.push('/profile');
 };

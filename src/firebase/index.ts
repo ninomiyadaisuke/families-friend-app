@@ -1,8 +1,4 @@
-import { FirebaseOptions, initializeApp } from 'firebase/app';
-import { initializeFirestore } from 'firebase/firestore';
-import { TypedFirestoreWeb } from 'fireschema';
-
-import firestoreModel from './model/firestoreModel';
+import { FirebaseOptions } from 'firebase/app';
 
 export const firebaseConfig: FirebaseOptions = {
   apiKey: process.env.NEXT_PUBLIC_API_KEY,
@@ -13,13 +9,3 @@ export const firebaseConfig: FirebaseOptions = {
   appId: process.env.NEXT_PUBLIC_APP_ID,
   measurementId: process.env.NEXT_PUBLIC_MEASUREMENT_ID,
 };
-
-const app = initializeApp(firebaseConfig);
-
-const firestoreApp = initializeFirestore(app, {
-  ignoreUndefinedProperties: true,
-});
-
-export const $web: TypedFirestoreWeb<typeof firestoreModel> = new TypedFirestoreWeb(firestoreModel, firestoreApp);
-
-export const usersRef = $web.collection('users');
