@@ -20,16 +20,20 @@ export const firstName = z.string().max(20, '名前は20文字以下で入力し
 
 export const firstNameKana = z.union([
   z.literal(''),
-  z.string().max(20, '苗字は20文字以下で入力してください'),
-  // .regex(/^[\p{scx=Katakana}ｦ-ﾟ]+$/u, 'カタカナで入力してください'),
+  z
+    .string()
+    .max(20, '苗字は20文字以下で入力してください')
+    .regex(/^[ァ-ヶーｦ-ﾟ]+$/u, 'カタカナで入力してください'),
 ]);
 
 export const lastName = z.string().max(20, '苗字は20文字以下で入力してください');
 
 export const lastNameKana = z.union([
   z.literal(''),
-  z.string().max(20, '苗字は20文字以下で入力してください'),
-  // .regex(/^[\p{scx=Katakana}ｦ-ﾟ]+$/u, 'カタカナで入力してください'),
+  z
+    .string()
+    .max(20, '苗字は20文字以下で入力してください')
+    .regex(/^[ァ-ヶーｦ-ﾟ]+$/u, 'カタカナで入力してください'),
 ]);
 
 export const birthday = z.union([
