@@ -41,7 +41,7 @@ export const registerSchema = userRegistrationSchema
 
 export type FormValues = z.infer<typeof registerSchema>;
 
-export const login = async (values: FormValues) => {
+export const signup = async (values: FormValues) => {
   await fetch('/api/auth/sessionSignup', {
     method: 'POST',
     body: JSON.stringify({ ...values }),

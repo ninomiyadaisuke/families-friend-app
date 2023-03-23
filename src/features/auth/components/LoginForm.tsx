@@ -1,3 +1,4 @@
+import { useMutation } from '@tanstack/react-query';
 import Link from 'next/link';
 import { FC } from 'react';
 
@@ -15,9 +16,10 @@ const initialState = {
 };
 
 const LoginForm: FC = () => {
+  const mutation = useMutation(login);
   return (
     <Form<FormValues, typeof loginSchema>
-      onSubmit={login}
+      onSubmit={(values) => mutation.mutate(values)}
       options={{ defaultValues: initialState }}
       schema={loginSchema}
       className={styles.forms}
@@ -46,7 +48,7 @@ const LoginForm: FC = () => {
           />
           <Link href={'/'}>パスワードを忘れた場合</Link>
           <div className={styles.forms__button}>
-            <PrimaryButton type="navy" text="ログイン" />
+            <PrimaryButton type="navy" text="ログイン" loading={mutation.isLoading} />
           </div>
         </>
       )}
