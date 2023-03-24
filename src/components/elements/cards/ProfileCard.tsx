@@ -3,11 +3,12 @@ import { FC } from 'react';
 
 import { PrimaryButton } from '@/components/elements/buttons';
 import { ResponsiveImage } from '@/components/elements/images';
+import styles from '@/styles/components/elements/cards/profileCard.module.scss';
 
 type Props = {
   href: string;
   birthday: string;
-  image: string;
+  image?: string;
   phone: string;
   hobby: string;
   name: string;
@@ -20,9 +21,14 @@ const ProfileCard: FC<Props> = (props) => {
     const test = 'test';
   };
   return (
-    <Link href={href}>
+    <Link href={href} className={styles.card}>
       <div>
-        <ResponsiveImage src={image} width={146} height={146} alt="profile-image" />
+        <ResponsiveImage
+          src={image ? image : '/icon/default-image-profile-lg.svg'}
+          width={146}
+          height={146}
+          alt="profile-image"
+        />
       </div>
       <div>
         <p>{name}</p>
