@@ -1,0 +1,115 @@
+.card {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  height: 127px;
+  padding: 16px 28px 18px 8px;
+  color: $text-white;
+  background-color: $main;
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  &__image {
+    width: 60px;
+    height: 60px;
+  }
+  &__icon {
+    width: 14px;
+    height: 12px;
+  }
+  &__nameRelationship {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    align-items: center;
+    p {
+      font-size: 12px;
+      line-height: 1;
+    }
+    span {
+      font-size: 10px;
+    }
+    &_name {
+      display: flex;
+      gap: 10px;
+    }
+  }
+  &__profile {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-self: start;
+    p {
+      font-size: 10px;
+      line-height: 1;
+    }
+  }
+  &__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+  }
+  &__buttons {
+    display: flex;
+    gap: 20px;
+    &_button {
+      width: 103px;
+      height: 25px;
+      font-size: 10px;
+    }
+  }
+  @include mq('md') {
+    flex-direction: column;
+    justify-content: space-between;
+    width: 360px;
+    height: 466px;
+    padding: 25px 33px 30px 33px;
+    &__container {
+      gap: 25px;
+    }
+    &__header {
+      gap: 27px;
+    }
+    &__image {
+      width: 146px;
+      height: 146px;
+      margin: 0 auto;
+    }
+    &__icon {
+      align-self: center;
+      width: 16px;
+      height: 14px;
+    }
+    &__nameRelationship {
+      gap: 5px;
+      align-items: center;
+      p {
+        font-size: 20px;
+      }
+      span {
+        font-size: 14px;
+      }
+      &_name {
+        gap: 10px;
+      }
+    }
+    &__profile {
+      gap: 10px;
+      p {
+        font-size: 16px;
+      }
+    }
+    &__buttons {
+      display: flex;
+      justify-content: space-between;
+      &_button {
+        width: 128px;
+        height: 51px;
+        font-size: 20px;
+      }
+    }
+  }
+}
