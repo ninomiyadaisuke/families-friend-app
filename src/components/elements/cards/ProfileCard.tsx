@@ -1,8 +1,9 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { FC } from 'react';
 
 import { PrimaryButton } from '@/components/elements/buttons';
-import { ResponsiveImage } from '@/components/elements/images';
+import { FixedImage, ResponsiveImage } from '@/components/elements/images';
 import styles from '@/styles/components/elements/cards/profileCard.module.scss';
 
 type Props = {
@@ -17,34 +18,52 @@ type Props = {
 
 const ProfileCard: FC<Props> = (props) => {
   const { href, image, phone, hobby, name, relationship, birthday } = props;
-  const test = () => {
-    const test = 'test';
-  };
+  const router = useRouter();
+
   return (
-    <Link href={href} className={styles.card}>
-      <div>
-        <ResponsiveImage
-          src={image ? image : '/icon/default-image-profile-lg.svg'}
-          width={146}
-          height={146}
-          alt="profile-image"
-        />
+    <div className={styles.card}>
+      <div className={styles.card__header}>
+        <div className={styles.card__image}>
+          <ResponsiveImage
+            src={image ? image : '/icon/default-image-profile-lg.svg'}
+            width={146}
+            height={146}
+            alt="profile-image"
+          />
+        </div>
+        <div className={styles.card__nameRelationship}>
+          <div className={styles.card__nameRelationship_name}>
+            <p>{name}</p>
+            <Link href={href}>
+              <FixedImage src="/icon/edit-icon.svg" alt="edit-icon" className={styles.card__icon} />
+            </Link>
+          </div>
+          <span>{relationship}</span>
+        </div>
       </div>
-      <div>
-        <p>{name}</p>
-        <p>{relationship}</p>
+      <div className={styles.card__container}>
+        <div className={styles.card__profile}>
+          <p>誕生日:{birthday}</p>
+          <p>電話番号:{phone}</p>
+          <p>趣味:</p>
+          <p>{hobby}</p>
+        </div>
+        <div className={styles.card__buttons}>
+          <PrimaryButton
+            className={styles.card__buttons_button}
+            onClick={() => router.push('/')}
+            text="渡す"
+            type="light_blue"
+          />
+          <PrimaryButton
+            className={styles.card__buttons_button}
+            onClick={() => router.push('/')}
+            text="一覧"
+            type="light_blue"
+          />
+        </div>
       </div>
-      <div>
-        <p>誕生日:{birthday}</p>
-        <p>電話番号:{phone}</p>
-        <p>趣味:</p>
-        <p>{hobby}</p>
-      </div>
-      <div>
-        <PrimaryButton onClick={test} text="渡す" type="light_blue" />
-        <PrimaryButton onClick={test} text="一覧" type="light_blue" />
-      </div>
-    </Link>
+    </div>
   );
 };
 

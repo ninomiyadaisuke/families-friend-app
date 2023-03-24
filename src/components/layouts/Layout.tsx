@@ -14,11 +14,13 @@ const Layout: FC<Props> = (props) => {
   const { children, user, bgColor } = props;
 
   return (
-    <>
+    <div className={styles.container}>
       {user ? <AuthenticatedHeader /> : <Header />}
       <main className={bgColor ? styles.bgBlue : styles.bgWhite}>{children}</main>
-      <Footer />
-    </>
+      <div>
+        <Footer />
+      </div>
+    </div>
   );
 };
 
