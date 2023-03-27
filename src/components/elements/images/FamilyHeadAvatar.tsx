@@ -20,10 +20,10 @@ const FamilyHeadAvatar: FC<Props> = (props) => {
         alt="avatar-icon"
         className={styles.avatar__image}
       />
-      <p>{name}</p>
-      <p>{numberOfPeople}</p>
+      <h2>{name}</h2>
+      <p>{`世帯人数：${numberOfPeople}人`}</p>
       <p>
-        {zipCode} {address}
+        <span>{`〒${zipCode}`}</span> {address}
       </p>
     </div>
   );

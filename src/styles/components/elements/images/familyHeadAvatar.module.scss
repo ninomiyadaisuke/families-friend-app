@@ -2,6 +2,13 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  align-items: center;
+  h2 {
+    font-size: 16px;
+  }
+  p {
+    font-size: 12px;
+  }
   &__image {
     width: 120px;
     height: 120px;
@@ -9,10 +16,15 @@
     border-radius: 50%;
   }
   @include mq('md') {
-    gap: 15px;
+    h2 {
+      font-size: calc(16px + 16 * (100vw - 800px) / 1120);
+    }
+    p {
+      font-size: calc(12px + 8 * (100vw - 800px) / 1120);
+    }
     &__image {
-      width: 280px;
-      height: 280px;
+      width: calc(120px + 160 * (100vw - 800px) / 1120);
+      height: calc(120px + 160 * (100vw - 800px) / 1120);
     }
   }
 }
