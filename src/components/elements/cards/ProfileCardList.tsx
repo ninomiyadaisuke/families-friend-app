@@ -1,9 +1,18 @@
 import { FC } from 'react';
 
-import styles from '@/styles/components/layouts/profileCardList.module.scss';
+import styles from '@/styles/components/elements/cards/profileCardList.module.scss';
+
+import { ProfileCard } from './';
 
 type Props = {
-  cards: any[];
+  cards: {
+    href: string;
+    birthday: string;
+    phone: string;
+    hobby: string;
+    name: string;
+    relationship: '世帯主' | '配偶者' | '子供' | '親' | '同居人';
+  }[];
 };
 
 const ProfileCardList: FC<Props> = (props) => {
@@ -11,7 +20,16 @@ const ProfileCardList: FC<Props> = (props) => {
   return (
     <ul className={styles.list}>
       {cards.map((card) => (
-        <li></li>
+        <li>
+          <ProfileCard
+            href={card.href}
+            birthday={card.birthday}
+            phone={card.phone}
+            hobby={card.hobby}
+            name={card.name}
+            relationship={card.relationship}
+          />
+        </li>
       ))}
     </ul>
   );

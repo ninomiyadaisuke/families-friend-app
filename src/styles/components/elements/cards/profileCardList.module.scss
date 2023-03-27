@@ -1,3 +1,14 @@
 .list {
   display: flex;
+  flex-direction: column;
+  gap: 15px;
+  @include mq('md') {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 50px;
+    justify-content: center;
+    li:hover {
+      transform: translateY(-10px);
+    }
+  }
 }
