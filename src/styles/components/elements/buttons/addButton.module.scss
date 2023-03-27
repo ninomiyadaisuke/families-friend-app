@@ -1,3 +1,57 @@
 .button {
-  display: block;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+
+  border-radius: 50%;
+  &::before,
+  &::after {
+    position: absolute;
+    pointer-events: none;
+    content: '';
+  }
+  &::after {
+    transform: rotate(-90deg);
+  }
+}
+
+.blueButton {
+  background-color: $light-blue;
+  border: solid 2px $light-blue;
+  &::before,
+  &::after {
+    width: 25px;
+    height: 5px;
+    background-color: $bg-white;
+    border-radius: 2px;
+  }
+  @include mq('md') {
+    width: 80px;
+    border-radius: 30px;
+  }
+}
+
+.whiteButton {
+  background-color: $bg-white;
+  border: solid 2px $dark-gray;
+  &::before,
+  &::after {
+    width: 20px;
+    height: 3px;
+    background-color: $main;
+  }
+  @include mq('md') {
+    width: 73px;
+    height: 73px;
+    &::before,
+    &::after {
+      width: 43px;
+      height: 4px;
+      content: '';
+    }
+  }
 }
