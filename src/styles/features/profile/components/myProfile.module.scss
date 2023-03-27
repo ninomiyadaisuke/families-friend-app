@@ -1,0 +1,10 @@
+.profile {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 82px 4.3% 24px 4.3%;
+  @include mq('md') {
+    gap: 52px;
+    padding: 120px 0 16px;
+  }
+}
