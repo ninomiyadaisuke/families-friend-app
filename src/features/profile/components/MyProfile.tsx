@@ -1,5 +1,6 @@
 import { FC } from 'react';
 
+import { AddButton } from '@/components/elements/buttons';
 import { ProfileCardList } from '@/components/elements/cards';
 import { FamilyHeadAvatar } from '@/components/elements/images';
 import { TUser } from '@/schema/userSchema';
@@ -69,6 +70,9 @@ const MyProfile: FC<Props> = (props) => {
         numberOfPeople={6}
       />
       <ProfileCardList cards={cards} />
+      <div className={styles.profile__button}>
+        <AddButton type="white" />
+      </div>
     </div>
   );
 };
