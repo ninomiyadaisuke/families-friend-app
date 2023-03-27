@@ -6,6 +6,7 @@ import { ProfileCard } from './';
 
 type Props = {
   cards: {
+    id: string;
     href: string;
     birthday: string;
     phone: string;
@@ -20,7 +21,7 @@ const ProfileCardList: FC<Props> = (props) => {
   return (
     <ul className={styles.list}>
       {cards.map((card) => (
-        <li>
+        <li key={card.id}>
           <ProfileCard
             href={card.href}
             birthday={card.birthday}

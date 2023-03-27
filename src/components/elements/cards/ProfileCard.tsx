@@ -32,13 +32,17 @@ const ProfileCard: FC<Props> = (props) => {
           />
         </div>
         <div className={styles.card__nameRelationship}>
-          <div className={styles.card__nameRelationship_name}>
-            <p>{name}</p>
+          <p>{name}</p>
+
+          <label>
+            {relationship}
             <Link href={href}>
-              <FixedImage src="/icon/edit-icon.svg" alt="edit-icon" className={styles.card__icon} />
+              <FixedImage src="/icon/edit-icon.svg" alt="edit-icon" className={styles.card__icon_edit} />
             </Link>
-          </div>
-          <span>{relationship}</span>
+            <Link href={href}>
+              <FixedImage src="/icon/delete-icon.svg" alt="edit-icon" className={styles.card__icon_delete} />
+            </Link>
+          </label>
         </div>
       </div>
       <div className={styles.card__container}>

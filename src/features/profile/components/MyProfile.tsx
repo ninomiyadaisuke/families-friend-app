@@ -11,6 +11,7 @@ type Props = {
 
 const cards = [
   {
+    id: '1',
     href: '/icon/default-image-profile-lg.svg',
     birthday: 'yy/mm/dd',
     phone: '08052560992',
@@ -19,6 +20,7 @@ const cards = [
     relationship: '世帯主',
   } as const,
   {
+    id: '2',
     href: '/icon/default-image-profile-lg.svg',
     birthday: 'yy/mm/dd',
     phone: '08052560992',
@@ -27,6 +29,7 @@ const cards = [
     relationship: '配偶者',
   } as const,
   {
+    id: '3',
     href: '/icon/default-image-profile-lg.svg',
     birthday: 'yy/mm/dd',
     phone: '08052560992',
@@ -35,6 +38,7 @@ const cards = [
     relationship: '子供',
   } as const,
   {
+    id: '4',
     href: '/icon/default-image-profile-lg.svg',
     birthday: 'yy/mm/dd',
     phone: '08052560992',
@@ -43,6 +47,7 @@ const cards = [
     relationship: '親',
   } as const,
   {
+    id: '5',
     href: '/icon/default-image-profile-lg.svg',
     birthday: 'yy/mm/dd',
     phone: '08052560992',
