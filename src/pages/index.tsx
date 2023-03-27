@@ -6,11 +6,7 @@ import { Layout } from '@/components/layouts';
 import { checkUser } from '@/server/libs/serverUtils';
 import { TAuthUser } from '@/types/users';
 
-type HomeProps = {
-  bgColor?: boolean;
-};
-
-const Home: NextPageWithLayout = ({ bgColor }: HomeProps) => {
+const Home: NextPageWithLayout = () => {
   return (
     <>
       <Hero />
