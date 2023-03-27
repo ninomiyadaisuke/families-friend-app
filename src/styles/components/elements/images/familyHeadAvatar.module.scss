@@ -1,0 +1,18 @@
+.avatar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  &__image {
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+  @include mq('md') {
+    gap: 15px;
+    &__image {
+      width: 280px;
+      height: 280px;
+    }
+  }
+}
