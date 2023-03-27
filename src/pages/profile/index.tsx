@@ -1,21 +1,20 @@
 import type { NextPageWithLayout } from 'next';
 import { GetServerSideProps } from 'next';
 
+import { MyProfile } from '@/features/profile/components';
 import { baseLayout } from '@/pages/index';
+import { TUser } from '@/schema/userSchema';
 import { checkUser } from '@/server/libs/serverUtils';
 
 type Props = {
-  user: {
-    email: string;
-    uid: string;
-  };
+  user: TUser;
 };
 
 const Profile: NextPageWithLayout<Props> = ({ user }) => {
-  return <div>{user.uid}</div>;
+  return <MyProfile user={user} />;
 };
 
-Profile.getLayout = baseLayout;
+Profile.getLayout = (page) => baseLayout(page, 'bgBlue');
 
 export default Profile;
 
