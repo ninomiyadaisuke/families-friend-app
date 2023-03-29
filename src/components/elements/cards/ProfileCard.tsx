@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { FC } from 'react';
 
@@ -7,7 +6,6 @@ import { FixedImage, ResponsiveImage } from '@/components/elements/images';
 import styles from '@/styles/components/elements/cards/profileCard.module.scss';
 
 type Props = {
-  href: string;
   birthday: string;
   image?: string;
   phone: string;
@@ -17,7 +15,7 @@ type Props = {
 };
 
 const ProfileCard: FC<Props> = (props) => {
-  const { href, image, phone, hobby, name, relationship, birthday } = props;
+  const { image, phone, hobby, name, relationship, birthday } = props;
   const router = useRouter();
 
   return (
@@ -36,12 +34,10 @@ const ProfileCard: FC<Props> = (props) => {
 
           <label>
             {relationship}
-            <Link href={href}>
-              <FixedImage src="/icon/edit-icon.svg" alt="edit-icon" className={styles.card__icon_edit} />
-            </Link>
-            <Link href={href}>
-              <FixedImage src="/icon/delete-icon.svg" alt="edit-icon" className={styles.card__icon_delete} />
-            </Link>
+
+            <FixedImage src="/icon/edit-icon.svg" alt="edit-icon" className={styles.card__icon_edit} />
+
+            <FixedImage src="/icon/delete-icon.svg" alt="edit-icon" className={styles.card__icon_delete} />
           </label>
         </div>
       </div>
