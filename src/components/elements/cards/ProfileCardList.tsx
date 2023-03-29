@@ -9,7 +9,7 @@ type Props = {
   cards: {
     household_members_id: string;
     birthday: string;
-    phone: string;
+    phone_number: string;
     hobby: string;
     first_name: string;
     relationship: '世帯主' | '配偶者' | '子供' | '親' | '同居人';
@@ -26,7 +26,7 @@ const ProfileCardList: FC<Props> = (props) => {
           <li key={card.household_members_id}>
             <ProfileCard
               birthday={card.birthday}
-              phone={card.phone}
+              phone={card.phone_number}
               hobby={card.hobby}
               name={card.first_name}
               relationship={card.relationship}

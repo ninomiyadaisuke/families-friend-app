@@ -12,50 +12,6 @@ type Props = {
   user: TUser;
 };
 
-const cards = [
-  {
-    id: '1',
-    birthday: 'yy/mm/dd',
-    phone: '08052560992',
-    hobby: '映画、読書、ゲーム',
-    name: '井上 聡',
-    relationship: '世帯主',
-  } as const,
-  {
-    id: '2',
-    href: '/icon/default-image-profile-lg.svg',
-    birthday: 'yy/mm/dd',
-    phone: '08052560992',
-    hobby: '映画、読書、ゲーム',
-    name: '井上 聡',
-    relationship: '配偶者',
-  } as const,
-  {
-    id: '3',
-    birthday: 'yy/mm/dd',
-    phone: '08052560992',
-    hobby: '映画、読書、ゲーム',
-    name: '井上 聡',
-    relationship: '子供',
-  } as const,
-  {
-    id: '4',
-    birthday: 'yy/mm/dd',
-    phone: '08052560992',
-    hobby: '映画、読書、ゲーム',
-    name: '井上 聡',
-    relationship: '親',
-  } as const,
-  {
-    id: '5',
-    birthday: 'yy/mm/dd',
-    phone: '08052560992',
-    hobby: '映画、読書、ゲーム',
-    name: '井上 聡',
-    relationship: '同居人',
-  } as const,
-];
-
 const MyProfile: FC<Props> = () => {
   const fetchUser = async () => {
     const user = await axios.get('/api/my');
