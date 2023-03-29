@@ -1,4 +1,7 @@
-import { FC } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import dynamic from 'next/dynamic';
+import { FC, Suspense } from 'react';
 
 import { AddButton } from '@/components/elements/buttons';
 import { ProfileCardList } from '@/components/elements/cards';
@@ -13,7 +16,6 @@ type Props = {
 const cards = [
   {
     id: '1',
-    href: '/icon/default-image-profile-lg.svg',
     birthday: 'yy/mm/dd',
     phone: '08052560992',
     hobby: '映画、読書、ゲーム',
@@ -31,7 +33,6 @@ const cards = [
   } as const,
   {
     id: '3',
-    href: '/icon/default-image-profile-lg.svg',
     birthday: 'yy/mm/dd',
     phone: '08052560992',
     hobby: '映画、読書、ゲーム',
@@ -40,7 +41,6 @@ const cards = [
   } as const,
   {
     id: '4',
-    href: '/icon/default-image-profile-lg.svg',
     birthday: 'yy/mm/dd',
     phone: '08052560992',
     hobby: '映画、読書、ゲーム',
@@ -49,7 +49,6 @@ const cards = [
   } as const,
   {
     id: '5',
-    href: '/icon/default-image-profile-lg.svg',
     birthday: 'yy/mm/dd',
     phone: '08052560992',
     hobby: '映画、読書、ゲーム',
@@ -58,8 +57,15 @@ const cards = [
   } as const,
 ];
 
-const MyProfile: FC<Props> = (props) => {
-  const { user } = props;
+const MyProfile: FC<Props> = () => {
+  const fetchUser = async () => {
+    const user = await axios.get('/api/my');
+    const data = user.data;
+    return data;
+  };
+
+  const { data } = useQuery(['member'], fetchUser);
+
   return (
     <div className={styles.profile}>
       <FamilyHeadAvatar
@@ -69,7 +75,7 @@ const MyProfile: FC<Props> = (props) => {
         address={'東京都特許許可局局長許可却下'}
         numberOfPeople={6}
       />
-      <ProfileCardList cards={cards} />
+      <ProfileCardList cards={data} />
       <div className={styles.profile__button}>
         <AddButton type="white" />
       </div>
