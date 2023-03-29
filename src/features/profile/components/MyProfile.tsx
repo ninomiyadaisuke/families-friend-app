@@ -47,10 +47,10 @@ const MyProfile: FC<Props> = () => {
     <div className={styles.profile}>
       <FamilyHeadAvatar
         image="/icon/profile-icon-demo.jpg"
-        name={'二ノ宮'}
+        name={cards && cards[0].last_name}
         zipCode={'000-0000'}
         address={'東京都特許許可局局長許可却下'}
-        numberOfPeople={6}
+        numberOfPeople={cards?.length}
       />
       <ProfileCardList cards={cards} />
       <div className={styles.profile__button}>

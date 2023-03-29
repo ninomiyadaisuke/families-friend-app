@@ -13,7 +13,14 @@ type Props = {
 const ProfileCardList: FC<Props> = (props) => {
   const { tablet } = useBreakPoint();
   const { cards } = props;
-
+  const formatDate = (data?: string) => {
+    if (!data) return;
+    const date = new Date(data);
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    return `${year}年${month}月${day}日`;
+  };
   return (
     <ul className={styles.list}>
       {cards &&
@@ -21,7 +28,7 @@ const ProfileCardList: FC<Props> = (props) => {
           <li key={card.id}>
             <ProfileCard
               image={card.image?.path}
-              birthday={card.birthday}
+              birthday={formatDate(card.birthday)}
               phone={card.phone_number}
               hobby={card.hobby}
               name={tablet ? card.first_name : card.last_name + card.first_name}
