@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import dynamic from 'next/dynamic';
-import { FC, Suspense } from 'react';
+import { FC } from 'react';
 
 import { AddButton } from '@/components/elements/buttons';
 import { ProfileCardList } from '@/components/elements/cards';
