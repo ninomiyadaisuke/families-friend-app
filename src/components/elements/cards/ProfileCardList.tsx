@@ -1,34 +1,37 @@
-import { useQuery } from '@tanstack/react-query';
 import { FC } from 'react';
 
+import type { CardsType } from '@/features/profile/components/MyProfile';
+import { useBreakPoint } from '@/hooks/useBreakPoint';
 import styles from '@/styles/components/elements/cards/profileCardList.module.scss';
 
 import { ProfileCard } from './';
 
 type Props = {
-  cards: {
-    household_members_id: string;
-    birthday: string;
-    phone: string;
-    hobby: string;
-    first_name: string;
-    relationship: '世帯主' | '配偶者' | '子供' | '親' | '同居人';
-  }[];
+  cards?: CardsType;
 };
 
 const ProfileCardList: FC<Props> = (props) => {
+  const { tablet } = useBreakPoint();
   const { cards } = props;
-
+  const formatDate = (data?: string) => {
+    if (!data) return;
+    const date = new Date(data);
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    return `${year}年${month}月${day}日`;
+  };
   return (
     <ul className={styles.list}>
       {cards &&
         cards.map((card) => (
-          <li key={card.household_members_id}>
+          <li key={card.id}>
             <ProfileCard
-              birthday={card.birthday}
-              phone={card.phone}
+              image={card.image?.path}
+              birthday={formatDate(card.birthday)}
+              phone={card.phone_number}
               hobby={card.hobby}
-              name={card.first_name}
+              name={tablet ? card.first_name : card.last_name + card.first_name}
               relationship={card.relationship}
             />
           </li>

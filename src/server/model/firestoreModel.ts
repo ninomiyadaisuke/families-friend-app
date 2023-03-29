@@ -1,6 +1,7 @@
-import { FirestoreModel, rules } from 'fireschema';
+import { FirestoreModel } from 'fireschema';
 
 import { FamilyModel } from './familyModel';
+import { houseHoldeMemberModel } from './houseHoldMemberModle';
 import { UserModel } from './userModel';
 
 export const firestoreModel = new FirestoreModel({
@@ -17,10 +18,20 @@ export const firestoreModel = new FirestoreModel({
     },
   },
   '/families/{familyId}': {
+    'function returnUid()': `
+    return request.resource.data.uid
+    `,
     model: FamilyModel,
     allow: {
-      read: 'requestUserIs(uid)',
-      write: 'requestUserIs(uid)',
+      read: 'requestUserIs(request.resource.data.uid)',
+      write: 'requestUserIs(request.resource.data.uid)',
+    },
+    '/household_member/{houseHoldMemberId}': {
+      model: houseHoldeMemberModel,
+      allow: {
+        read: 'requestUserIs(returnUid())',
+        write: 'requestUserIs(returnUid())',
+      },
     },
   },
 });

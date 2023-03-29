@@ -6,12 +6,12 @@ import { FixedImage, ResponsiveImage } from '@/components/elements/images';
 import styles from '@/styles/components/elements/cards/profileCard.module.scss';
 
 type Props = {
-  birthday: string;
+  birthday?: string;
   image?: string;
-  phone: string;
-  hobby: string;
+  phone?: string;
+  hobby?: string;
   name: string;
-  relationship: '世帯主' | '配偶者' | '子供' | '親' | '同居人';
+  relationship?: '世帯主' | '配偶者' | '子供' | '親' | '同居人';
 };
 
 const ProfileCard: FC<Props> = (props) => {
