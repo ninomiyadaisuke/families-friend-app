@@ -14,7 +14,19 @@ type Props = {
   user: TUser;
 };
 
-const fetchMemberSchema = z.array(
+const userSchema = z.object({
+  image: z
+    .object({
+      id: z.string().min(1),
+      path: z.string().min(1),
+    })
+    .optional(),
+  name: z.string().max(20).optional(),
+  zipCode: z.string().optional(),
+  address: z.string().optional(),
+});
+
+const cardsSchema = z.array(
   houseHoldMemberSchema.merge(
     z.object({
       id: z.string().min(1),
@@ -22,7 +34,16 @@ const fetchMemberSchema = z.array(
   )
 );
 
-export type CardsType = z.infer<typeof fetchMemberSchema>;
+const profileSchema = z.object({
+  user: userSchema,
+  cards: cardsSchema,
+});
+
+export type ProfileType = z.infer<typeof profileSchema>;
+
+export type UserType = z.infer<typeof userSchema>;
+
+export type CardsType = z.infer<typeof cardsSchema>;
 
 type RelationshipType = '世帯主' | '配偶者' | '子供' | '親' | '同居人';
 
@@ -37,22 +58,25 @@ const MyProfile: FC<Props> = () => {
   };
   const fetchHouseHoldMember = async () => {
     const user = await axios.get('/api/my');
-    const data = fetchMemberSchema.parse(user.data);
-    return sortByRelationship(data);
+    const data = profileSchema.parse(user.data);
+    data.cards = sortByRelationship(data.cards);
+    return data;
   };
 
-  const { data: cards } = useQuery(['houseHoldMember'], fetchHouseHoldMember);
+  const { data } = useQuery(['houseHoldMember'], fetchHouseHoldMember);
 
+  const cards = data?.cards;
+  const user = data?.user;
   return (
     <div className={styles.profile}>
       <FamilyHeadAvatar
         image="/icon/profile-icon-demo.jpg"
-        name={cards && cards[0].last_name}
-        zipCode={'000-0000'}
+        name={user && user?.name}
+        zipCode={user && user.zipCode}
         address={'東京都特許許可局局長許可却下'}
-        numberOfPeople={cards?.length}
+        numberOfPeople={cards && cards.length}
       />
-      <ProfileCardList cards={cards} />
+      <ProfileCardList cards={cards && cards} />
       <div className={styles.profile__button}>
         <AddButton type="white" />
       </div>

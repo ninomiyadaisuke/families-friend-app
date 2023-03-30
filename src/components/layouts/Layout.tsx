@@ -1,3 +1,4 @@
+import cx from 'classnames';
 import { FC, ReactNode } from 'react';
 
 import { Footer } from '@/components/elements/footer';
@@ -14,9 +15,9 @@ const Layout: FC<Props> = (props) => {
   const { children, user, bgColor } = props;
 
   return (
-    <div className={styles.container}>
+    <div className={cx(styles.container, bgColor ? styles.bgBlue : styles.bgWhite)}>
       {user ? <AuthenticatedHeader /> : <Header />}
-      <main className={bgColor ? styles.bgBlue : styles.bgWhite}>{children}</main>
+      <main>{children}</main>
       <div>
         <Footer />
       </div>
