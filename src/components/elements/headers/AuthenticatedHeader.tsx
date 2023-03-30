@@ -1,5 +1,7 @@
+import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import { FC } from 'react';
+import { z } from 'zod';
 
 import { ProfileIcon, ResponsiveImage } from '@/components/elements/images';
 import { MenuLink } from '@/components/elements/links';
@@ -7,12 +9,15 @@ import { useLayout } from '@/hooks/useLayout';
 import styles from '@/styles/components/elements/headers/authenticatedHeader.module.scss';
 
 import { HamburgerButton } from '../buttons';
+import { Spinner } from '../utils';
 
 const menuLinks = [
   { text: '家族一覧', href: '/contacts' },
   { text: 'お年玉・プレゼント登録', href: '/present' },
   { text: '記録一覧', href: '/list/[type]' },
 ];
+
+const iconSchema = z.string();
 
 const AuthenticatedHeader: FC = () => {
   const { drawerToggle, tablet } = useLayout();
@@ -24,6 +29,16 @@ const AuthenticatedHeader: FC = () => {
     }
     return true;
   })();
+
+  const fetchUserIcon = async () => {
+    const response = await fetch('/api/my/icon', {
+      method: 'GET',
+    });
+    const iconImage = await response.json();
+    return iconSchema.parse(iconImage);
+  };
+
+  const { data, isLoading } = useQuery(['userIcon'], fetchUserIcon);
 
   return (
     <>
@@ -59,7 +74,7 @@ const AuthenticatedHeader: FC = () => {
             </div>
           )}
           <div className={styles.header__container_profile}>
-            <ProfileIcon image="/icon/profile-icon-demo.jpg" />
+            {isLoading ? <Spinner color="red" /> : <ProfileIcon image={data ? data : '/icon/profile-icon.svg'} />}
           </div>
         </nav>
       </header>
