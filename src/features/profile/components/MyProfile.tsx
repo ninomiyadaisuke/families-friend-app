@@ -73,7 +73,7 @@ const MyProfile: FC<Props> = () => {
         image={user?.image?.path}
         name={user && user?.name}
         zipCode={user && user.zipCode}
-        address={'東京都特許許可局局長許可却下'}
+        address={user && user.address}
         numberOfPeople={cards && cards.length}
       />
       <ProfileCardList cards={cards && cards} />

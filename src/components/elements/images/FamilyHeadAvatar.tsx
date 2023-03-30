@@ -26,7 +26,7 @@ const FamilyHeadAvatar: FC<Props> = (props) => {
       <h2>{name}</h2>
       <p>{`世帯人数：${numberOfPeople}人`}</p>
       <p>
-        <span>{`〒${zipCode}`}</span> {address}
+        <span>{`〒${zipCode}`}</span> {`住所:${address}`}
       </p>
     </div>
   );
