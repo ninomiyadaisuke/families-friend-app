@@ -1,3 +1,4 @@
+import { useQueryClient } from '@tanstack/react-query';
 import Link from 'next/link';
 import { FC } from 'react';
 
@@ -23,8 +24,13 @@ type Props = {
 
 const DropDawnLinks: FC<Props> = (props) => {
   const { links, auth, type } = props;
+  const queryClient = useQueryClient();
   const { tablet, setDrawerToggle, router } = useLayout();
 
+  const handleLogout = async () => {
+    queryClient.removeQueries();
+    await logout().then(() => router.push('/login'));
+  };
   return (
     <div className={tablet && type === 'menu' ? styles.drawerLinks : styles.links}>
       {links.map((link) => (
@@ -32,7 +38,7 @@ const DropDawnLinks: FC<Props> = (props) => {
           {link.text}
         </Link>
       ))}
-      {auth && <button onClick={() => logout().then(() => router.push('/login'))}>{auth}</button>}
+      {auth && <button onClick={handleLogout}>{auth}</button>}
     </div>
   );
 };
