@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import cx from 'classnames';
 import { ReactNode, useEffect } from 'react';
 import { FieldValues, SubmitHandler, useFieldArray, useForm, UseFormProps, UseFormReturn } from 'react-hook-form';
 import type { ZodType, ZodTypeDef } from 'zod';
@@ -42,7 +43,7 @@ const Form = <
   }, [isSubmitSuccessful, reset]);
 
   return (
-    <form className={`${styles.form} ${className}`} onSubmit={methods.handleSubmit(onSubmit)} id={id}>
+    <form className={cx(styles.form, className && className)} onSubmit={methods.handleSubmit(onSubmit)} id={id}>
       {children(methods, test)}
     </form>
   );
