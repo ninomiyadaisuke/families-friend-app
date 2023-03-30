@@ -2,6 +2,7 @@ import type { GetServerSideProps, NextPageWithLayout } from 'next';
 import { ReactElement } from 'react';
 
 import { Layout, TitleLayout } from '@/components/layouts';
+import { AppProvider } from '@/providers/app';
 import { checkUser } from '@/server/libs/serverUtils';
 import { TAuthUser } from '@/types/users';
 
@@ -9,14 +10,12 @@ const ProfileEdit: NextPageWithLayout = () => {
   return <div></div>;
 };
 
-export const getLayout = (
-  page: ReactElement<{ children: ReactElement<TAuthUser> }>,
-  title: string,
-  bgColor?: 'bgBlue'
-) => (
-  <Layout user={page.props.children.props.user} bgColor={bgColor}>
-    <TitleLayout title={title}>{page}</TitleLayout>
-  </Layout>
+export const getLayout = (page: ReactElement<TAuthUser>, title: string, bgColor?: 'bgBlue') => (
+  <AppProvider>
+    <Layout user={page.props.user} bgColor={bgColor}>
+      <TitleLayout title={title}>{page}</TitleLayout>
+    </Layout>
+  </AppProvider>
 );
 ProfileEdit.getLayout = (page: ReactElement) => getLayout(page, 'プロフィール編集');
 

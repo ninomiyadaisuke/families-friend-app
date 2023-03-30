@@ -70,7 +70,7 @@ const MyProfile: FC<Props> = () => {
   return (
     <div className={styles.profile}>
       <FamilyHeadAvatar
-        image="/icon/profile-icon-demo.jpg"
+        image={user?.image?.path}
         name={user && user?.name}
         zipCode={user && user.zipCode}
         address={'東京都特許許可局局長許可却下'}

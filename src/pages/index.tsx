@@ -3,8 +3,15 @@ import { ReactElement } from 'react';
 
 import { Hero, HomeAbout, HomeService } from '@/components/home';
 import { Layout } from '@/components/layouts';
+import { AppProvider } from '@/providers/app';
 import { checkUser } from '@/server/libs/serverUtils';
-import { TAuthUser } from '@/types/users';
+
+export type TAuthUser = {
+  user: {
+    email: string;
+    uid: string;
+  };
+};
 
 const Home: NextPageWithLayout = () => {
   return (
@@ -16,11 +23,15 @@ const Home: NextPageWithLayout = () => {
   );
 };
 
-export const baseLayout = (page: ReactElement<{ children: ReactElement<TAuthUser> }>, bgColor?: 'bgBlue') => (
-  <Layout user={page.props.children.props.user} bgColor={bgColor}>
-    {page}
-  </Layout>
-);
+export const baseLayout = (page: ReactElement<TAuthUser>, bgColor?: 'bgBlue') => {
+  return (
+    <AppProvider>
+      <Layout user={page.props.user} bgColor={bgColor}>
+        {page}
+      </Layout>
+    </AppProvider>
+  );
+};
 
 Home.getLayout = (page) => baseLayout(page);
 

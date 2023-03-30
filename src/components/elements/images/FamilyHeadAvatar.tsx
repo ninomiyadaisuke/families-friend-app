@@ -19,6 +19,7 @@ const FamilyHeadAvatar: FC<Props> = (props) => {
     address = 'null',
     numberOfPeople = 'null',
   } = props;
+
   return (
     <div className={styles.avatar}>
       <FixedImage src={image} alt="avatar-icon" className={styles.avatar__image} />

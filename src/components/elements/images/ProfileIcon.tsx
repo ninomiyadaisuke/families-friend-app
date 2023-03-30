@@ -6,7 +6,7 @@ import { DropDawnLinks } from '../links';
 import { FixedImage } from './';
 
 type Props = {
-  image?: string;
+  image: string;
 };
 
 const links = [
@@ -17,14 +17,10 @@ const links = [
 const ProfileIcon: FC<Props> = (props) => {
   const { image } = props;
   const [isOpen, setIsOpen] = useState(false);
-  const isImage = image !== undefined;
+
   return (
     <div className={styles.icon} onClick={() => setIsOpen((prev) => !prev)}>
-      <FixedImage
-        className={isImage ? styles.icon__image : styles.icon__image_default}
-        src={isImage ? image : '/icon/profile-icon.svg'}
-        alt="profile-icon"
-      />
+      <FixedImage className={styles.icon__image} src={image} alt="profile-icon" />
       {isOpen && (
         <div className={styles.icon__dropdawn}>
           <DropDawnLinks links={links} auth="ログアウト" />
