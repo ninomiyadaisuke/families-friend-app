@@ -4,8 +4,9 @@ import { FC } from 'react';
 
 import { PrimaryButton } from '@/components/elements/buttons';
 import { Form, PrimaryInput, PrimarySelect, UnderlineDateSelect } from '@/components/forms';
+import { LabelLayout } from '@/components/layouts';
 import type { FormValues } from '@/features/auth/api/register';
-import { registerSchema,signup } from '@/features/auth/api/register';
+import { registerSchema, signup } from '@/features/auth/api/register';
 import styles from '@/styles/features/auth/components/registerForm.module.scss';
 
 const options = [{ value: '世帯主' }, { value: '配偶書' }, { value: '子供' }, { value: '親' }, { value: '同居人' }];
@@ -123,23 +124,32 @@ const RegisterForm: FC = () => {
                 registration={register('first_name_kana')}
               />
             </div>
-            <div className={styles.forms__select}>
-              <UnderlineDateSelect
-                errorMesseage={formState.errors.birthday?.message}
-                control={control}
-                registration={register('birthday')}
-                setValue={(value) => setValue('birthday', value)}
-              />
-            </div>
-            <div className={styles.forms__select}>
-              <PrimarySelect
-                label="役割"
-                selectLabel="役割を選択"
-                options={options}
-                registration={register('relationship')}
-                isSubmitSuccessful={formState.isSubmitSuccessful}
-              />
-            </div>
+            <LabelLayout
+              label="生年月日"
+              type="flex"
+              flexKeep={true}
+              children={() => (
+                <UnderlineDateSelect
+                  errorMesseage={formState.errors.birthday?.message}
+                  control={control}
+                  registration={register('birthday')}
+                  setValue={(value) => setValue('birthday', value)}
+                />
+              )}
+            />
+            <LabelLayout
+              label="役割"
+              type="flex"
+              children={(label) => (
+                <PrimarySelect
+                  id={label}
+                  selectLabel="役割を選択"
+                  options={options}
+                  registration={register('relationship')}
+                  isSubmitSuccessful={formState.isSubmitSuccessful}
+                />
+              )}
+            />
           </div>
           <div className={styles.forms__terms}>
             <p>

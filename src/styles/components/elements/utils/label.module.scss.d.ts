@@ -7,6 +7,7 @@ export type Styles = {
   labelContainer__label: string;
   labelContainer__label_center: string;
   labelContainer__label_start: string;
+  labelContainerFlex: string;
 };
 
 export type ClassNames = keyof Styles;
