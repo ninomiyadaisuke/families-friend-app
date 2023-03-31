@@ -1,18 +1,27 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import cx from 'classnames';
 import { ReactNode, useEffect } from 'react';
-import { FieldValues, SubmitHandler, useFieldArray, useForm, UseFormProps, UseFormReturn } from 'react-hook-form';
+import {
+  FieldValues,
+  SubmitHandler,
+  useFieldArray,
+  UseFieldArrayReturn,
+  useForm,
+  UseFormProps,
+  UseFormReturn,
+} from 'react-hook-form';
 import type { ZodType, ZodTypeDef } from 'zod';
 
 import styles from '@/styles/components/forms/form.module.scss';
 
-type FormProps<TFormValues extends FieldValues, Schema> = {
+type FormProps<TFormValues extends FieldValues, Schema, TFieldArrayFields extends FieldValues = FieldValues> = {
   className?: string;
   onSubmit: SubmitHandler<TFormValues>;
-  children: (methods: UseFormReturn<TFormValues>, test: any) => ReactNode;
+  children: (methods: UseFormReturn<TFormValues>, fieldArray: UseFieldArrayReturn<TFieldArrayFields>) => ReactNode;
   options?: UseFormProps<TFormValues>;
   id?: string;
   schema?: Schema;
+  name?: string;
 };
 
 const Form = <
@@ -21,14 +30,14 @@ const Form = <
 >(
   props: FormProps<TFormValues, Schema>
 ) => {
-  const { onSubmit, children, className, options, id, schema } = props;
+  const { onSubmit, children, className, options, id, schema, name } = props;
   const methods = useForm<TFormValues>({
     ...options,
     resolver: schema && zodResolver(schema),
   });
 
-  const test = useFieldArray<any>({
-    name: 'test',
+  const fieldArray = useFieldArray<any>({
+    name: name as string,
     control: methods.control,
   });
 
@@ -44,7 +53,7 @@ const Form = <
 
   return (
     <form className={cx(styles.form, className && className)} onSubmit={methods.handleSubmit(onSubmit)} id={id}>
-      {children(methods, test)}
+      {children(methods, fieldArray)}
     </form>
   );
 };
