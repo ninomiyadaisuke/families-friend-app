@@ -5,19 +5,16 @@ import { AccordionWrapper } from '@/components/elements/utils';
 import { useAccordion } from '@/hooks/useAccordion';
 import styles from '@/styles/components/forms/primarySelect.module.scss';
 
-import { RequiredBadge } from '../elements/utils';
-
 type Props = {
-  label: string;
+  id: string;
   selectLabel: string;
-  mandatory?: boolean;
   options: { [key in 'value']: string }[];
   registration: UseFormRegisterReturn;
   isSubmitSuccessful?: boolean;
 };
 
 const PrimarySelect: FC<Props> = (props) => {
-  const { label, mandatory, selectLabel, registration, options, isSubmitSuccessful } = props;
+  const { selectLabel, registration, options, isSubmitSuccessful, id } = props;
   const { isOpen, setIsOpen } = useAccordion();
   const [selected, setSelected] = useState(selectLabel);
 
@@ -50,27 +47,17 @@ const PrimarySelect: FC<Props> = (props) => {
 
   return (
     <div className={styles.select}>
-      <div className={styles.select__label}>
-        <label onClick={handleClick} htmlFor="selected">
-          {label}
-        </label>
-        {mandatory && (
-          <div className={styles.select__label_badge}>
-            <RequiredBadge />
-          </div>
-        )}
-      </div>
       <div className={styles.select__container}>
         <label>
           <input id="selected" type={'checkbox'} onKeyDown={handleKeyDown} value={selected} />
           <span onClick={handleClick}>{selected}</span>
         </label>
-
         <i className={isOpen ? styles.select__arrow_down : styles.select__arrow} />
         <AccordionWrapper>
           {options.map((option) => (
             <label key={option.value}>
               <input
+                id={id}
                 {...registration}
                 onFocus={handleFocus}
                 onKeyDown={handleKeyDown}

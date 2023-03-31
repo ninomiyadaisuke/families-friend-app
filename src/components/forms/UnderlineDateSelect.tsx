@@ -44,7 +44,6 @@ const UnderlineDateSelect = <TDate extends Record<string, unknown>>(props: Props
 
   return (
     <div className={styles.selected}>
-      <label>生年月日</label>
       <div className={styles.selected__container}>
         <UnderlineSelect options={yearsData} name="year" onChange={selectedYear} />
         <UnderlineSelect options={monthData} name="month" onChange={selectedMonth} />

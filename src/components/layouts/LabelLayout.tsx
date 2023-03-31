@@ -11,10 +11,11 @@ type Props = {
   label: string;
   type: 'flex' | 'block';
   widthStyle?: string;
+  flexKeep?: boolean;
 };
 
 const LabelLayout: FC<Props> = (props) => {
-  const { children, label, required, type, widthStyle } = props;
+  const { children, label, required, type, widthStyle, flexKeep } = props;
 
   const className = (() => {
     switch (type) {
@@ -28,11 +29,12 @@ const LabelLayout: FC<Props> = (props) => {
   })();
 
   return (
-    <div className={styles.labelContainer}>
+    <div className={cx(styles.labelContainer, { [styles.labelContainerFlex]: flexKeep })}>
       <label
-        className={`${styles.labelContainer__label} ${
+        className={cx(
+          styles.labelContainer__label,
           type === 'flex' ? styles.labelContainer__label_center : styles.labelContainer__label_start
-        }`}
+        )}
         htmlFor={label}
       >
         {label}
