@@ -1,0 +1,26 @@
+.forms {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  &__title {
+    margin-left: -22px;
+    font-size: 20px;
+    font-weight: 300;
+  }
+  &__name {
+    display: flex;
+    gap: 42px;
+  }
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  @include mq('md') {
+    &__container {
+      display: flex;
+      flex-direction: column;
+      gap: calc(16px + 24 * (100vw - 800px) / 1120);
+    }
+  }
+}

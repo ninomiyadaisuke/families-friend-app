@@ -2,13 +2,13 @@ import { Control, FormState, UseFormRegister, UseFormSetValue } from 'react-hook
 
 import { ImageUploader, PrimaryInput, PrimarySelect, UnderlineDateSelect } from '@/components/forms';
 import { FormValues } from '@/schema/personalInfoSchema';
+import styles from '@/styles/components/forms/personalInfo.module.scss';
 
 import { LabelLayout } from '../layouts';
 
 type Props = {
   register: UseFormRegister<FormValues>;
   title: string;
-  required?: 'required';
   control: Control<FormValues, any>;
   setValue: UseFormSetValue<FormValues>;
   formState: FormState<FormValues>;
@@ -17,12 +17,12 @@ type Props = {
 const options = [{ value: '世帯主' }, { value: '配偶書' }, { value: '子供' }, { value: '親' }, { value: '同居人' }];
 
 const PersonalInfo = (props: Props) => {
-  const { title, required, control, setValue, register, formState } = props;
+  const { title, control, setValue, register, formState } = props;
   return (
-    <div>
-      <h3>{title}</h3>
-      <div>
-        <div>
+    <div className={styles.forms}>
+      <div className={styles.forms__container}>
+        <h3 className={styles.forms__title}>{title}</h3>
+        <div className={styles.forms__name}>
           <PrimaryInput
             registration={register('last_name')}
             type="text"
@@ -31,16 +31,7 @@ const PersonalInfo = (props: Props) => {
             iconType="user"
             src="/icon/user-icon.svg"
             alt="user-icon"
-          />
-          <PrimaryInput
-            registration={register('last_name_kana')}
-            type="text"
-            placeholder="ミョウジ"
-            required={'required'}
-            iconType="user"
-            src="/icon/user-icon.svg"
-            alt="user-icon"
-            responsiveImageNone="none"
+            errorMesseage={formState.errors.last_name?.message}
           />
           <PrimaryInput
             registration={register('first_name')}
@@ -50,6 +41,19 @@ const PersonalInfo = (props: Props) => {
             iconType="user"
             src="/icon/user-icon.svg"
             alt="user-icon"
+            responsiveImageNone="none"
+          />
+        </div>
+        <div className={styles.forms__name}>
+          <PrimaryInput
+            registration={register('last_name_kana')}
+            type="text"
+            placeholder="ミョウジ"
+            required={'required'}
+            iconType="user"
+            src="/icon/user-icon.svg"
+            alt="user-icon"
+            errorMesseage={formState.errors.last_name_kana?.message}
           />
           <PrimaryInput
             registration={register('first_name_kana')}
@@ -60,6 +64,7 @@ const PersonalInfo = (props: Props) => {
             responsiveImageNone="none"
             src="/icon/user-icon.svg"
             alt="user-icon"
+            errorMesseage={formState.errors.first_name_kana?.message}
           />
         </div>
         <PrimaryInput
@@ -69,6 +74,7 @@ const PersonalInfo = (props: Props) => {
           iconType="email"
           src="/icon/email-icon.svg"
           alt="メールアイコン"
+          errorMesseage={formState.errors.email?.message}
         />
 
         <PrimaryInput
@@ -78,6 +84,7 @@ const PersonalInfo = (props: Props) => {
           iconType="phone"
           src="/icon/mobile-icon.svg"
           alt="メールアイコン"
+          errorMesseage={formState.errors.phone_number?.message}
         />
         <PrimaryInput
           registration={register('hobby')}
@@ -86,34 +93,39 @@ const PersonalInfo = (props: Props) => {
           iconType="hobby"
           src="/icon/hobby-icon.svg"
           alt="メールアイコン"
+          errorMesseage={formState.errors.hobby?.message}
+        />
+
+        <LabelLayout
+          label="生年月日"
+          type="flex"
+          flexKeep={true}
+          children={() => (
+            <UnderlineDateSelect
+              control={control}
+              setValue={(value) => setValue('birthday', value)}
+              registration={register('birthday')}
+              errorMesseage={formState.errors.birthday?.message}
+            />
+          )}
+        />
+        <LabelLayout
+          label="役割"
+          type="flex"
+          children={(label) => (
+            <PrimarySelect
+              id={label}
+              selectLabel="役割を選択"
+              options={options}
+              registration={register('relationship')}
+              isSubmitSuccessful={formState.isSubmitSuccessful}
+            />
+          )}
         />
       </div>
-      <LabelLayout
-        label="生年月日"
-        type="flex"
-        flexKeep={true}
-        children={() => (
-          <UnderlineDateSelect
-            control={control}
-            setValue={(value) => setValue('birthday', value)}
-            registration={register('birthday')}
-          />
-        )}
-      />
-      <LabelLayout
-        label="役割"
-        type="flex"
-        children={(label) => (
-          <PrimarySelect
-            id={label}
-            selectLabel="役割を選択"
-            options={options}
-            registration={register('relationship')}
-            isSubmitSuccessful={formState.isSubmitSuccessful}
-          />
-        )}
-      />
-      <ImageUploader setValue={(value) => setValue('file', value)} registration={register('file')} />
+      <div style={{ marginTop: '47px' }}>
+        <ImageUploader setValue={(value) => setValue('file', value)} registration={register('file')} />
+      </div>
     </div>
   );
 };
