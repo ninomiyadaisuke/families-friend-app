@@ -39,7 +39,7 @@ const RegisterForm: FC = () => {
         <>
           <div className={styles.forms__container}>
             <PrimaryInput
-              type="text"
+              type="email"
               placeholder="メールアドレス"
               iconType="email"
               src="/icon/email-icon.svg"

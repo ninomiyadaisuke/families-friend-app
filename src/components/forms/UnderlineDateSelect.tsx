@@ -7,7 +7,7 @@ import styles from '@/styles/components/forms/underlineDateSelect.module.scss';
 import { UnderlineSelect } from '.';
 
 type Props<TDate extends Record<string, unknown>> = {
-  registration: UseFormRegisterReturn;
+  registration?: UseFormRegisterReturn;
   control: Control<TDate, any>;
   errorMesseage?: string;
   setValue: (value: string) => void;

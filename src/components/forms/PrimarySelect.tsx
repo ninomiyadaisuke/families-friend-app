@@ -6,10 +6,10 @@ import { useAccordion } from '@/hooks/useAccordion';
 import styles from '@/styles/components/forms/primarySelect.module.scss';
 
 type Props = {
-  id: string;
-  selectLabel: string;
+  id?: string;
+  selectLabel?: string;
   options: { [key in 'value']: string }[];
-  registration: UseFormRegisterReturn;
+  registration?: UseFormRegisterReturn;
   isSubmitSuccessful?: boolean;
 };
 
