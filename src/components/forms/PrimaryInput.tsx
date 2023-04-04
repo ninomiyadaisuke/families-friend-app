@@ -10,7 +10,7 @@ import { FixedImage } from '../elements/images';
 type Props = {
   type: HTMLInputTypeAttribute;
   registration?: UseFormRegisterReturn;
-  iconType: 'user' | 'email' | 'password';
+  iconType: 'user' | 'email' | 'password' | 'phone' | 'zipCode' | 'address' | 'hobby';
   src: string;
   alt: string;
   placeholder: string;
@@ -33,6 +33,14 @@ const PrimaryInput: FC<Props> = (props) => {
         return `${styles.input__icon_password}`;
       case 'user':
         return `${styles.input__icon_user}`;
+      case 'address':
+        return `${styles.input__icon_address}`;
+      case 'hobby':
+        return `${styles.input__icon_hobby}`;
+      case 'zipCode':
+        return `${styles.input__icon_zipCode}`;
+      case 'phone':
+        return `${styles.input__icon_phone}`;
       default:
         const check: never = iconType;
     }
