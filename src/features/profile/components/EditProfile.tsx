@@ -1,9 +1,8 @@
 import { FC } from 'react';
+import { z } from 'zod';
 
 import { AddButton, PrimaryButton } from '@/components/elements/buttons';
 import { Form, PersonalInfo, PrimaryInput } from '@/components/forms';
-import { FormValues } from '@/schema/personalInfoSchema';
-import { schema } from '@/schema/personalInfoSchema';
 import styles from '@/styles/features/profile/components/editProfile.module.scss';
 
 const initialState = {
@@ -14,12 +13,41 @@ const initialState = {
   last_name_kana: '',
   email: undefined,
   phone_number: undefined,
+  hobby: undefined,
   birthday: undefined,
   relationship: undefined,
+  zip_code: undefined,
+  address: undefined,
+  building: undefined,
 };
 
+export const schema = z.object({
+  file: z.union([z.string(), z.custom<FileList>().transform((file) => file[0])]),
+  first_name: z.string(),
+  first_name_kana: z.string(),
+  last_name: z.string(),
+  last_name_kana: z.string(),
+  email: z.string().optional(),
+  phone_number: z.string().optional(),
+  birthday: z.string().optional(),
+  hobby: z.string(),
+  relationship: z.union([
+    z.literal('世帯主'),
+    z.literal('配偶者'),
+    z.literal('子供'),
+    z.literal('親'),
+    z.literal('同居人'),
+    z.literal(''),
+  ]),
+  zip_code: z.string().optional(),
+  address: z.string().optional(),
+  building: z.string().optional(),
+});
+
+export type FormValues = z.infer<typeof schema>;
+
 const update = (values: FormValues) => {
-  const test = values;
+  // console.log(values);
 };
 
 const EditProfile: FC = () => {
@@ -29,6 +57,7 @@ const EditProfile: FC = () => {
       options={{ defaultValues: initialState }}
       schema={schema}
       className={styles.profile}
+      name="members"
     >
       {({ register, setValue, control, formState }, { fields, append, remove }) => (
         <>
@@ -43,7 +72,7 @@ const EditProfile: FC = () => {
             <h3>現住所</h3>
             <PrimaryInput
               type="text"
-              registration={register('first_name')}
+              registration={register('zip_code')}
               iconType="zipCode"
               src="/icon/zip-code-icon.svg"
               alt="zip-code-icon"
@@ -52,11 +81,20 @@ const EditProfile: FC = () => {
             />
             <PrimaryInput
               type="text"
-              registration={register('first_name')}
+              registration={register('address')}
               iconType="address"
               src="/icon/address-icon.svg"
               alt="zip-code-icon"
               placeholder="住所"
+              errorMesseage={formState.errors.first_name?.message}
+            />
+            <PrimaryInput
+              type="text"
+              registration={register('building')}
+              iconType="address"
+              src="/icon/address-icon.svg"
+              alt="zip-code-icon"
+              placeholder="建物"
               errorMesseage={formState.errors.first_name?.message}
             />
           </div>

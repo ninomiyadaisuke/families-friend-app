@@ -1,7 +1,7 @@
 import { Control, FormState, UseFormRegister, UseFormSetValue } from 'react-hook-form';
 
 import { ImageUploader, PrimaryInput, PrimarySelect, UnderlineDateSelect } from '@/components/forms';
-import { FormValues } from '@/schema/personalInfoSchema';
+import { FormValues } from '@/features/profile/components/EditProfile';
 import styles from '@/styles/components/forms/personalInfo.module.scss';
 
 import { LabelLayout } from '../layouts';
