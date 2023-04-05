@@ -1,9 +1,7 @@
 export type Styles = {
-  forms: string;
-  forms__container: string;
-  forms__name: string;
-  forms__title: string;
-  forms__uploader: string;
+  profile: string;
+  profile__add: string;
+  profile__address: string;
 };
 
 export type ClassNames = keyof Styles;

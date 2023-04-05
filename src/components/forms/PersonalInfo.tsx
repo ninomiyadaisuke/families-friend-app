@@ -123,7 +123,7 @@ const PersonalInfo = (props: Props) => {
           )}
         />
       </div>
-      <div style={{ marginTop: '47px' }}>
+      <div className={styles.forms__uploader}>
         <ImageUploader setValue={(value) => setValue('file', value)} registration={register('file')} />
       </div>
     </div>

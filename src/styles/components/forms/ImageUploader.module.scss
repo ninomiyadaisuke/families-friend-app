@@ -18,6 +18,9 @@
     top: 20%;
     left: 300px;
   }
+  @include mq('md') {
+    gap: calc(20px + 22 * (100vw - 800px) / 1120);
+  }
   .profileImage {
     position: relative;
     width: 120px;
