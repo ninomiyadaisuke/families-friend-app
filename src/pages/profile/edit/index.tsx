@@ -2,12 +2,13 @@ import type { GetServerSideProps, NextPageWithLayout } from 'next';
 import { ReactElement } from 'react';
 
 import { Layout, TitleLayout } from '@/components/layouts';
+import { EditProfile } from '@/features/profile/components';
 import { AppProvider } from '@/providers/app';
 import { checkUser } from '@/server/libs/serverUtils';
 import { TAuthUser } from '@/types/users';
 
 const ProfileEdit: NextPageWithLayout = () => {
-  return <div></div>;
+  return <EditProfile />;
 };
 
 export const getLayout = (page: ReactElement<TAuthUser>, title: string, bgColor?: 'bgBlue') => (
