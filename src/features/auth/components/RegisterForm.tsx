@@ -24,6 +24,8 @@ const initialState = {
   relationship: '',
 };
 
+type TRelationship = '' | '世帯主' | '配偶者' | '子供' | '親' | '同居人';
+
 const RegisterForm: FC = () => {
   const mutation = useMutation(signup);
   return (
@@ -147,6 +149,7 @@ const RegisterForm: FC = () => {
                   options={options}
                   registration={register('relationship')}
                   isSubmitSuccessful={formState.isSubmitSuccessful}
+                  setValue={(value) => setValue('relationship', value as TRelationship)}
                 />
               )}
             />
