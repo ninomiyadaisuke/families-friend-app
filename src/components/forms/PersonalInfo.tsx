@@ -18,6 +18,8 @@ type Props = {
   remove?: UseFieldArrayRemove;
 };
 
+type TRelationship = '' | '世帯主' | '配偶者' | '子供' | '親' | '同居人';
+
 const options = [{ value: '世帯主' }, { value: '配偶書' }, { value: '子供' }, { value: '親' }, { value: '同居人' }];
 
 const PersonalInfo = (props: Props) => {
@@ -130,6 +132,7 @@ const PersonalInfo = (props: Props) => {
               selectLabel="役割を選択"
               options={options}
               registration={isIndex ? register(`members.${index}.relationship`) : register('relationship')}
+              setValue={(value) => setValue('relationship', value as TRelationship)}
               isSubmitSuccessful={formState.isSubmitSuccessful}
             />
           )}

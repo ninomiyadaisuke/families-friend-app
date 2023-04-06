@@ -11,15 +11,17 @@ type Props = {
   options: { [key in 'value']: string }[];
   registration?: UseFormRegisterReturn;
   isSubmitSuccessful?: boolean;
+  setValue: (value: string) => void;
 };
 
 const PrimarySelect: FC<Props> = (props) => {
-  const { selectLabel, registration, options, isSubmitSuccessful, id } = props;
+  const { selectLabel, registration, options, isSubmitSuccessful, id, setValue } = props;
   const { isOpen, setIsOpen } = useAccordion();
   const [selected, setSelected] = useState(selectLabel);
 
   const choiseRadio = (value: string) => {
     setSelected(value);
+    setValue(value);
     setIsOpen(false);
   };
 
@@ -28,6 +30,7 @@ const PrimarySelect: FC<Props> = (props) => {
     setIsOpen((prev) => !prev);
     const inputElement = e.target as HTMLInputElement;
     setSelected(inputElement.value);
+    setValue(inputElement.value);
     e.preventDefault();
   };
 
@@ -49,7 +52,7 @@ const PrimarySelect: FC<Props> = (props) => {
     <div className={styles.select}>
       <div className={styles.select__container}>
         <label>
-          <input id="selected" type={'checkbox'} onKeyDown={handleKeyDown} value={selected} />
+          <input id="selected" type={'checkbox'} onKeyDown={handleKeyDown} value={selected} {...registration} />
           <span onClick={handleClick}>{selected}</span>
         </label>
         <i className={isOpen ? styles.select__arrow_down : styles.select__arrow} />
@@ -58,7 +61,6 @@ const PrimarySelect: FC<Props> = (props) => {
             <label key={option.value}>
               <input
                 id={id}
-                {...registration}
                 onFocus={handleFocus}
                 onKeyDown={handleKeyDown}
                 value={option.value}
