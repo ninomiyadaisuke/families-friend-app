@@ -5,6 +5,7 @@ import styles from '@/styles/components/elements/buttons/addButton.module.scss';
 
 type Props = {
   type: 'white' | 'blue';
+  onClick?: () => void;
 };
 
 const AddButton: FC<Props> = (props) => {
