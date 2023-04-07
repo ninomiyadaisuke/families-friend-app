@@ -2,6 +2,7 @@ import { Control, FormState, UseFieldArrayRemove, UseFormRegister, UseFormSetVal
 
 import { ImageUploader, PrimaryInput, PrimarySelect, UnderlineDateSelect } from '@/components/forms';
 import { FormValues } from '@/features/profile/components/EditProfile';
+import { options } from '@/libs/data';
 import styles from '@/styles/components/forms/personalInfo.module.scss';
 
 import { FixedImage } from '../elements/images';
@@ -16,14 +17,13 @@ type Props = {
   index?: number;
   isIcon?: boolean;
   remove?: UseFieldArrayRemove;
+  required?: 'required';
 };
 
-type TRelationship = '' | '世帯主' | '配偶者' | '子供' | '親' | '同居人';
-
-const options = [{ value: '世帯主' }, { value: '配偶書' }, { value: '子供' }, { value: '親' }, { value: '同居人' }];
+type TRelationship = '世帯主' | '配偶者' | '子供' | '親' | '同居人' | '';
 
 const PersonalInfo = (props: Props) => {
-  const { title, control, setValue, register, formState, index, isIcon, remove } = props;
+  const { title, control, setValue, register, formState, index, isIcon, remove, required } = props;
   const isIndex = index !== undefined && index >= 0;
   return (
     <div className={styles.forms}>
@@ -41,21 +41,30 @@ const PersonalInfo = (props: Props) => {
             registration={isIndex ? register(`members.${index}.last_name`) : register('last_name')}
             type="text"
             placeholder="苗字"
-            required={'required'}
+            required={required}
             iconType="user"
             src="/icon/user-icon.svg"
             alt="user-icon"
-            errorMesseage={formState.errors.last_name?.message}
+            errorMesseage={
+              isIndex && formState.errors.members
+                ? formState.errors.members[index]?.last_name?.message
+                : formState.errors.last_name?.message
+            }
           />
           <PrimaryInput
             registration={isIndex ? register(`members.${index}.first_name`) : register('first_name')}
             type="text"
             placeholder="名前"
-            required={'required'}
+            required={required}
             iconType="user"
             src="/icon/user-icon.svg"
             alt="user-icon"
             responsiveImageNone="none"
+            errorMesseage={
+              isIndex && formState.errors.members
+                ? formState.errors.members[index]?.first_name?.message
+                : formState.errors.first_name?.message
+            }
           />
         </div>
         <div className={styles.forms__name}>
@@ -63,22 +72,30 @@ const PersonalInfo = (props: Props) => {
             registration={isIndex ? register(`members.${index}.last_name_kana`) : register('last_name_kana')}
             type="text"
             placeholder="ミョウジ"
-            required={'required'}
+            required={required}
             iconType="user"
             src="/icon/user-icon.svg"
             alt="user-icon"
-            errorMesseage={formState.errors.last_name_kana?.message}
+            errorMesseage={
+              isIndex && formState.errors.members
+                ? formState.errors.members[index]?.last_name_kana?.message
+                : formState.errors.last_name_kana?.message
+            }
           />
           <PrimaryInput
             registration={isIndex ? register(`members.${index}.first_name_kana`) : register('first_name_kana')}
             type="text"
             placeholder="ナマエ"
-            required={'required'}
+            required={required}
             iconType="user"
             responsiveImageNone="none"
             src="/icon/user-icon.svg"
             alt="user-icon"
-            errorMesseage={formState.errors.first_name_kana?.message}
+            errorMesseage={
+              isIndex && formState.errors.members
+                ? formState.errors.members[index]?.first_name_kana?.message
+                : formState.errors.first_name_kana?.message
+            }
           />
         </div>
         <PrimaryInput
@@ -98,7 +115,11 @@ const PersonalInfo = (props: Props) => {
           iconType="phone"
           src="/icon/mobile-icon.svg"
           alt="メールアイコン"
-          errorMesseage={formState.errors.phone_number?.message}
+          errorMesseage={
+            isIndex && formState.errors.members
+              ? formState.errors.members[index]?.phone_number?.message
+              : formState.errors.phone_number?.message
+          }
         />
         <PrimaryInput
           registration={isIndex ? register(`members.${index}.hobby`) : register('hobby')}
@@ -107,7 +128,11 @@ const PersonalInfo = (props: Props) => {
           iconType="hobby"
           src="/icon/hobby-icon.svg"
           alt="メールアイコン"
-          errorMesseage={formState.errors.hobby?.message}
+          errorMesseage={
+            isIndex && formState.errors.members
+              ? formState.errors.members[index]?.hobby?.message
+              : formState.errors.hobby?.message
+          }
         />
 
         <LabelLayout
@@ -117,9 +142,13 @@ const PersonalInfo = (props: Props) => {
           children={() => (
             <UnderlineDateSelect
               control={control}
-              setValue={(value) => setValue('birthday', value)}
+              setValue={(value) => setValue(isIndex ? `members.${index}.birthday` : 'birthday', value)}
               registration={isIndex ? register(`members.${index}.birthday`) : register('birthday')}
-              errorMesseage={formState.errors.birthday?.message}
+              errorMesseage={
+                isIndex && formState.errors.members
+                  ? formState.errors.members[index]?.birthday?.message
+                  : formState.errors.birthday?.message
+              }
             />
           )}
         />
@@ -132,7 +161,9 @@ const PersonalInfo = (props: Props) => {
               selectLabel="役割を選択"
               options={options}
               registration={isIndex ? register(`members.${index}.relationship`) : register('relationship')}
-              setValue={(value) => setValue('relationship', value as TRelationship)}
+              setValue={(value) =>
+                setValue(isIndex ? `members.${index}.relationship` : 'relationship', value as TRelationship)
+              }
               isSubmitSuccessful={formState.isSubmitSuccessful}
             />
           )}
@@ -140,7 +171,7 @@ const PersonalInfo = (props: Props) => {
       </div>
       <div className={styles.forms__uploader}>
         <ImageUploader
-          setValue={(value) => setValue('file', value)}
+          setValue={(value) => setValue(isIndex ? `members.${index}.file` : 'file', value)}
           registration={isIndex ? register(`members.${index}.file`) : register('file')}
         />
       </div>

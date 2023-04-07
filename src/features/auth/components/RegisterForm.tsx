@@ -7,9 +7,8 @@ import { Form, PrimaryInput, PrimarySelect, UnderlineDateSelect } from '@/compon
 import { LabelLayout } from '@/components/layouts';
 import type { FormValues } from '@/features/auth/api/register';
 import { registerSchema, signup } from '@/features/auth/api/register';
+import { options } from '@/libs/data';
 import styles from '@/styles/features/auth/components/registerForm.module.scss';
-
-const options = [{ value: '世帯主' }, { value: '配偶書' }, { value: '子供' }, { value: '親' }, { value: '同居人' }];
 
 const initialState = {
   email: '',

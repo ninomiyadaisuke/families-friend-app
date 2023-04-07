@@ -29,6 +29,7 @@ const PrimarySelect: FC<Props> = (props) => {
     if (e.nativeEvent.isComposing || e.key !== 'Enter') return;
     setIsOpen((prev) => !prev);
     const inputElement = e.target as HTMLInputElement;
+
     setSelected(inputElement.value);
     setValue(inputElement.value);
     e.preventDefault();

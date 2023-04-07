@@ -3,69 +3,8 @@ import { z } from 'zod';
 
 import { AddButton, PrimaryButton } from '@/components/elements/buttons';
 import { Form, PersonalInfo, PrimaryInput } from '@/components/forms';
+import { initialState, schema } from '@/features/profile/apis/editProfile';
 import styles from '@/styles/features/profile/components/editProfile.module.scss';
-
-const initialState = {
-  file: '',
-  first_name: '',
-  last_name: '',
-  first_name_kana: '',
-  last_name_kana: '',
-  email: undefined,
-  phone_number: undefined,
-  hobby: undefined,
-  birthday: undefined,
-  relationship: undefined,
-  zip_code: undefined,
-  address: undefined,
-  building: undefined,
-};
-
-export const schema = z.object({
-  file: z.union([z.string(), z.custom<FileList>().transform((file) => file[0])]),
-  first_name: z.string(),
-  first_name_kana: z.string(),
-  last_name: z.string(),
-  last_name_kana: z.string(),
-  email: z.string().optional(),
-  phone_number: z.string().optional(),
-  birthday: z.string().optional(),
-  hobby: z.string(),
-  relationship: z.union([
-    z.literal('世帯主'),
-    z.literal('配偶者'),
-    z.literal('子供'),
-    z.literal('親'),
-    z.literal('同居人'),
-    z.literal(''),
-  ]),
-  zip_code: z.string().optional(),
-  address: z.string().optional(),
-  building: z.string().optional(),
-  members: z
-    .array(
-      z.object({
-        file: z.union([z.string(), z.custom<FileList>().transform((file) => file[0])]),
-        first_name: z.string(),
-        first_name_kana: z.string(),
-        last_name: z.string(),
-        last_name_kana: z.string(),
-        email: z.string().optional(),
-        phone_number: z.string().optional(),
-        birthday: z.string().optional(),
-        hobby: z.string(),
-        relationship: z.union([
-          z.literal('世帯主'),
-          z.literal('配偶者'),
-          z.literal('子供'),
-          z.literal('親'),
-          z.literal('同居人'),
-          z.literal(''),
-        ]),
-      })
-    )
-    .optional(),
-});
 
 export type FormValues = z.infer<typeof schema>;
 
@@ -77,7 +16,7 @@ const EditProfile: FC = () => {
   return (
     <Form<FormValues, typeof schema>
       onSubmit={update}
-      options={{ defaultValues: initialState }}
+      options={{ defaultValues: initialState as FormValues }}
       schema={schema}
       className={styles.profile}
       name="members"
@@ -100,7 +39,7 @@ const EditProfile: FC = () => {
               src="/icon/zip-code-icon.svg"
               alt="zip-code-icon"
               placeholder="郵便番号"
-              errorMesseage={formState.errors.first_name?.message}
+              errorMesseage={formState.errors.zip_code?.message}
             />
             <PrimaryInput
               type="text"
@@ -109,7 +48,7 @@ const EditProfile: FC = () => {
               src="/icon/address-icon.svg"
               alt="zip-code-icon"
               placeholder="住所"
-              errorMesseage={formState.errors.first_name?.message}
+              errorMesseage={formState.errors.address?.message}
             />
             <PrimaryInput
               type="text"
@@ -118,12 +57,13 @@ const EditProfile: FC = () => {
               src="/icon/address-icon.svg"
               alt="zip-code-icon"
               placeholder="建物"
-              errorMesseage={formState.errors.first_name?.message}
+              errorMesseage={formState.errors.building?.message}
             />
           </div>
           {fields.map((field, index) => {
             return (
               <PersonalInfo
+                required="required"
                 key={field.id}
                 index={index}
                 register={register}
@@ -145,11 +85,11 @@ const EditProfile: FC = () => {
                 last_name: '',
                 first_name_kana: '',
                 last_name_kana: '',
-                email: undefined,
-                phone_number: undefined,
-                hobby: undefined,
-                birthday: undefined,
-                relationship: undefined,
+                email: '',
+                phone_number: '',
+                hobby: '',
+                birthday: '',
+                relationship: '',
               })
             }
           >
