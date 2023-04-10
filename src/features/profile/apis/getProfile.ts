@@ -32,7 +32,7 @@ export const profileSchema = z.object({
 });
 
 export type CardsType = z.infer<typeof cardsSchema>;
-export type RelationshipType = '世帯主' | '配偶者' | '子供' | '親' | '同居人';
+export type RelationshipType = '世帯主' | '配偶者' | '子供' | '親' | '同居人' | '';
 
 export const fetchHouseHoldMember = async () => {
   const user = await axios.get('/api/my');
