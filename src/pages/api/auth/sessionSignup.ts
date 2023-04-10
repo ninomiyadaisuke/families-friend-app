@@ -40,6 +40,7 @@ const handler: NextApiHandler = async (req, res) => {
     .then(async (user) => {
       const uid = user.uid;
       const family_id = typedFirestore.collection('families').doc().id;
+      const household_member_id = typedFirestore.collection('families').doc().id;
       await typedFirestore.collection('users').doc(user.uid).create({
         uid,
         family_id,
@@ -51,10 +52,30 @@ const handler: NextApiHandler = async (req, res) => {
         birthday,
         relationship,
       });
-      await typedFirestore.collection('families').doc(family_id).create({
-        uid,
-        family_id,
-      });
+      await typedFirestore
+        .collection('families')
+        .doc(family_id)
+        .create({
+          uid,
+          family_id,
+        })
+        .then(async () => {
+          return await typedFirestore
+            .collection('families')
+            .doc(family_id)
+            .collection('household_member')
+            .doc(household_member_id)
+            .create({
+              family_id,
+              first_name,
+              last_name,
+              first_name_kana,
+              last_name_kana,
+              email,
+              birthday,
+              relationship: '',
+            });
+        });
     })
     .then(() => {
       return res.send(JSON.stringify({ status: 'success' }));

@@ -30,6 +30,7 @@ export const houseHoldMemberSchema = z.object({
     z.literal('子供'),
     z.literal('親'),
     z.literal('同居人'),
+    z.literal(''),
   ]),
   image: z
     .object({

@@ -11,7 +11,7 @@ type Props = {
   phone?: string;
   hobby?: string;
   name: string;
-  relationship?: '世帯主' | '配偶者' | '子供' | '親' | '同居人';
+  relationship: '世帯主' | '配偶者' | '子供' | '親' | '同居人' | '';
 };
 
 const ProfileCard: FC<Props> = (props) => {
