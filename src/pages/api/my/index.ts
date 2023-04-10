@@ -13,11 +13,14 @@ const handler: NextApiHandler = async (req, res) => {
       .doc(uid)
       .getData()
       .then((data) => data);
+    if (!user) return;
+
     const houseHoldMember = await typedFirestore
-      .collectionGroup('household_member')
+      .collection('families')
+      .doc(user.family_id)
+      .collection('household_member')
       .getData()
       .then((data) => [...data]);
-    if (!user) return;
 
     const returnData = {
       user: {
