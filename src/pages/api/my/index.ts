@@ -21,15 +21,21 @@ const handler: NextApiHandler = async (req, res) => {
       .collection('household_member')
       .getData()
       .then((data) => [...data]);
-
     const returnData = {
-      user: {
-        image: user.image,
-        name: user.last_name,
-        zipCode: user.zip_code,
-        address: user.address,
-      },
-      cards: houseHoldMember,
+      uid: user.uid,
+      family_id: user.family_id,
+      first_name: user.first_name,
+      last_name: user.last_name,
+      first_name_kana: user.first_name_kana,
+      last_name_kana: user.last_name_kana,
+      email: user.email,
+      phone_number: user.phone_number,
+      hobby: user.hobby,
+      birthday: user.birthday,
+      zip_code: user.zip_code,
+      address: user.address,
+      building: user.building,
+      members: houseHoldMember,
     };
     return res.status(200).json(returnData);
   });
