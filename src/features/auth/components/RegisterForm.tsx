@@ -23,7 +23,7 @@ const initialState = {
   relationship: '',
 };
 
-type TRelationship = '' | '世帯主' | '配偶者' | '子供' | '親' | '同居人';
+type TRelationship = '世帯主' | '配偶者' | '子供' | '親' | '同居人';
 
 const RegisterForm: FC = () => {
   const mutation = useMutation(signup);
