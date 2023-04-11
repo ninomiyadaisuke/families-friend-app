@@ -1,4 +1,3 @@
-import { useQuery } from '@tanstack/react-query';
 import { FC } from 'react';
 
 import { AddButton } from '@/components/elements/buttons';
@@ -8,20 +7,18 @@ import { useGetProfile } from '@/features/profile/apis/getProfile';
 import styles from '@/styles/features/profile/components/myProfile.module.scss';
 
 const MyProfile: FC = () => {
-  const { data } = useGetProfile();
+  const { data: profile } = useGetProfile();
 
-  const cards = data?.cards;
-  const user = data?.user;
   return (
     <div className={styles.profile}>
       <FamilyHeadAvatar
-        image={user?.image?.path}
-        name={user && user?.name}
-        zipCode={user && user.zipCode}
-        address={user && user.address}
-        numberOfPeople={cards && cards.length}
+        image={profile && profile.image?.path}
+        name={profile && profile?.last_name}
+        zipCode={profile && profile.zip_code}
+        address={profile && profile.address}
+        numberOfPeople={profile && profile.members.length}
       />
-      <ProfileCardList cards={cards && cards} />
+      <ProfileCardList cards={profile && profile.members} />
       <div className={styles.profile__button}>
         <AddButton type="white" />
       </div>

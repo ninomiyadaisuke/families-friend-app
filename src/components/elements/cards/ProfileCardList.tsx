@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
-import type { CardsType } from '@/features/profile/apis/getProfile';
 import { useBreakPoint } from '@/hooks/useBreakPoint';
+import { CardsType } from '@/libs/helper';
 import styles from '@/styles/components/elements/cards/profileCardList.module.scss';
 
 import { ProfileCard } from './';
@@ -31,7 +31,7 @@ const ProfileCardList: FC<Props> = (props) => {
               birthday={formatDate(card.birthday)}
               phone={card.phone_number}
               hobby={card.hobby}
-              name={tablet ? card.first_name : card.last_name + card.first_name}
+              name={tablet ? card.first_name : card.last_name && card.last_name + card.first_name}
               relationship={card.relationship}
             />
           </li>

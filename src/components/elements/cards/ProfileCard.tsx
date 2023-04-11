@@ -10,8 +10,8 @@ type Props = {
   image?: string;
   phone?: string;
   hobby?: string;
-  name: string;
-  relationship: '世帯主' | '配偶者' | '子供' | '親' | '同居人' | '';
+  name?: string;
+  relationship: '世帯主' | '配偶者' | '子供' | '親' | '同居人' | undefined;
 };
 
 const ProfileCard: FC<Props> = (props) => {
