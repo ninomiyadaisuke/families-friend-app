@@ -1,10 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
+import { profileSchema } from '@/features/profile/schema';
 import { extractUser, sortByRelationship } from '@/libs/helper';
 import { ExtractFnReturnType, QueryConfig } from '@/libs/reactQuery';
-
-import { profileSchema } from '../schema';
 
 export const fetchHouseHoldMember = async () => {
   const data = await axios.get('/api/my');
