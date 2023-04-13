@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { cardsSchema } from '@/features/profile/schema';
+import { cardsSchema, TProfile } from '@/features/profile/schema';
 import { TUser } from '@/schema/userSchema';
 
 export type RelationshipType = '世帯主' | '配偶者' | '子供' | '親' | '同居人' | '' | undefined;
@@ -15,7 +15,8 @@ export const sortByRelationship = (cards: CardsType) => {
   return sortedCards;
 };
 
-export const extractUser = (profile: TUser) => {
+export const extractUser = (profile?: TProfile) => {
+  if (!profile) return;
   const data = {
     id: profile.uid,
     file: profile.file,
@@ -30,5 +31,6 @@ export const extractUser = (profile: TUser) => {
     relationship: profile.relationship,
     image: profile.image,
   };
+  if (data === undefined) return;
   return data;
 };

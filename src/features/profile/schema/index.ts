@@ -17,10 +17,13 @@ export const userCardSchema = userSchema
     })
   );
 
-export const cardsSchema = z.array(userCardSchema, houseHoldMemberSchema);
+export const cardsSchema = z.array(houseHoldMemberSchema);
 
 export const profileSchema = userSchema.merge(
   z.object({
     members: cardsSchema,
   })
 );
+
+export type TProfileCard = z.infer<typeof cardsSchema>;
+export type TProfile = z.infer<typeof profileSchema>;
