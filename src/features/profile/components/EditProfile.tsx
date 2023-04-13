@@ -3,21 +3,26 @@ import { z } from 'zod';
 
 import { AddButton, PrimaryButton } from '@/components/elements/buttons';
 import { Form, PersonalInfo, PrimaryInput } from '@/components/forms';
-import { initialState, schema } from '@/features/profile/apis/editProfile';
 import styles from '@/styles/features/profile/components/editProfile.module.scss';
 
-export type FormValues = z.infer<typeof schema>;
+import { useGetProfile } from '../apis/getProfile';
+import { profileSchema } from '../schema';
+
+export type FormValues = z.infer<typeof profileSchema>;
 
 const update = (values: FormValues) => {
   // console.log(values);
 };
 
 const EditProfile: FC = () => {
+  const { data: profile, isLoading } = useGetProfile();
+  if (isLoading) return <></>;
+
   return (
-    <Form<FormValues, typeof schema>
+    <Form<FormValues, typeof profileSchema>
       onSubmit={update}
-      options={{ defaultValues: initialState as FormValues }}
-      schema={schema}
+      options={{ defaultValues: profile }}
+      schema={profileSchema}
       className={styles.profile}
       name="members"
     >

@@ -1,12 +1,11 @@
 import { Control, FormState, UseFieldArrayRemove, UseFormRegister, UseFormSetValue } from 'react-hook-form';
 
+import { FixedImage } from '@/components/elements/images';
 import { ImageUploader, PrimaryInput, PrimarySelect, UnderlineDateSelect } from '@/components/forms';
+import { LabelLayout } from '@/components/layouts';
 import { FormValues } from '@/features/profile/components/EditProfile';
 import { options } from '@/libs/data';
 import styles from '@/styles/components/forms/personalInfo.module.scss';
-
-import { FixedImage } from '../elements/images';
-import { LabelLayout } from '../layouts';
 
 type Props = {
   register: UseFormRegister<FormValues>;
@@ -20,7 +19,7 @@ type Props = {
   required?: 'required';
 };
 
-type TRelationship = '世帯主' | '配偶者' | '子供' | '親' | '同居人' | '';
+type TRelationship = '世帯主' | '配偶者' | '子供' | '親' | '同居人';
 
 const PersonalInfo = (props: Props) => {
   const { title, control, setValue, register, formState, index, isIcon, remove, required } = props;

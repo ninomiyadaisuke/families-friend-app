@@ -23,6 +23,7 @@ const handler: NextApiHandler = async (req, res) => {
       .then((data) => [...data]);
     const returnData = {
       uid: user.uid,
+      relationship: user.relationship,
       family_id: user.family_id,
       first_name: user.first_name,
       last_name: user.last_name,
