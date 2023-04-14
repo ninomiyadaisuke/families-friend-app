@@ -3,16 +3,16 @@ import { Control, FormState, UseFieldArrayRemove, UseFormRegister, UseFormSetVal
 import { FixedImage } from '@/components/elements/images';
 import { ImageUploader, PrimaryInput, PrimarySelect, UnderlineDateSelect } from '@/components/forms';
 import { LabelLayout } from '@/components/layouts';
-import { FormValues } from '@/features/profile/components/EditProfile';
+import { EditProfile } from '@/features/profile/schema';
 import { options } from '@/libs/data';
 import styles from '@/styles/components/forms/personalInfo.module.scss';
 
 type Props = {
-  register: UseFormRegister<FormValues>;
+  register: UseFormRegister<EditProfile>;
   title: string;
-  control: Control<FormValues, any>;
-  setValue: UseFormSetValue<FormValues>;
-  formState: FormState<FormValues>;
+  control: Control<EditProfile, any>;
+  setValue: UseFormSetValue<EditProfile>;
+  formState: FormState<EditProfile>;
   index?: number;
   isIcon?: boolean;
   remove?: UseFieldArrayRemove;
