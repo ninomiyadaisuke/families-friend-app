@@ -7,10 +7,11 @@ type Props = {
   name: 'year' | 'month' | 'day';
   errorMesseage?: string;
   onChange: (value: string) => void;
+  defaultValue?: string;
 };
 
 const UnderlineSelect: FC<Props> = (props) => {
-  const { options, name, errorMesseage, onChange } = props;
+  const { options, name, errorMesseage, onChange, defaultValue } = props;
 
   const yearOrMonthOrDay = (() => {
     switch (name) {
@@ -29,6 +30,7 @@ const UnderlineSelect: FC<Props> = (props) => {
     <div className={name === 'year' ? styles.selectYear : styles.select}>
       <select
         id={name}
+        defaultValue={defaultValue}
         onChange={(e) => {
           onChange(e.target.value);
         }}

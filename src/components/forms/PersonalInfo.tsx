@@ -18,12 +18,14 @@ type Props = {
   remove?: UseFieldArrayRemove;
   required?: 'required';
   defaultValue?: string;
+  defaultDate?: string;
 };
 
 type TRelationship = '世帯主' | '配偶者' | '子供' | '親' | '同居人';
 
 const PersonalInfo = (props: Props) => {
-  const { title, control, setValue, register, formState, index, isIcon, remove, required, defaultValue } = props;
+  const { title, control, setValue, register, formState, index, isIcon, remove, required, defaultValue, defaultDate } =
+    props;
   const isIndex = index !== undefined && index >= 0;
   return (
     <div className={styles.forms}>
@@ -144,6 +146,7 @@ const PersonalInfo = (props: Props) => {
               control={control}
               setValue={(value) => setValue(isIndex ? `members.${index}.birthday` : 'birthday', value)}
               registration={isIndex ? register(`members.${index}.birthday`) : register('birthday')}
+              defaultDate={defaultDate}
               errorMesseage={
                 isIndex && formState.errors.members
                   ? formState.errors.members[index]?.birthday?.message

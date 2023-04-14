@@ -35,6 +35,7 @@ const EditProfile: FC = () => {
             setValue={setValue}
             formState={formState}
             defaultValue={profile?.relationship}
+            defaultDate={profile?.birthday}
           />
           <div className={styles.profile__address}>
             <h3>現住所</h3>
