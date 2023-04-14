@@ -6,7 +6,7 @@ import { useAccordion } from '@/hooks/useAccordion';
 import styles from '@/styles/components/forms/primarySelect.module.scss';
 
 type Props = {
-  id?: string;
+  id: string;
   selectLabel?: string;
   options: { [key in 'value']: string }[];
   registration?: UseFormRegisterReturn;
@@ -17,7 +17,7 @@ type Props = {
 
 const PrimarySelect: FC<Props> = (props) => {
   const { selectLabel, registration, options, isSubmitSuccessful, id, setValue, defaultValue } = props;
-  const { isOpen, setIsOpen } = useAccordion();
+  const { isOpen, setIsOpen, accordionRef } = useAccordion();
   const [selected, setSelected] = useState(selectLabel);
 
   const choiseRadio = (value: string) => {
@@ -63,7 +63,7 @@ const PrimarySelect: FC<Props> = (props) => {
           <span onClick={handleClick}>{selected}</span>
         </label>
         <i className={isOpen ? styles.select__arrow_down : styles.select__arrow} />
-        <AccordionWrapper>
+        <AccordionWrapper isOpen={isOpen} accordionRef={accordionRef}>
           {options.map((option) => (
             <label key={option.value}>
               <input

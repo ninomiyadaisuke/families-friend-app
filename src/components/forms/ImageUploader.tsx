@@ -18,7 +18,7 @@ type Props = {
 
 const ImageUploader: FC<Props> = (props) => {
   const { registration, errorMessage, imageUrl, setValue } = props;
-  const { previewUrl, image, setImage } = useImageUpload();
+  const { previewUrl, image, setImage, fileChangedHandler } = useImageUpload();
 
   useEffect(() => {
     setImage(false);
@@ -37,12 +37,12 @@ const ImageUploader: FC<Props> = (props) => {
             className={styles.profileImage}
           />
         </div>
-        <UploadButton registration={registration} />
+        <UploadButton registration={registration} fileChangedHandler={fileChangedHandler} />
       </div>
       {errorMessage && <ErrorText>{errorMessage}</ErrorText>}
       {previewUrl && image && (
         <div className={styles.uploaderContainer__thumbnail}>
-          <ThumbnailImage setValue={setValue} />
+          <ThumbnailImage setValue={setValue} setImage={setImage} previewUrl={previewUrl} />
         </div>
       )}
     </div>

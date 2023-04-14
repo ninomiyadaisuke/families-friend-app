@@ -25,7 +25,7 @@ const ProfileCardList: FC<Props> = (props) => {
     <ul className={styles.list}>
       {cards &&
         cards.map((card) => (
-          <li key={card.id}>
+          <li>
             <ProfileCard
               image={card.image?.path}
               birthday={formatDate(card.birthday)}

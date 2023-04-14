@@ -19,6 +19,7 @@ const EditProfile: FC = () => {
   if (isLoading) return <></>;
   const memberRelationship = profile?.members.map((member) => member.relationship);
   const memberBirthday = profile?.members.map((member) => member.birthday);
+
   return (
     <Form<FormValues, typeof profileSchema>
       onSubmit={update}

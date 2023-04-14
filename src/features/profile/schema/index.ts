@@ -17,7 +17,11 @@ export const userCardSchema = userSchema
     })
   );
 
-export const cardsSchema = z.array(houseHoldMemberSchema);
+const omitIdHouseHoldMemberSchema = houseHoldMemberSchema.omit({
+  id: true,
+});
+
+export const cardsSchema = z.array(omitIdHouseHoldMemberSchema);
 
 export const profileSchema = userSchema.merge(
   z.object({

@@ -160,7 +160,7 @@ const PersonalInfo = (props: Props) => {
           type="flex"
           children={(label) => (
             <PrimarySelect
-              id={label}
+              id={`${label}` + index}
               selectLabel="役割を選択"
               options={options}
               registration={isIndex ? register(`members.${index}.relationship`) : register('relationship')}
