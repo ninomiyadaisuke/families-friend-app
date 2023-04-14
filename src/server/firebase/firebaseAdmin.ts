@@ -4,6 +4,7 @@ import { TypedFirestoreUniv } from 'fireschema';
 import firestoreModel from '@/server/model/firestoreModel'; // exportしたものをimportする
 
 /**
+ * "firebase-admin": "^10.3.0",
  * @description Firebaseの管理画面から取得した管理者アカウント情報
  * @note 環境変数は`.env.local`ファイルに定義しています
  */
