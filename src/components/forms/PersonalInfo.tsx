@@ -1,29 +1,31 @@
 import { Control, FormState, UseFieldArrayRemove, UseFormRegister, UseFormSetValue } from 'react-hook-form';
 
+import { FixedImage } from '@/components/elements/images';
 import { ImageUploader, PrimaryInput, PrimarySelect, UnderlineDateSelect } from '@/components/forms';
-import { FormValues } from '@/features/profile/components/EditProfile';
+import { LabelLayout } from '@/components/layouts';
+import { EditProfile } from '@/features/profile/schema';
 import { options } from '@/libs/data';
 import styles from '@/styles/components/forms/personalInfo.module.scss';
 
-import { FixedImage } from '../elements/images';
-import { LabelLayout } from '../layouts';
-
 type Props = {
-  register: UseFormRegister<FormValues>;
+  register: UseFormRegister<EditProfile>;
   title: string;
-  control: Control<FormValues, any>;
-  setValue: UseFormSetValue<FormValues>;
-  formState: FormState<FormValues>;
+  control: Control<EditProfile, any>;
+  setValue: UseFormSetValue<EditProfile>;
+  formState: FormState<EditProfile>;
   index?: number;
   isIcon?: boolean;
   remove?: UseFieldArrayRemove;
   required?: 'required';
+  defaultValue?: string;
+  defaultDate?: string;
 };
 
-type TRelationship = '世帯主' | '配偶者' | '子供' | '親' | '同居人' | '';
+type TRelationship = '世帯主' | '配偶者' | '子供' | '親' | '同居人';
 
 const PersonalInfo = (props: Props) => {
-  const { title, control, setValue, register, formState, index, isIcon, remove, required } = props;
+  const { title, control, setValue, register, formState, index, isIcon, remove, required, defaultValue, defaultDate } =
+    props;
   const isIndex = index !== undefined && index >= 0;
   return (
     <div className={styles.forms}>
@@ -144,6 +146,7 @@ const PersonalInfo = (props: Props) => {
               control={control}
               setValue={(value) => setValue(isIndex ? `members.${index}.birthday` : 'birthday', value)}
               registration={isIndex ? register(`members.${index}.birthday`) : register('birthday')}
+              defaultDate={defaultDate}
               errorMesseage={
                 isIndex && formState.errors.members
                   ? formState.errors.members[index]?.birthday?.message
@@ -157,13 +160,14 @@ const PersonalInfo = (props: Props) => {
           type="flex"
           children={(label) => (
             <PrimarySelect
-              id={label}
+              id={`${label}` + index}
               selectLabel="役割を選択"
               options={options}
               registration={isIndex ? register(`members.${index}.relationship`) : register('relationship')}
               setValue={(value) =>
                 setValue(isIndex ? `members.${index}.relationship` : 'relationship', value as TRelationship)
               }
+              defaultValue={defaultValue}
               isSubmitSuccessful={formState.isSubmitSuccessful}
             />
           )}

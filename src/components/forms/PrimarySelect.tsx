@@ -6,17 +6,18 @@ import { useAccordion } from '@/hooks/useAccordion';
 import styles from '@/styles/components/forms/primarySelect.module.scss';
 
 type Props = {
-  id?: string;
+  id: string;
   selectLabel?: string;
   options: { [key in 'value']: string }[];
   registration?: UseFormRegisterReturn;
   isSubmitSuccessful?: boolean;
   setValue: (value: string) => void;
+  defaultValue?: string;
 };
 
 const PrimarySelect: FC<Props> = (props) => {
-  const { selectLabel, registration, options, isSubmitSuccessful, id, setValue } = props;
-  const { isOpen, setIsOpen } = useAccordion();
+  const { selectLabel, registration, options, isSubmitSuccessful, id, setValue, defaultValue } = props;
+  const { isOpen, setIsOpen, accordionRef } = useAccordion();
   const [selected, setSelected] = useState(selectLabel);
 
   const choiseRadio = (value: string) => {
@@ -49,6 +50,11 @@ const PrimarySelect: FC<Props> = (props) => {
     setSelected(selectLabel);
   }, [isSubmitSuccessful]);
 
+  useEffect(() => {
+    if (!defaultValue) return;
+    setSelected(defaultValue);
+  }, []);
+
   return (
     <div className={styles.select}>
       <div className={styles.select__container}>
@@ -57,7 +63,7 @@ const PrimarySelect: FC<Props> = (props) => {
           <span onClick={handleClick}>{selected}</span>
         </label>
         <i className={isOpen ? styles.select__arrow_down : styles.select__arrow} />
-        <AccordionWrapper>
+        <AccordionWrapper isOpen={isOpen} accordionRef={accordionRef}>
           {options.map((option) => (
             <label key={option.value}>
               <input

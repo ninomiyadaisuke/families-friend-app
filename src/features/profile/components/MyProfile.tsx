@@ -4,10 +4,16 @@ import { AddButton } from '@/components/elements/buttons';
 import { ProfileCardList } from '@/components/elements/cards';
 import { FamilyHeadAvatar } from '@/components/elements/images';
 import { useGetProfile } from '@/features/profile/apis/getProfile';
+import { extractUser } from '@/libs/helper';
 import styles from '@/styles/features/profile/components/myProfile.module.scss';
+
+import { TProfileCard } from '../schema';
 
 const MyProfile: FC = () => {
   const { data: profile } = useGetProfile();
+
+  const members = [extractUser(profile), ...(profile?.members ?? [])];
+  const filterMembers = members.filter((member) => member !== undefined) as TProfileCard;
 
   return (
     <div className={styles.profile}>
@@ -18,7 +24,7 @@ const MyProfile: FC = () => {
         address={profile && profile.address}
         numberOfPeople={profile && profile.members.length}
       />
-      <ProfileCardList cards={profile && profile.members} />
+      <ProfileCardList cards={filterMembers} />
       <div className={styles.profile__button}>
         <AddButton type="white" />
       </div>

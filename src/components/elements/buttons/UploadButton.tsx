@@ -1,17 +1,16 @@
-import { FC } from 'react';
+import { ChangeEvent, FC } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
-import { useImageUpload } from '@/hooks/useImageUpload';
 import styles from '@/styles/components/elements/buttons/uploadButton.module.scss';
 
 type Props = {
   registration: UseFormRegisterReturn;
+  fileChangedHandler: (event: ChangeEvent<HTMLInputElement>) => void;
 };
 
 const UploadButton: FC<Props> = (props) => {
-  const { registration } = props;
+  const { registration, fileChangedHandler } = props;
   const { onChange, ...rest } = registration;
-  const { fileChangedHandler } = useImageUpload();
 
   return (
     <div className={styles.buttonContainer}>

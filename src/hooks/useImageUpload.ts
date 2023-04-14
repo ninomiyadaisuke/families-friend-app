@@ -1,10 +1,8 @@
-import { useAtom } from 'jotai';
-
-import { previewUrlContext, showImageContext } from '@/contexts/uploadContext';
+import { useState } from 'react';
 
 export const useImageUpload = () => {
-  const [image, setImage] = useAtom(showImageContext);
-  const [previewUrl, setPreviewUrl] = useAtom(previewUrlContext);
+  const [image, setImage] = useState(false);
+  const [previewUrl, setPreviewUrl] = useState('');
 
   const fileChangedHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setImage(true);

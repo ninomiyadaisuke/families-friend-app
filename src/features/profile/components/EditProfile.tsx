@@ -1,23 +1,27 @@
 import { FC } from 'react';
-import { z } from 'zod';
 
 import { AddButton, PrimaryButton } from '@/components/elements/buttons';
 import { Form, PersonalInfo, PrimaryInput } from '@/components/forms';
-import { initialState, schema } from '@/features/profile/apis/editProfile';
 import styles from '@/styles/features/profile/components/editProfile.module.scss';
 
-export type FormValues = z.infer<typeof schema>;
+import { useGetProfile } from '../apis/getProfile';
+import { EditProfile, editProfileSchema } from '../schema';
 
-const update = (values: FormValues) => {
+const update = (values: EditProfile) => {
   // console.log(values);
 };
 
 const EditProfile: FC = () => {
+  const { data: profile, isLoading } = useGetProfile();
+  if (isLoading) return <></>;
+  const memberRelationship = profile?.members.map((member) => member.relationship);
+  const memberBirthday = profile?.members.map((member) => member.birthday);
+
   return (
-    <Form<FormValues, typeof schema>
+    <Form<EditProfile, typeof editProfileSchema>
       onSubmit={update}
-      options={{ defaultValues: initialState as FormValues }}
-      schema={schema}
+      options={{ defaultValues: profile }}
+      schema={editProfileSchema}
       className={styles.profile}
       name="members"
     >
@@ -29,6 +33,8 @@ const EditProfile: FC = () => {
             title="ユーザー情報"
             setValue={setValue}
             formState={formState}
+            defaultValue={profile?.relationship}
+            defaultDate={profile?.birthday}
           />
           <div className={styles.profile__address}>
             <h3>現住所</h3>
@@ -73,6 +79,8 @@ const EditProfile: FC = () => {
                 isIcon={true}
                 formState={formState}
                 remove={remove}
+                defaultDate={memberBirthday && memberBirthday[index]}
+                defaultValue={memberRelationship && memberRelationship[index]}
               />
             );
           })}

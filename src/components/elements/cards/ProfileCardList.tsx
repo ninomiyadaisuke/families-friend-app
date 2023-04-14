@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
+import { CardsType } from '@/features/profile/schema';
 import { useBreakPoint } from '@/hooks/useBreakPoint';
-import { CardsType } from '@/libs/helper';
 import styles from '@/styles/components/elements/cards/profileCardList.module.scss';
 
 import { ProfileCard } from './';

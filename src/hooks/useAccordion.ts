@@ -1,7 +1,4 @@
-import { useAtom } from 'jotai';
-import { useEffect, useRef } from 'react';
-
-import { accordionContext } from '@/contexts/accordion';
+import { useEffect, useRef, useState } from 'react';
 
 const openingKeyframes = (elementHeight: number): Keyframe[] => {
   return [
@@ -45,8 +42,9 @@ const option: KeyframeAnimationOptions = {
 };
 
 export const useAccordion = () => {
-  const [isOpen, setIsOpen] = useAtom(accordionContext);
+  const [isOpen, setIsOpen] = useState(false);
   const accordionRef = useRef<HTMLDivElement>(null);
+  // console.log(isOpen);
 
   useEffect(() => {
     // refを設定したアコーディオンと直下の子要素の高さを取得する

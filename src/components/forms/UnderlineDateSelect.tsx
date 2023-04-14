@@ -12,14 +12,30 @@ type Props<TDate extends Record<string, unknown>> = {
   errorMesseage?: string;
   setValue: (value: string) => void;
   isSubmitSuccessful?: boolean;
+  defaultDate?: string;
 };
 
 const UnderlineDateSelect = <TDate extends Record<string, unknown>>(props: Props<TDate>) => {
-  const { registration, control, setValue, errorMesseage, isSubmitSuccessful } = props;
+  const { registration, control, setValue, errorMesseage, isSubmitSuccessful, defaultDate } = props;
   const { yearsData, monthData, dayData } = useSelectedDate(control);
-  const [year, setYear] = useState('');
-  const [month, setMonth] = useState('');
-  const [day, setDay] = useState('');
+  const [year, setYear] = useState<string | undefined>('');
+  const [month, setMonth] = useState<string | undefined>('');
+  const [day, setDay] = useState<string | undefined>('');
+
+  function extractDate(type: 'year' | 'month' | 'day', date?: string) {
+    if (!date) return;
+    const [year, month, day] = date.split('-');
+    switch (type) {
+      case 'year':
+        return year;
+      case 'month':
+        return month;
+      case 'day':
+        return day;
+      default:
+        throw new Error(`Invalid type: ${type}`);
+    }
+  }
 
   const selectedYear = (value: string) => {
     setYear(value);
@@ -42,14 +58,36 @@ const UnderlineDateSelect = <TDate extends Record<string, unknown>>(props: Props
     }
   }, [isSubmitSuccessful]);
 
+  useEffect(() => {
+    if (!defaultDate) return;
+    setYear(extractDate('year', defaultDate));
+    setMonth(extractDate('month', defaultDate));
+    setDay(extractDate('day', defaultDate));
+  }, []);
+
   return (
     <div className={styles.selected}>
       <div className={styles.selected__container}>
-        <UnderlineSelect options={yearsData} name="year" onChange={selectedYear} />
-        <UnderlineSelect options={monthData} name="month" onChange={selectedMonth} />
-        <UnderlineSelect options={dayData} name="day" onChange={selectedDay} />
+        <UnderlineSelect
+          options={yearsData}
+          name="year"
+          onChange={selectedYear}
+          defaultValue={extractDate('year', defaultDate)}
+        />
+        <UnderlineSelect
+          options={monthData}
+          name="month"
+          onChange={selectedMonth}
+          defaultValue={extractDate('month', defaultDate)}
+        />
+        <UnderlineSelect
+          options={dayData}
+          name="day"
+          onChange={selectedDay}
+          defaultValue={extractDate('day', defaultDate)}
+        />
       </div>
-      <input type="text" {...registration} hidden />
+      <input type="text" readOnly {...registration} hidden />
       {errorMesseage && <p>{errorMesseage}</p>}
     </div>
   );
