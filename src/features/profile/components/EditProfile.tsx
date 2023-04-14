@@ -17,7 +17,8 @@ const update = (values: FormValues) => {
 const EditProfile: FC = () => {
   const { data: profile, isLoading } = useGetProfile();
   if (isLoading) return <></>;
-
+  const memberRelationship = profile?.members.map((member) => member.relationship);
+  const memberBirthday = profile?.members.map((member) => member.birthday);
   return (
     <Form<FormValues, typeof profileSchema>
       onSubmit={update}
@@ -80,7 +81,8 @@ const EditProfile: FC = () => {
                 isIcon={true}
                 formState={formState}
                 remove={remove}
-                defaultValue={profile?.relationship}
+                defaultDate={memberBirthday && memberBirthday[index]}
+                defaultValue={memberRelationship && memberRelationship[index]}
               />
             );
           })}
