@@ -49,7 +49,7 @@ const UnderlineDateSelect = <TDate extends Record<string, unknown>>(props: Props
         <UnderlineSelect options={monthData} name="month" onChange={selectedMonth} />
         <UnderlineSelect options={dayData} name="day" onChange={selectedDay} />
       </div>
-      <input type="text" {...registration} hidden />
+      <input type="text" {...registration} />
       {errorMesseage && <p>{errorMesseage}</p>}
     </div>
   );

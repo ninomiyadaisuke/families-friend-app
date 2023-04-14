@@ -34,6 +34,7 @@ const EditProfile: FC = () => {
             title="ユーザー情報"
             setValue={setValue}
             formState={formState}
+            defaultValue={profile?.relationship}
           />
           <div className={styles.profile__address}>
             <h3>現住所</h3>
@@ -78,6 +79,7 @@ const EditProfile: FC = () => {
                 isIcon={true}
                 formState={formState}
                 remove={remove}
+                defaultValue={profile?.relationship}
               />
             );
           })}

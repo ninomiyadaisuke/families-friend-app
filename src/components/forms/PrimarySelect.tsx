@@ -12,10 +12,11 @@ type Props = {
   registration?: UseFormRegisterReturn;
   isSubmitSuccessful?: boolean;
   setValue: (value: string) => void;
+  defaultValue?: string;
 };
 
 const PrimarySelect: FC<Props> = (props) => {
-  const { selectLabel, registration, options, isSubmitSuccessful, id, setValue } = props;
+  const { selectLabel, registration, options, isSubmitSuccessful, id, setValue, defaultValue } = props;
   const { isOpen, setIsOpen } = useAccordion();
   const [selected, setSelected] = useState(selectLabel);
 
@@ -48,6 +49,11 @@ const PrimarySelect: FC<Props> = (props) => {
     if (!isSubmitSuccessful) return;
     setSelected(selectLabel);
   }, [isSubmitSuccessful]);
+
+  useEffect(() => {
+    if (!defaultValue) return;
+    setSelected(defaultValue);
+  }, []);
 
   return (
     <div className={styles.select}>

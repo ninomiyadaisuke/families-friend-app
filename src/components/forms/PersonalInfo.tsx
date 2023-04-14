@@ -17,12 +17,13 @@ type Props = {
   isIcon?: boolean;
   remove?: UseFieldArrayRemove;
   required?: 'required';
+  defaultValue?: string;
 };
 
 type TRelationship = '世帯主' | '配偶者' | '子供' | '親' | '同居人';
 
 const PersonalInfo = (props: Props) => {
-  const { title, control, setValue, register, formState, index, isIcon, remove, required } = props;
+  const { title, control, setValue, register, formState, index, isIcon, remove, required, defaultValue } = props;
   const isIndex = index !== undefined && index >= 0;
   return (
     <div className={styles.forms}>
@@ -163,6 +164,7 @@ const PersonalInfo = (props: Props) => {
               setValue={(value) =>
                 setValue(isIndex ? `members.${index}.relationship` : 'relationship', value as TRelationship)
               }
+              defaultValue={defaultValue}
               isSubmitSuccessful={formState.isSubmitSuccessful}
             />
           )}

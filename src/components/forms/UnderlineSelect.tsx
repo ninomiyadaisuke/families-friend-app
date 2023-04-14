@@ -34,11 +34,13 @@ const UnderlineSelect: FC<Props> = (props) => {
         }}
       >
         <option />
-        {options.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.value}
-          </option>
-        ))}
+        {options.map((option) => {
+          return (
+            <option key={option.value} value={option.value}>
+              {option.value}
+            </option>
+          );
+        })}
       </select>
       <span>{yearOrMonthOrDay}</span>
       {errorMesseage && <p>{errorMesseage}</p>}
