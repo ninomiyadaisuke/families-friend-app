@@ -21,6 +21,7 @@ const handler: NextApiHandler = async (req, res) => {
       .collection('household_member')
       .getData()
       .then((data) => [...data]);
+
     const returnData = {
       uid: user.uid,
       relationship: user.relationship,

@@ -1,16 +1,13 @@
 import { FC } from 'react';
-import { z } from 'zod';
 
 import { AddButton, PrimaryButton } from '@/components/elements/buttons';
 import { Form, PersonalInfo, PrimaryInput } from '@/components/forms';
 import styles from '@/styles/features/profile/components/editProfile.module.scss';
 
 import { useGetProfile } from '../apis/getProfile';
-import { profileSchema } from '../schema';
+import { EditProfile, editProfileSchema } from '../schema';
 
-export type FormValues = z.infer<typeof profileSchema>;
-
-const update = (values: FormValues) => {
+const update = (values: EditProfile) => {
   // console.log(values);
 };
 
@@ -21,10 +18,10 @@ const EditProfile: FC = () => {
   const memberBirthday = profile?.members.map((member) => member.birthday);
 
   return (
-    <Form<FormValues, typeof profileSchema>
+    <Form<EditProfile, typeof editProfileSchema>
       onSubmit={update}
       options={{ defaultValues: profile }}
-      schema={profileSchema}
+      schema={editProfileSchema}
       className={styles.profile}
       name="members"
     >

@@ -1,10 +1,4 @@
-import { z } from 'zod';
-
-import { cardsSchema, TProfile } from '@/features/profile/schema';
-import { TUser } from '@/schema/userSchema';
-
-export type RelationshipType = '世帯主' | '配偶者' | '子供' | '親' | '同居人' | '' | undefined;
-export type CardsType = z.infer<typeof cardsSchema>;
+import { CardsType, FetchProfle, RelationshipType } from '@/features/profile/schema';
 
 export const sortByRelationship = (cards: CardsType) => {
   const relationshipOrder: RelationshipType[] = ['世帯主', '配偶者', '子供', '親', '同居人', '', undefined];
@@ -15,7 +9,7 @@ export const sortByRelationship = (cards: CardsType) => {
   return sortedCards;
 };
 
-export const extractUser = (profile?: TProfile) => {
+export const extractUser = (profile?: FetchProfle) => {
   if (!profile) return;
   const data = {
     id: profile.uid,

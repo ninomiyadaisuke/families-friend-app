@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
+import { CardsType } from '@/features/profile/schema';
 import { useBreakPoint } from '@/hooks/useBreakPoint';
-import { CardsType } from '@/libs/helper';
 import styles from '@/styles/components/elements/cards/profileCardList.module.scss';
 
 import { ProfileCard } from './';
@@ -25,7 +25,7 @@ const ProfileCardList: FC<Props> = (props) => {
     <ul className={styles.list}>
       {cards &&
         cards.map((card) => (
-          <li>
+          <li key={card.id}>
             <ProfileCard
               image={card.image?.path}
               birthday={formatDate(card.birthday)}
