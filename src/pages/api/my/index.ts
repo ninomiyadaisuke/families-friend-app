@@ -1,6 +1,6 @@
 import type { NextApiHandler } from 'next';
 
-import { auth, db, typedFirestore } from '@/server/firebase/firebaseAdmin';
+import { auth, typedFirestore } from '@/server/firebase/firebaseAdmin';
 
 const handler: NextApiHandler = async (req, res) => {
   if (req.method !== 'GET') return res.status(404).send('Not Found');
