@@ -4,16 +4,14 @@ import { AddButton, PrimaryButton } from '@/components/elements/buttons';
 import { Form, PersonalInfo, PrimaryInput } from '@/components/forms';
 import styles from '@/styles/features/profile/components/editProfile.module.scss';
 
+import { update } from '../apis/editProfile';
 import { useGetProfile } from '../apis/getProfile';
 import { EditProfile, editProfileSchema } from '../schema';
-
-const update = (values: EditProfile) => {
-  // console.log(values);
-};
 
 const EditProfile: FC = () => {
   const { data: profile, isLoading } = useGetProfile();
   if (isLoading) return <></>;
+
   const memberRelationship = profile?.members.map((member) => member.relationship);
   const memberBirthday = profile?.members.map((member) => member.birthday);
 
