@@ -1,3 +1,4 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { FC } from 'react';
 
 import { AddButton, PrimaryButton } from '@/components/elements/buttons';
@@ -9,15 +10,16 @@ import { useGetProfile } from '../apis/getProfile';
 import { EditProfile, editProfileSchema } from '../schema';
 
 const EditProfile: FC = () => {
+  const qeuryClient = useQueryClient();
+  const cachedData: EditProfile | undefined = qeuryClient.getQueryData(['myProfile']);
   const { data: profile, isLoading } = useGetProfile();
   if (isLoading) return <></>;
-
   const memberRelationship = profile?.members.map((member) => member.relationship);
   const memberBirthday = profile?.members.map((member) => member.birthday);
 
   return (
     <Form<EditProfile, typeof editProfileSchema>
-      onSubmit={update}
+      onSubmit={(values) => update(values, cachedData)}
       options={{ defaultValues: profile }}
       schema={editProfileSchema}
       className={styles.profile}

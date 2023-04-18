@@ -32,6 +32,11 @@ export const editProfileSchema = userSchema.merge(
   })
 );
 
+export const sendToFireStoreProfileSchema = z.object({
+  inputData: editProfileSchema,
+  cacheData: editProfileSchema.optional(),
+});
+
 export type TProfileCard = z.infer<typeof cardsSchema>;
 export type EditProfile = z.infer<typeof editProfileSchema>;
 export type FetchProfle = z.infer<typeof fetchProfileSchema>;

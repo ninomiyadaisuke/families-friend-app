@@ -3,6 +3,11 @@ import axios from 'axios';
 
 import { EditProfile } from '../schema';
 
-export const update = async (values: EditProfile) => {
-  await axios.post('/api/my/updateProfile', values);
+export const update = async (values: EditProfile, cache: EditProfile | undefined) => {
+  const data = {
+    inputData: values,
+    cacheData: cache,
+  };
+
+  await axios.post('/api/my/updateProfile', data);
 };

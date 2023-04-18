@@ -35,6 +35,7 @@ const createFirestoreStaticAdmin = (raw: any) => {
 };
 
 export const db = admin.firestore();
+export const storage = admin.storage();
 export const typedFirestore = new TypedFirestoreUniv(firestoreModel, createFirestoreStaticAdmin(admin.firestore), db);
 
 export const auth = firebaseAdmin.auth();

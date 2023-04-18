@@ -1,7 +1,7 @@
+import _ from 'lodash';
 import type { NextApiHandler } from 'next';
 
-import { editProfileSchema } from '@/features/profile/schema';
-import { TUser } from '@/schema/userSchema';
+import { sendToFireStoreProfileSchema } from '@/features/profile/schema';
 import { auth, typedFirestore } from '@/server/firebase/firebaseAdmin';
 
 function removeUndefinedProperties(obj: any) {
@@ -18,55 +18,42 @@ const handler: NextApiHandler = async (req, res) => {
   const cookies = req.cookies['session'];
   if (!cookies) return;
 
-  const {
-    uid,
-    family_id,
-    file,
-    first_name,
-    first_name_kana,
-    last_name,
-    last_name_kana,
-    email,
-    phone_number,
-    birthday,
-    hobby,
-    zip_code,
-    address,
-    building,
-    relationship,
-    image,
-    members,
-  } = editProfileSchema.parse(req.body);
+  const { inputData, cacheData } = sendToFireStoreProfileSchema.parse(req.body);
+
+  const userData = {
+    ..._.omit(inputData, ['members']),
+  };
+  const cachedUserData = {
+    ..._.omit(cacheData, ['members']),
+  };
+
+  const membersData = {
+    ..._.pick(inputData, ['members']),
+  };
+
+  const membersCacheData = {
+    ..._.pick(cacheData, ['members']),
+  };
+
+  const isUserUpdated = !_.isEqual(userData, cachedUserData);
+  const isMemberUpdated = !_.isEqual(membersData, membersCacheData);
+
+  const uid = inputData.uid;
+  const familyId = inputData.family_id;
+  const members = inputData.members;
   await auth.verifySessionCookie(cookies, true).then(async (decodedToken) => {
     if (decodedToken.uid !== uid) {
       return res.status(403).send('Forbidden');
     }
 
-    const userData: TUser = {
-      uid,
-      family_id,
-      file,
-      first_name,
-      first_name_kana,
-      last_name,
-      last_name_kana,
-      email,
-      phone_number,
-      birthday,
-      hobby,
-      zip_code,
-      address,
-      building,
-      relationship,
-      image,
-    };
-
     const cleanedUserData = removeUndefinedProperties(userData);
 
-    await typedFirestore.collection('users').doc(uid).setMerge(cleanedUserData);
+    if (isUserUpdated) {
+      await typedFirestore.collection('users').doc(uid).setMerge(cleanedUserData);
+    }
     const householdMemberCollection = typedFirestore
       .collection('families')
-      .doc(family_id)
+      .doc(familyId)
       .collection('household_member');
 
     for (const member of members) {
