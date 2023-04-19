@@ -28,3 +28,10 @@ export const extractUser = (profile?: FetchProfle) => {
   if (data === undefined) return;
   return data;
 };
+
+export function removeUndefinedProperties<T extends Record<string, unknown>>(obj: T): T {
+  if (Array.isArray(obj)) {
+    throw new Error('removeUndefinedProperties function does not accept arrays');
+  }
+  return Object.fromEntries(Object.entries(obj).filter(([_, value]) => value !== undefined)) as T;
+}

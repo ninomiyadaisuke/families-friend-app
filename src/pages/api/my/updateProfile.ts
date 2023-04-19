@@ -2,14 +2,8 @@ import _ from 'lodash';
 import type { NextApiHandler } from 'next';
 
 import { sendToFireStoreProfileSchema } from '@/features/profile/schema';
+import { removeUndefinedProperties } from '@/libs/helper';
 import { auth, typedFirestore } from '@/server/firebase/firebaseAdmin';
-
-function removeUndefinedProperties<T extends Record<string, unknown>>(obj: T): T {
-  if (Array.isArray(obj)) {
-    throw new Error('removeUndefinedProperties function does not accept arrays');
-  }
-  return Object.fromEntries(Object.entries(obj).filter(([_, value]) => value !== undefined)) as T;
-}
 
 const handler: NextApiHandler = async (req, res) => {
   if (req.method !== 'POST') return res.status(404).send('Not Found');
@@ -18,19 +12,21 @@ const handler: NextApiHandler = async (req, res) => {
 
   const { inputData, cacheData } = sendToFireStoreProfileSchema.parse(req.body);
   const { uid, family_id: familyId, members } = inputData;
-  const userData = _.omit(inputData, ['members']);
-  const cachedUserData = _.omit(cacheData, ['members']);
-  const membersCache = cacheData?.members;
 
-  const isUserUpdated = !_.isEqual(userData, cachedUserData);
+  // cookieを検証
   const decodedToken = await auth.verifySessionCookie(cookies, true);
-
   if (decodedToken.uid !== uid) {
     return res.status(403).send('Forbidden');
   }
 
+  const userData = _.omit(inputData, ['members']);
+  const cachedUserData = _.omit(cacheData, ['members']);
+  const cachedMembersData = cacheData?.members;
+  // オブジェクトの中にあるundefinedを削除する
   const cleanedUserData = removeUndefinedProperties(userData);
 
+  // userData, cachedUserData二つのオブジェクトをチェックし差異があれば userを更新する
+  const isUserUpdated = !_.isEqual(userData, cachedUserData);
   if (isUserUpdated) {
     await typedFirestore.collection('users').doc(uid).setMerge(cleanedUserData);
   }
@@ -43,12 +39,13 @@ const handler: NextApiHandler = async (req, res) => {
       ...member,
       id: memberId,
     };
-    const cacheMembers = membersCache || [];
+
+    const cacheMembers = cachedMembersData || [];
 
     try {
       const memberDoc = await householdMemberCollection.doc(memberId).get();
       if (memberDoc.exists()) {
-        const isMemberUpdated = !cacheMembers.some((cacheMember) => _.isEqual(member, cacheMember));
+        const isMemberUpdated = !cacheMembers.some((cachedMember) => _.isEqual(member, cachedMember));
         if (isMemberUpdated) {
           await householdMemberCollection.doc(memberId).setMerge(memberData);
         }
