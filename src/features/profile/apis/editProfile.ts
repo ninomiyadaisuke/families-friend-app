@@ -1,5 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
+import Router from 'next/router';
 
 import { EditProfile } from '../schema';
 
