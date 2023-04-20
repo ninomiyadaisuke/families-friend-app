@@ -46,10 +46,10 @@ const Form = <
     formState: { isSubmitSuccessful },
   } = methods;
 
-  useEffect(() => {
-    if (!isSubmitSuccessful) return;
-    reset();
-  }, [isSubmitSuccessful, reset]);
+  // useEffect(() => {
+  //   if (!isSubmitSuccessful) return;
+  //   reset();
+  // }, [isSubmitSuccessful, reset]);
 
   return (
     <form className={cx(styles.form, className && className)} onSubmit={methods.handleSubmit(onSubmit)} id={id}>
