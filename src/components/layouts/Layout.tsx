@@ -6,7 +6,7 @@ import { Footer } from '@/components/elements/footer';
 import { AuthenticatedHeader, Header } from '@/components/elements/headers';
 import styles from '@/styles/components/layouts/layout.module.scss';
 
-import { Loader, Spinner } from '../elements/utils';
+import { Spinner } from '../elements/utils';
 
 type Props = {
   children: ReactNode;
