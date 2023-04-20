@@ -3,8 +3,10 @@ import { Control, FormState, UseFieldArrayRemove, UseFormRegister, UseFormSetVal
 import { FixedImage } from '@/components/elements/images';
 import { ImageUploader, PrimaryInput, PrimarySelect, UnderlineDateSelect } from '@/components/forms';
 import { LabelLayout } from '@/components/layouts';
+import { useDeleteProfile } from '@/features/profile/apis/deleteProfile';
 import { EditProfile } from '@/features/profile/schema';
 import { options } from '@/libs/data';
+import { queryClient } from '@/libs/reactQuery';
 import styles from '@/styles/components/forms/personalInfo.module.scss';
 
 type Props = {
@@ -19,21 +21,51 @@ type Props = {
   required?: 'required';
   defaultValue?: string;
   defaultDate?: string;
+  id?: string;
 };
 
 type TRelationship = '世帯主' | '配偶者' | '子供' | '親' | '同居人';
 
 const PersonalInfo = (props: Props) => {
-  const { title, control, setValue, register, formState, index, isIcon, remove, required, defaultValue, defaultDate } =
-    props;
+  const {
+    title,
+    control,
+    setValue,
+    register,
+    formState,
+    index,
+    isIcon,
+    remove,
+    required,
+    defaultValue,
+    defaultDate,
+    id,
+  } = props;
+  const chashedProfile = queryClient.getQueryData(['myProfile']) as any;
+  const familyId = chashedProfile.family_id;
+  const deleteProfile = useDeleteProfile();
   const isIndex = index !== undefined && index >= 0;
+
   return (
     <div className={styles.forms}>
       <div className={styles.forms__container}>
         <div className={styles.forms__title}>
           <h3>{title}</h3>
           {isIcon && remove && (
-            <div onClick={() => remove(index)}>
+            <div
+              onClick={() => {
+                if (id) {
+                  const res = confirm('本当に削除しますか？');
+                  if (res) {
+                    deleteProfile.mutate([id, familyId]);
+                    remove(index);
+                  } else {
+                    return;
+                  }
+                }
+                remove(index);
+              }}
+            >
               <FixedImage src="/icon/material-delete.svg" alt="delete-icon" className={styles.forms__icon} />
             </div>
           )}

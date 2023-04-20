@@ -72,6 +72,7 @@ const EditProfile: FC = () => {
               <PersonalInfo
                 required="required"
                 key={field.id}
+                id={profile?.members[index] && profile?.members[index].id}
                 index={index}
                 register={register}
                 control={control}
