@@ -2,6 +2,7 @@ export type Styles = {
   bgBlue: string;
   bgWhite: string;
   container: string;
+  loader: string;
 };
 
 export type ClassNames = keyof Styles;

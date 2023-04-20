@@ -12,7 +12,6 @@ type AppProviderProps = {
 export const AppProvider = ({ children }: AppProviderProps) => {
   return (
     <QueryClientProvider client={queryClient}>
-      <Loader />
       {children}
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
