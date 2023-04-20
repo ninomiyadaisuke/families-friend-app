@@ -23,7 +23,7 @@ const FamilyHeadAvatar: FC<Props> = (props) => {
   return (
     <div className={styles.avatar}>
       <FixedImage src={image} alt="avatar-icon" className={styles.avatar__image} />
-      <h2>{name}</h2>
+      <h2>{`${name} 家`}</h2>
       <p>{`世帯人数：${numberOfPeople}人`}</p>
       <p>
         <span>{`〒${zipCode}`}</span> {`住所:${address}`}

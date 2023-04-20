@@ -29,3 +29,5 @@ export const houseHoldMemberSchema = z.object({
     .union([z.literal('世帯主'), z.literal('配偶者'), z.literal('子供'), z.literal('親'), z.literal('同居人')])
     .optional(),
 });
+
+export type TMembers = z.infer<typeof houseHoldMemberSchema>;

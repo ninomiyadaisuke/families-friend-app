@@ -22,7 +22,7 @@ const MyProfile: FC = () => {
         name={profile && profile?.last_name}
         zipCode={profile && profile.zip_code}
         address={profile && profile.address}
-        numberOfPeople={profile && profile.members.length}
+        numberOfPeople={profile && profile.members.length + 1}
       />
       <ProfileCardList cards={filterMembers} />
       <div className={styles.profile__button}>
