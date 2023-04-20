@@ -3,10 +3,6 @@ import { z } from 'zod';
 import { houseHoldMemberSchema } from '@/schema/houseHoldMemberSchema';
 import { userSchema } from '@/schema/userSchema';
 
-// const omitIdHouseHoldMemberSchema = houseHoldMemberSchema.omit({
-//   id: true,
-// });
-
 const houseHoldMemberOptionalIdSchema = z.intersection(
   houseHoldMemberSchema.omit({ id: true }),
   z.object({ id: z.string().optional() })
