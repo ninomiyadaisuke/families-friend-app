@@ -42,7 +42,7 @@ type FieldName<U extends FieldValues> = keyof U | keyof U['members'][number];
 
 type FieldErrorResult = FieldError | undefined;
 
-const getFieldError = <T, U extends FieldValues>(
+const getFieldError = <U extends FieldValues>(
   errors: FormState<U>['errors'],
   fieldName: FieldName<U>,
   index?: number
@@ -58,7 +58,7 @@ export const getErrorMessage = <T, U extends FieldValues>(
   fieldName: FieldName<U>,
   index?: number
 ): string | undefined => {
-  const fieldErrors = getFieldError<T, U>(errors, fieldName, index);
+  const fieldErrors = getFieldError<U>(errors, fieldName, index);
   return fieldErrors?.message;
 };
 
