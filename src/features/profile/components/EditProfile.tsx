@@ -1,4 +1,3 @@
-import { useQueryClient } from '@tanstack/react-query';
 import { FC } from 'react';
 
 import { AddButton, PrimaryButton } from '@/components/elements/buttons';
@@ -10,13 +9,9 @@ import { useGetProfile } from '../apis/getProfile';
 import { EditProfile, editProfileSchema } from '../schema';
 
 const EditProfile: FC = () => {
-  const qeuryClient = useQueryClient();
-  const cachedData: EditProfile | undefined = qeuryClient.getQueryData(['myProfile']);
-  const profilMutation = useUpdateProfile(cachedData);
+  const profilMutation = useUpdateProfile();
   const { data: profile, isLoading } = useGetProfile();
   if (isLoading) return <></>;
-  const memberRelationship = profile?.members.map((member) => member.relationship);
-  const memberBirthday = profile?.members.map((member) => member.birthday);
 
   return (
     <Form<EditProfile, typeof editProfileSchema>
@@ -31,8 +26,10 @@ const EditProfile: FC = () => {
           <PersonalInfo
             formMethods={{ register, control, setValue, formState }}
             title="ユーザー情報"
-            defaultValue={profile?.relationship}
-            defaultDate={profile?.birthday}
+            defaultValues={{
+              defaultDate: profile?.birthday,
+              defaultRelationship: profile?.relationship,
+            }}
           />
           <div className={styles.profile__address}>
             <h3>現住所</h3>
@@ -65,17 +62,21 @@ const EditProfile: FC = () => {
             />
           </div>
           {fields.map((field, index) => {
+            const memberRelationship = profile?.members[index]?.relationship;
+            const memberBirthday = profile?.members[index]?.birthday;
             return (
               <PersonalInfo
-                formMethods={{ register, control, setValue, formState, remove }}
-                required="required"
                 key={field.id}
+                formMethods={{ register, control, setValue, formState, remove }}
+                defaultValues={{
+                  defaultDate: memberBirthday && memberBirthday,
+                  defaultRelationship: memberRelationship && memberRelationship,
+                }}
+                required="required"
                 id={profile?.members[index] && profile?.members[index].id}
                 index={index}
                 title="世帯員情報"
                 isIcon={true}
-                defaultDate={memberBirthday && memberBirthday[index]}
-                defaultValue={memberRelationship && memberRelationship[index]}
               />
             );
           })}

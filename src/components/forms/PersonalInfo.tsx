@@ -25,14 +25,17 @@ type Props = {
   index?: number;
   isIcon?: boolean;
   required?: 'required';
-  defaultValue?: string;
-  defaultDate?: string;
   id?: string;
+  defaultValues: {
+    defaultRelationship?: string;
+    defaultDate?: string;
+  };
 };
 
 const PersonalInfo = (props: Props) => {
-  const { title, index, isIcon, required, defaultValue, defaultDate, id, formMethods } = props;
+  const { title, index, isIcon, required, defaultValues, id, formMethods } = props;
   const { register, control, formState, setValue, remove } = formMethods;
+  const { defaultRelationship, defaultDate } = defaultValues;
   const { getErrorMessage, getRegistrationPath, handleDelete, nameFields, otherFields, isIndex } =
     usePersonalInfoForm<EditProfile>({
       index,
@@ -120,7 +123,7 @@ const PersonalInfo = (props: Props) => {
               options={options}
               registration={register(getRegistrationPath(isIndex, 'relationship', index))}
               setValue={(value) => setValue(getRegistrationPath(isIndex, 'relationship', index), value)}
-              defaultValue={defaultValue}
+              defaultRelationship={defaultRelationship}
               isSubmitSuccessful={formState.isSubmitSuccessful}
             />
           )}
