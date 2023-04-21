@@ -1,6 +1,7 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import { useRouter } from 'next/router';
+import { FieldValues } from 'react-hook-form';
 
 import { MutationConfig, queryClient } from '@/libs/reactQuery';
 
@@ -19,7 +20,9 @@ type UseUpdateProfile = {
   config?: MutationConfig<typeof updateProfile>;
 };
 
-export const useUpdateProfile = (cache: EditProfile | undefined, { config }: UseUpdateProfile = {}) => {
+export const useUpdateProfile = ({ config }: UseUpdateProfile = {}) => {
+  const queryClient = useQueryClient();
+  const cachedData: EditProfile | undefined = queryClient.getQueryData(['myProfile']);
   const router = useRouter();
   return useMutation({
     onMutate: async (updatingProfile) => {
@@ -35,6 +38,6 @@ export const useUpdateProfile = (cache: EditProfile | undefined, { config }: Use
       router.push('/profile');
     },
     ...config,
-    mutationFn: (values) => updateProfile(values, cache),
+    mutationFn: (values) => updateProfile(values, cachedData),
   });
 };
