@@ -6,6 +6,7 @@ import { LabelLayout } from '@/components/layouts';
 import { useDeleteProfile } from '@/features/profile/apis/deleteProfile';
 import { EditProfile } from '@/features/profile/schema';
 import { options } from '@/libs/data';
+import { getErrorMessage } from '@/libs/helper';
 import { queryClient } from '@/libs/reactQuery';
 import styles from '@/styles/components/forms/personalInfo.module.scss';
 
@@ -46,6 +47,13 @@ const PersonalInfo = (props: Props) => {
   const deleteProfile = useDeleteProfile();
   const isIndex = index !== undefined && index >= 0;
 
+  const getRegistrationPath = (isIndex: boolean, index?: number, fieldName?: string) => {
+    if (isIndex && index !== undefined && fieldName) {
+      return `members.${index}.${fieldName}`;
+    }
+    return fieldName;
+  };
+
   return (
     <div className={styles.forms}>
       <div className={styles.forms__container}>
@@ -79,14 +87,11 @@ const PersonalInfo = (props: Props) => {
             iconType="user"
             src="/icon/user-icon.svg"
             alt="user-icon"
-            errorMesseage={
-              isIndex && formState.errors.members
-                ? formState.errors.members[index]?.last_name?.message
-                : formState.errors.last_name?.message
-            }
+            errorMesseage={getErrorMessage(formState.errors, { member: 'last_name' }, index)}
           />
           <PrimaryInput
             registration={isIndex ? register(`members.${index}.first_name`) : register('first_name')}
+            // registration={register(getRegistrationPath(isIndex, index, 'first_name'))}
             type="text"
             placeholder="名前"
             required={required}
@@ -94,11 +99,7 @@ const PersonalInfo = (props: Props) => {
             src="/icon/user-icon.svg"
             alt="user-icon"
             responsiveImageNone="none"
-            errorMesseage={
-              isIndex && formState.errors.members
-                ? formState.errors.members[index]?.first_name?.message
-                : formState.errors.first_name?.message
-            }
+            errorMesseage={getErrorMessage(formState.errors, { member: 'first_name' }, index)}
           />
         </div>
         <div className={styles.forms__name}>
@@ -110,11 +111,7 @@ const PersonalInfo = (props: Props) => {
             iconType="user"
             src="/icon/user-icon.svg"
             alt="user-icon"
-            errorMesseage={
-              isIndex && formState.errors.members
-                ? formState.errors.members[index]?.last_name_kana?.message
-                : formState.errors.last_name_kana?.message
-            }
+            errorMesseage={getErrorMessage(formState.errors, { member: 'last_name_kana' }, index)}
           />
           <PrimaryInput
             registration={isIndex ? register(`members.${index}.first_name_kana`) : register('first_name_kana')}
@@ -125,11 +122,7 @@ const PersonalInfo = (props: Props) => {
             responsiveImageNone="none"
             src="/icon/user-icon.svg"
             alt="user-icon"
-            errorMesseage={
-              isIndex && formState.errors.members
-                ? formState.errors.members[index]?.first_name_kana?.message
-                : formState.errors.first_name_kana?.message
-            }
+            errorMesseage={getErrorMessage(formState.errors, { member: 'first_name_kana' }, index)}
           />
         </div>
         <PrimaryInput
@@ -139,7 +132,7 @@ const PersonalInfo = (props: Props) => {
           iconType="email"
           src="/icon/email-icon.svg"
           alt="メールアイコン"
-          errorMesseage={formState.errors.email?.message}
+          errorMesseage={getErrorMessage(formState.errors, { member: 'email' })}
         />
 
         <PrimaryInput
@@ -149,11 +142,7 @@ const PersonalInfo = (props: Props) => {
           iconType="phone"
           src="/icon/mobile-icon.svg"
           alt="メールアイコン"
-          errorMesseage={
-            isIndex && formState.errors.members
-              ? formState.errors.members[index]?.phone_number?.message
-              : formState.errors.phone_number?.message
-          }
+          errorMesseage={getErrorMessage(formState.errors, { member: 'phone_number' }, index)}
         />
         <PrimaryInput
           registration={isIndex ? register(`members.${index}.hobby`) : register('hobby')}
@@ -162,11 +151,7 @@ const PersonalInfo = (props: Props) => {
           iconType="hobby"
           src="/icon/hobby-icon.svg"
           alt="メールアイコン"
-          errorMesseage={
-            isIndex && formState.errors.members
-              ? formState.errors.members[index]?.hobby?.message
-              : formState.errors.hobby?.message
-          }
+          errorMesseage={getErrorMessage(formState.errors, { member: 'hobby' }, index)}
         />
 
         <LabelLayout
@@ -179,11 +164,7 @@ const PersonalInfo = (props: Props) => {
               setValue={(value) => setValue(isIndex ? `members.${index}.birthday` : 'birthday', value)}
               registration={isIndex ? register(`members.${index}.birthday`) : register('birthday')}
               defaultDate={defaultDate}
-              errorMesseage={
-                isIndex && formState.errors.members
-                  ? formState.errors.members[index]?.birthday?.message
-                  : formState.errors.birthday?.message
-              }
+              errorMesseage={getErrorMessage(formState.errors, { member: 'members' }, index)}
             />
           )}
         />

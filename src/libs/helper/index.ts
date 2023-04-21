@@ -1,4 +1,6 @@
-import { CardsType, FetchProfle, RelationshipType } from '@/features/profile/schema';
+import { FieldError, FormState } from 'react-hook-form';
+
+import { CardsType, EditProfile, FetchProfle, RelationshipType } from '@/features/profile/schema';
 
 export const sortByRelationship = (cards: CardsType) => {
   const relationshipOrder: RelationshipType[] = ['世帯主', '配偶者', '子供', '親', '同居人', '', undefined];
@@ -35,3 +37,27 @@ export function removeUndefinedProperties<T extends Record<string, unknown>>(obj
   }
   return Object.fromEntries(Object.entries(obj).filter(([_, value]) => value !== undefined)) as T;
 }
+
+type FieldName<T> = T extends any[] ? { member: keyof EditProfile['members'][number] } : { member: keyof EditProfile };
+
+type FieldErrorResult = FieldError | undefined;
+
+const getFieldError = <T>(
+  errors: FormState<EditProfile>['errors'],
+  fieldName: FieldName<T>,
+  index?: number
+): FieldErrorResult => {
+  if (index !== undefined && Array.isArray(errors.members)) {
+    return errors.members[index]?.[fieldName.member] as FieldErrorResult;
+  }
+  return (errors as Record<string, FieldErrorResult>)[fieldName.member];
+};
+
+export const getErrorMessage = <T>(
+  errors: FormState<EditProfile>['errors'],
+  fieldName: FieldName<T>,
+  index?: number
+): string | undefined => {
+  const fieldErrors = getFieldError<T>(errors, fieldName, index);
+  return fieldErrors?.message;
+};
