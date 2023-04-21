@@ -1,9 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import { FieldValues } from 'react-hook-form';
 
-import { MutationConfig, queryClient } from '@/libs/reactQuery';
+import { MutationConfig } from '@/libs/reactQuery';
 
 import { EditProfile } from '../schema';
 
