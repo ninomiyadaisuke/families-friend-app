@@ -1,4 +1,4 @@
-import { Control, FormState, UseFieldArrayRemove, UseFormRegister, UseFormSetValue } from 'react-hook-form';
+import { Control, FieldPath, FieldValues, FormState, UseFieldArrayRemove, UseFormRegister } from 'react-hook-form';
 
 import { FixedImage } from '@/components/elements/images';
 import { ImageUploader, PrimaryInput, PrimarySelect, UnderlineDateSelect } from '@/components/forms';
@@ -6,15 +6,20 @@ import { LabelLayout } from '@/components/layouts';
 import { useDeleteProfile } from '@/features/profile/apis/deleteProfile';
 import { EditProfile } from '@/features/profile/schema';
 import { options } from '@/libs/data';
-import { getErrorMessage } from '@/libs/helper';
+import { getErrorMessage, getRegistrationPath } from '@/libs/helper';
 import { queryClient } from '@/libs/reactQuery';
 import styles from '@/styles/components/forms/personalInfo.module.scss';
+
+type SetValue<T extends FieldValues> = (
+  name: FieldPath<T>,
+  value: T[keyof T] | T['members'][number][keyof T['members'][number]] | undefined
+) => void;
 
 type Props = {
   register: UseFormRegister<EditProfile>;
   title: string;
   control: Control<EditProfile, any>;
-  setValue: UseFormSetValue<EditProfile>;
+  setValue: SetValue<EditProfile>;
   formState: FormState<EditProfile>;
   index?: number;
   isIcon?: boolean;
@@ -24,8 +29,6 @@ type Props = {
   defaultDate?: string;
   id?: string;
 };
-
-type TRelationship = '世帯主' | '配偶者' | '子供' | '親' | '同居人';
 
 const PersonalInfo = (props: Props) => {
   const {
@@ -46,13 +49,6 @@ const PersonalInfo = (props: Props) => {
   const familyId = chashedProfile.family_id;
   const deleteProfile = useDeleteProfile();
   const isIndex = index !== undefined && index >= 0;
-
-  const getRegistrationPath = (isIndex: boolean, index?: number, fieldName?: string) => {
-    if (isIndex && index !== undefined && fieldName) {
-      return `members.${index}.${fieldName}`;
-    }
-    return fieldName;
-  };
 
   return (
     <div className={styles.forms}>
@@ -80,18 +76,17 @@ const PersonalInfo = (props: Props) => {
         </div>
         <div className={styles.forms__name}>
           <PrimaryInput
-            registration={isIndex ? register(`members.${index}.last_name`) : register('last_name')}
+            registration={register(getRegistrationPath(isIndex, 'last_name', index))}
             type="text"
             placeholder="苗字"
             required={required}
             iconType="user"
             src="/icon/user-icon.svg"
             alt="user-icon"
-            errorMesseage={getErrorMessage(formState.errors, { member: 'last_name' }, index)}
+            errorMesseage={getErrorMessage(formState.errors, 'last_name', index)}
           />
           <PrimaryInput
-            registration={isIndex ? register(`members.${index}.first_name`) : register('first_name')}
-            // registration={register(getRegistrationPath(isIndex, index, 'first_name'))}
+            registration={register(getRegistrationPath(isIndex, 'first_name', index))}
             type="text"
             placeholder="名前"
             required={required}
@@ -99,22 +94,22 @@ const PersonalInfo = (props: Props) => {
             src="/icon/user-icon.svg"
             alt="user-icon"
             responsiveImageNone="none"
-            errorMesseage={getErrorMessage(formState.errors, { member: 'first_name' }, index)}
+            errorMesseage={getErrorMessage(formState.errors, 'first_name', index)}
           />
         </div>
         <div className={styles.forms__name}>
           <PrimaryInput
-            registration={isIndex ? register(`members.${index}.last_name_kana`) : register('last_name_kana')}
+            registration={register(getRegistrationPath(isIndex, 'last_name_kana', index))}
             type="text"
             placeholder="ミョウジ"
             required={required}
             iconType="user"
             src="/icon/user-icon.svg"
             alt="user-icon"
-            errorMesseage={getErrorMessage(formState.errors, { member: 'last_name_kana' }, index)}
+            errorMesseage={getErrorMessage(formState.errors, 'last_name_kana', index)}
           />
           <PrimaryInput
-            registration={isIndex ? register(`members.${index}.first_name_kana`) : register('first_name_kana')}
+            registration={register(getRegistrationPath(isIndex, 'first_name_kana', index))}
             type="text"
             placeholder="ナマエ"
             required={required}
@@ -122,36 +117,36 @@ const PersonalInfo = (props: Props) => {
             responsiveImageNone="none"
             src="/icon/user-icon.svg"
             alt="user-icon"
-            errorMesseage={getErrorMessage(formState.errors, { member: 'first_name_kana' }, index)}
+            errorMesseage={getErrorMessage(formState.errors, 'first_name_kana', index)}
           />
         </div>
         <PrimaryInput
-          registration={isIndex ? register(`members.${index}.email`) : register('email')}
+          registration={register(getRegistrationPath(isIndex, 'email', index))}
           type="email"
           placeholder="メールアドレス"
           iconType="email"
           src="/icon/email-icon.svg"
           alt="メールアイコン"
-          errorMesseage={getErrorMessage(formState.errors, { member: 'email' })}
+          errorMesseage={getErrorMessage(formState.errors, 'email', index)}
         />
 
         <PrimaryInput
-          registration={isIndex ? register(`members.${index}.phone_number`) : register('phone_number')}
+          registration={register(getRegistrationPath(isIndex, 'phone_number', index))}
           type="text"
           placeholder="電話番号"
           iconType="phone"
           src="/icon/mobile-icon.svg"
           alt="メールアイコン"
-          errorMesseage={getErrorMessage(formState.errors, { member: 'phone_number' }, index)}
+          errorMesseage={getErrorMessage(formState.errors, 'phone_number', index)}
         />
         <PrimaryInput
-          registration={isIndex ? register(`members.${index}.hobby`) : register('hobby')}
+          registration={register(getRegistrationPath(isIndex, 'hobby', index))}
           type="text"
           placeholder="趣味"
           iconType="hobby"
           src="/icon/hobby-icon.svg"
           alt="メールアイコン"
-          errorMesseage={getErrorMessage(formState.errors, { member: 'hobby' }, index)}
+          errorMesseage={getErrorMessage(formState.errors, 'hobby', index)}
         />
 
         <LabelLayout
@@ -161,10 +156,10 @@ const PersonalInfo = (props: Props) => {
           children={() => (
             <UnderlineDateSelect
               control={control}
-              setValue={(value) => setValue(isIndex ? `members.${index}.birthday` : 'birthday', value)}
-              registration={isIndex ? register(`members.${index}.birthday`) : register('birthday')}
+              setValue={(value) => setValue(getRegistrationPath(isIndex, 'birthday', index), value)}
+              registration={register(getRegistrationPath(isIndex, 'birthday', index))}
               defaultDate={defaultDate}
-              errorMesseage={getErrorMessage(formState.errors, { member: 'members' }, index)}
+              errorMesseage={getErrorMessage(formState.errors, 'members', index)}
             />
           )}
         />
@@ -176,10 +171,8 @@ const PersonalInfo = (props: Props) => {
               id={`${label}` + index}
               selectLabel="役割を選択"
               options={options}
-              registration={isIndex ? register(`members.${index}.relationship`) : register('relationship')}
-              setValue={(value) =>
-                setValue(isIndex ? `members.${index}.relationship` : 'relationship', value as TRelationship)
-              }
+              registration={register(getRegistrationPath(isIndex, 'relationship', index))}
+              setValue={(value) => setValue(getRegistrationPath(isIndex, 'relationship', index), value)}
               defaultValue={defaultValue}
               isSubmitSuccessful={formState.isSubmitSuccessful}
             />
@@ -188,8 +181,8 @@ const PersonalInfo = (props: Props) => {
       </div>
       <div className={styles.forms__uploader}>
         <ImageUploader
-          setValue={(value) => setValue(isIndex ? `members.${index}.file` : 'file', value)}
-          registration={isIndex ? register(`members.${index}.file`) : register('file')}
+          setValue={(value) => setValue(getRegistrationPath(isIndex, 'file', index), value)}
+          registration={register(getRegistrationPath(isIndex, 'file', index))}
         />
       </div>
     </div>
