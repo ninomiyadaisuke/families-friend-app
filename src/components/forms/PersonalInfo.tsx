@@ -19,11 +19,11 @@ type Props = {
     control: Control<EditProfile, any>;
     setValue: SetValue<EditProfile>;
     formState: FormState<EditProfile>;
+    remove?: UseFieldArrayRemove;
   };
   title: string;
   index?: number;
   isIcon?: boolean;
-  remove?: UseFieldArrayRemove;
   required?: 'required';
   defaultValue?: string;
   defaultDate?: string;
@@ -31,8 +31,8 @@ type Props = {
 };
 
 const PersonalInfo = (props: Props) => {
-  const { title, index, isIcon, remove, required, defaultValue, defaultDate, id, formMethods } = props;
-  const { register, control, formState, setValue } = formMethods;
+  const { title, index, isIcon, required, defaultValue, defaultDate, id, formMethods } = props;
+  const { register, control, formState, setValue, remove } = formMethods;
   const { getErrorMessage, getRegistrationPath, handleDelete, nameFields, otherFields, isIndex } =
     usePersonalInfoForm<EditProfile>({
       index,

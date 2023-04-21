@@ -67,14 +67,13 @@ const EditProfile: FC = () => {
           {fields.map((field, index) => {
             return (
               <PersonalInfo
-                formMethods={{ register, control, setValue, formState }}
+                formMethods={{ register, control, setValue, formState, remove }}
                 required="required"
                 key={field.id}
                 id={profile?.members[index] && profile?.members[index].id}
                 index={index}
                 title="世帯員情報"
                 isIcon={true}
-                remove={remove}
                 defaultDate={memberBirthday && memberBirthday[index]}
                 defaultValue={memberRelationship && memberRelationship[index]}
               />
