@@ -3,12 +3,15 @@ import { FC } from 'react';
 import { AddButton, PrimaryButton } from '@/components/elements/buttons';
 import { Form, PersonalInfo, PrimaryInput } from '@/components/forms';
 import { useUpdateProfile } from '@/features/profile/apis/editProfile';
+import { usePersonalInfoForm } from '@/hooks/usePersonalInfoForm';
+import { appendFields } from '@/libs/data/formFields';
 import styles from '@/styles/features/profile/components/editProfile.module.scss';
 
 import { useGetProfile } from '../apis/getProfile';
 import { EditProfile, editProfileSchema } from '../schema';
 
 const EditProfile: FC = () => {
+  const { formAddresFields, getErrorMessage } = usePersonalInfoForm({});
   const profilMutation = useUpdateProfile();
   const { data: profile, isLoading } = useGetProfile();
   if (isLoading) return <></>;
@@ -33,33 +36,17 @@ const EditProfile: FC = () => {
           />
           <div className={styles.profile__address}>
             <h3>現住所</h3>
-            <PrimaryInput
-              type="text"
-              registration={register('zip_code')}
-              iconType="zipCode"
-              src="/icon/zip-code-icon.svg"
-              alt="zip-code-icon"
-              placeholder="郵便番号"
-              errorMesseage={formState.errors.zip_code?.message}
-            />
-            <PrimaryInput
-              type="text"
-              registration={register('address')}
-              iconType="address"
-              src="/icon/address-icon.svg"
-              alt="zip-code-icon"
-              placeholder="住所"
-              errorMesseage={formState.errors.address?.message}
-            />
-            <PrimaryInput
-              type="text"
-              registration={register('building')}
-              iconType="address"
-              src="/icon/address-icon.svg"
-              alt="zip-code-icon"
-              placeholder="建物"
-              errorMesseage={formState.errors.building?.message}
-            />
+            {formAddresFields.map((fields) => (
+              <PrimaryInput
+                type="text"
+                registration={register(fields.name)}
+                iconType={fields.iconType}
+                src={fields.src}
+                alt={fields.alt}
+                placeholder={fields.placeholder}
+                errorMesseage={getErrorMessage(formState.errors, fields.name)}
+              />
+            ))}
           </div>
           {fields.map((field, index) => {
             const memberRelationship = profile?.members[index]?.relationship;
@@ -80,23 +67,7 @@ const EditProfile: FC = () => {
               />
             );
           })}
-          <div
-            className={styles.profile__add}
-            onClick={() =>
-              append({
-                file: '',
-                first_name: '',
-                last_name: '',
-                first_name_kana: '',
-                last_name_kana: '',
-                email: '',
-                phone_number: '',
-                hobby: '',
-                birthday: '',
-                relationship: '',
-              })
-            }
-          >
+          <div className={styles.profile__add} onClick={() => append(appendFields)}>
             <h3>世帯員追加</h3>
             <AddButton type="blue" />
           </div>

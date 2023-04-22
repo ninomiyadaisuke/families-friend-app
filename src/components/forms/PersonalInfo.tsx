@@ -36,7 +36,7 @@ const PersonalInfo = (props: Props) => {
   const { title, index, isIcon, required, defaultValues, id, formMethods } = props;
   const { register, control, formState, setValue, remove } = formMethods;
   const { defaultRelationship, defaultDate } = defaultValues;
-  const { getErrorMessage, getRegistrationPath, handleDelete, nameFields, otherFields, isIndex } =
+  const { getErrorMessage, getRegistrationPath, handleDelete, isIndex, formNameFields, formOtherFields } =
     usePersonalInfoForm<EditProfile>({
       index,
       remove,
@@ -56,7 +56,7 @@ const PersonalInfo = (props: Props) => {
           )}
         </div>
         <div className={styles.forms__name}>
-          {nameFields.slice(0, 2).map((field) => (
+          {formNameFields.slice(0, 2).map((field) => (
             <PrimaryInput
               key={field.name}
               registration={register(getRegistrationPath(isIndex, field.name, index))}
@@ -71,7 +71,7 @@ const PersonalInfo = (props: Props) => {
           ))}
         </div>
         <div className={styles.forms__name}>
-          {nameFields.slice(2).map((field) => (
+          {formNameFields.slice(2).map((field) => (
             <PrimaryInput
               key={field.name}
               registration={register(getRegistrationPath(isIndex, field.name, index))}
@@ -86,7 +86,7 @@ const PersonalInfo = (props: Props) => {
           ))}
         </div>
 
-        {otherFields.map((field) => (
+        {formOtherFields.map((field) => (
           <PrimaryInput
             key={field.name}
             registration={register(getRegistrationPath(isIndex, field.name, index))}
