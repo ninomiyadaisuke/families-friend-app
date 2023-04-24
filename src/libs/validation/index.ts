@@ -8,8 +8,18 @@ export const nameSchema = (field: string, isOptional = false, isKatakana?: 'isKa
   return isOptional ? schema.optional() : schema;
 };
 
+export const passwordSchema = () =>
+  z
+    .string()
+    .min(1, 'パスワードを入力してください')
+    .min(8, 'パスワードは8文字以上で入力してください')
+    .regex(/^(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}$/i, 'パスワードは半角英数字混合で入力してください')
+    .default('');
+
 export const emailSchema = () =>
   z.union([z.string().email({ message: 'メールアドレスの形式で入力してください' }), z.literal('')]);
+
+export const confirmSchema = (confirm: string) => z.string().min(1, `確認用の${confirm}を入力してください`);
 
 export const phoneNumberSchema = () =>
   z.union([

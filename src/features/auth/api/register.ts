@@ -1,7 +1,7 @@
 import Router from 'next/router';
 import { z } from 'zod';
 
-import { confirmEmail, confirmPassword, password } from '@/libs/validation';
+import { confirmSchema, passwordSchema } from '@/libs/validation';
 import { userSchema } from '@/schema/userSchema';
 
 const userRegistrationSchema = userSchema.pick({
@@ -15,9 +15,9 @@ const userRegistrationSchema = userSchema.pick({
 });
 
 const registrationValidationSchema = z.object({
-  password,
-  confirm_password: confirmPassword,
-  confirm_email: confirmEmail,
+  password: passwordSchema(),
+  confirm_password: confirmSchema('パスワード'),
+  confirm_email: confirmSchema('メールアドレス'),
 });
 
 export const registerSchema = userRegistrationSchema

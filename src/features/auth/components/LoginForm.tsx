@@ -32,7 +32,7 @@ const LoginForm: FC = () => {
             iconType="email"
             src="/icon/email-icon.svg"
             alt="メールアイコン"
-            errorMesseage={formState.errors.email?.message}
+            errorMesseage={formState.errors.email?.message as string | undefined}
             registration={register('email')}
             required="required"
           />
@@ -42,7 +42,7 @@ const LoginForm: FC = () => {
             iconType="password"
             src="/icon/password-icon.svg"
             alt="password-icon"
-            errorMesseage={formState.errors.password?.message}
+            errorMesseage={formState.errors.password?.message as string | undefined}
             registration={register('password')}
             required="required"
           />
