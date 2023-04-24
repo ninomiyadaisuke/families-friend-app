@@ -21,8 +21,10 @@ const ImageUploader: FC<Props> = (props) => {
   const { previewUrl, image, setImage, fileChangedHandler } = useImageUpload();
 
   useEffect(() => {
-    setImage(false);
-  }, [setValue]);
+    if (imageUrl) {
+      setImage(false);
+    }
+  }, [setValue, imageUrl]);
 
   return (
     <div className={styles.uploaderContainer}>
