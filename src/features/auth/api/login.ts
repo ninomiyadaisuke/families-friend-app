@@ -1,11 +1,11 @@
 import Router from 'next/router';
 import { z } from 'zod';
 
-import { email, password } from '@/libs/validation';
+import { emailSchema, passwordSchema } from '@/libs/validation';
 
 export const loginSchema = z.object({
-  password: password,
-  email: email,
+  password: passwordSchema(),
+  email: emailSchema(),
 });
 
 export type FormValues = z.infer<typeof loginSchema>;

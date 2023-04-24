@@ -36,15 +36,16 @@ const EditProfile: FC = () => {
           />
           <div className={styles.profile__address}>
             <h3>現住所</h3>
-            {formAddresFields.map((fields) => (
+            {formAddresFields.map((field) => (
               <PrimaryInput
+                key={field.name}
                 type="text"
-                registration={register(fields.name)}
-                iconType={fields.iconType}
-                src={fields.src}
-                alt={fields.alt}
-                placeholder={fields.placeholder}
-                errorMesseage={getErrorMessage(formState.errors, fields.name)}
+                registration={register(field.name)}
+                iconType={field.iconType}
+                src={field.src}
+                alt={field.alt}
+                placeholder={field.placeholder}
+                errorMesseage={getErrorMessage(formState.errors, field.name)}
               />
             ))}
           </div>

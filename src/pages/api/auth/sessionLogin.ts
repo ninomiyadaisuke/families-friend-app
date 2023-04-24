@@ -2,12 +2,12 @@ import type { NextApiHandler } from 'next';
 import { z } from 'zod';
 
 import { assignSession, login } from '@/libs/auth';
-import { email, password } from '@/libs/validation';
+import { emailSchema, passwordSchema } from '@/libs/validation';
 import { auth } from '@/server/firebase/firebaseAdmin';
 
 const loginSchema = z.object({
-  email,
-  password,
+  email: emailSchema(),
+  password: passwordSchema(),
 });
 
 const handler: NextApiHandler = async (req, res) => {
