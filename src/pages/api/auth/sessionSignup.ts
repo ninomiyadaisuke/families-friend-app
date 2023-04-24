@@ -2,7 +2,7 @@ import type { NextApiHandler } from 'next';
 import { z } from 'zod';
 
 import { assignSession, singUp } from '@/libs/auth';
-import { email, password } from '@/libs/validation';
+import { emailSchema, passwordSchema } from '@/libs/validation';
 import { userSchema } from '@/schema/userSchema';
 import { auth, typedFirestore } from '@/server/firebase/firebaseAdmin';
 
@@ -17,8 +17,8 @@ const registerSchema = userSchema
   })
   .merge(
     z.object({
-      email,
-      password,
+      email: emailSchema(),
+      password: passwordSchema(),
     })
   );
 
