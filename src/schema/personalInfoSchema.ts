@@ -1,24 +1,26 @@
 import { z } from 'zod';
 
-export const schema = z.object({
-  file: z.union([z.string(), z.custom<FileList>().transform((file) => file[0])]),
-  first_name: z.string(),
-  first_name_kana: z.string(),
-  last_name: z.string(),
-  last_name_kana: z.string(),
-  email: z.string().email().optional(),
+import {
+  birthdaySchema,
+  emailSchema,
+  fileSchema,
+  hobbySchema,
+  nameSchema,
+  phoneNumberSchema,
+  relationshipSchema,
+} from '@/libs/validation';
 
-  phone_number: z.string().optional(),
-  birthday: z.string().optional(),
-  hobby: z.string(),
-  relationship: z.union([
-    z.literal('世帯主'),
-    z.literal('配偶者'),
-    z.literal('子供'),
-    z.literal('親'),
-    z.literal('同居人'),
-    z.literal(''),
-  ]),
+export const personalInfoSchema = z.object({
+  file: fileSchema(),
+  first_name: nameSchema('名前'),
+  first_name_kana: nameSchema('名前', false, 'isKatakana'),
+  last_name: nameSchema('苗字'),
+  last_name_kana: nameSchema('苗字', false, 'isKatakana'),
+  email: emailSchema(),
+  phone_number: phoneNumberSchema().optional(),
+  birthday: birthdaySchema().optional(),
+  hobby: hobbySchema(),
+  relationship: relationshipSchema(),
 });
 
-export type FormValues = z.infer<typeof schema>;
+export type FormValues = z.infer<typeof personalInfoSchema>;
