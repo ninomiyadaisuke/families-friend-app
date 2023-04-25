@@ -27,6 +27,7 @@ const ProfileCardList: FC<Props> = (props) => {
         cards.map((card) => (
           <li key={card.id}>
             <ProfileCard
+              link={`/profile/edit#${card.id}`}
               image={card.image?.path}
               birthday={formatDate(card.birthday)}
               phone={card.phone_number}

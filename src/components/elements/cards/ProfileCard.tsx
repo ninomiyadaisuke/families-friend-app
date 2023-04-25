@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { FC } from 'react';
 
@@ -12,10 +13,11 @@ type Props = {
   hobby?: string;
   name?: string;
   relationship: '世帯主' | '配偶者' | '子供' | '親' | '同居人' | undefined;
+  link: string;
 };
 
 const ProfileCard: FC<Props> = (props) => {
-  const { image, phone, hobby, name, relationship, birthday } = props;
+  const { image, phone, hobby, name, relationship, birthday, link } = props;
   const router = useRouter();
 
   return (
@@ -34,10 +36,9 @@ const ProfileCard: FC<Props> = (props) => {
 
           <label>
             {relationship}
-
-            <FixedImage src="/icon/edit-icon.svg" alt="edit-icon" className={styles.card__icon_edit} />
-
-            <FixedImage src="/icon/delete-icon.svg" alt="edit-icon" className={styles.card__icon_delete} />
+            <Link href={link} scroll={false}>
+              <FixedImage src="/icon/edit-icon.svg" alt="edit-icon" className={styles.card__icon_edit} />
+            </Link>
           </label>
         </div>
       </div>

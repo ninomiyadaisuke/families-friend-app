@@ -61,7 +61,7 @@ const EditProfile: FC = () => {
                   defaultRelationship: memberRelationship && memberRelationship,
                 }}
                 required="required"
-                id={profile?.members[index] && profile?.members[index].id}
+                id={profile?.members[index].id}
                 index={index}
                 title="世帯員情報"
                 isIcon={true}
