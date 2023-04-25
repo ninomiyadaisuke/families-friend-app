@@ -12,6 +12,7 @@ import {
 } from 'react-hook-form';
 import type { ZodType, ZodTypeDef } from 'zod';
 
+import { appendFields } from '@/libs/data/formFields';
 import styles from '@/styles/components/forms/form.module.scss';
 
 type FormProps<TFormValues extends FieldValues, Schema, TFieldArrayFields extends FieldValues = FieldValues> = {
@@ -22,6 +23,7 @@ type FormProps<TFormValues extends FieldValues, Schema, TFieldArrayFields extend
   id?: string;
   schema?: Schema;
   name?: string;
+  isQuery?: boolean;
 };
 
 const Form = <
@@ -30,7 +32,7 @@ const Form = <
 >(
   props: FormProps<TFormValues, Schema>
 ) => {
-  const { onSubmit, children, className, options, id, schema, name } = props;
+  const { onSubmit, children, className, options, id, schema, name, isQuery } = props;
   const methods = useForm<TFormValues>({
     ...options,
     resolver: schema && zodResolver(schema),
@@ -41,15 +43,10 @@ const Form = <
     control: methods.control,
   });
 
-  const {
-    reset,
-    formState: { isSubmitSuccessful },
-  } = methods;
-
-  // useEffect(() => {
-  //   if (!isSubmitSuccessful) return;
-  //   reset();
-  // }, [isSubmitSuccessful, reset]);
+  useEffect(() => {
+    if (!isQuery) return;
+    fieldArray.append(appendFields);
+  }, [isQuery]);
 
   return (
     <form className={cx(styles.form, className && className)} onSubmit={methods.handleSubmit(onSubmit)} id={id}>

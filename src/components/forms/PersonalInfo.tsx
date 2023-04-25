@@ -45,7 +45,7 @@ const PersonalInfo = (props: Props) => {
     });
 
   return (
-    <div className={styles.forms}>
+    <div id={id} className={styles.forms}>
       <div className={styles.forms__container}>
         <div className={styles.forms__title}>
           <h3>{title}</h3>

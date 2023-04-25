@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { FC } from 'react';
 
 import { AddButton, PrimaryButton } from '@/components/elements/buttons';
@@ -14,6 +15,8 @@ const EditProfile: FC = () => {
   const { formAddresFields, getErrorMessage } = usePersonalInfoForm({});
   const profilMutation = useUpdateProfile();
   const { data: profile, isLoading } = useGetProfile();
+  const router = useRouter();
+  const isQuery = router.query.isQuery === 'isQuery';
   if (isLoading) return <></>;
 
   return (
@@ -23,6 +26,7 @@ const EditProfile: FC = () => {
       schema={editProfileSchema}
       className={styles.profile}
       name="members"
+      isQuery={isQuery}
     >
       {({ register, setValue, control, formState }, { fields, append, remove }) => (
         <>

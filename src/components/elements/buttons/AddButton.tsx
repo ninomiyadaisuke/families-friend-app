@@ -9,8 +9,14 @@ type Props = {
 };
 
 const AddButton: FC<Props> = (props) => {
-  const { type } = props;
-  return <a tabIndex={0} className={cx(styles.button, type === 'blue' ? styles.blueButton : styles.whiteButton)}></a>;
+  const { type, onClick } = props;
+  return (
+    <a
+      onClick={onClick}
+      tabIndex={0}
+      className={cx(styles.button, type === 'blue' ? styles.blueButton : styles.whiteButton)}
+    ></a>
+  );
 };
 
 export default AddButton;
