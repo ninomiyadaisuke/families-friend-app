@@ -33,7 +33,7 @@ type Props = {
 };
 
 const PersonalInfo = (props: Props) => {
-  const { title, index, isIcon, required, defaultValues, id, formMethods, memberId } = props;
+  const { title, index, isIcon, required, defaultValues, id, formMethods } = props;
   const { register, control, formState, setValue, remove } = formMethods;
   const { defaultRelationship, defaultDate } = defaultValues;
   const { getErrorMessage, getRegistrationPath, handleDelete, isIndex, formNameFields, formOtherFields } =
