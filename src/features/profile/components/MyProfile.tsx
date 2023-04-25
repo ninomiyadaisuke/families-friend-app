@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { FC } from 'react';
 
 import { AddButton } from '@/components/elements/buttons';
@@ -14,6 +15,7 @@ const MyProfile: FC = () => {
 
   const members = [extractUser(profile), ...(profile?.members ?? [])];
   const filterMembers = members.filter((member) => member !== undefined) as TProfileCard;
+  const router = useRouter();
 
   return (
     <div className={styles.profile}>
@@ -26,7 +28,10 @@ const MyProfile: FC = () => {
       />
       <ProfileCardList cards={filterMembers} />
       <div className={styles.profile__button}>
-        <AddButton type="white" />
+        <AddButton
+          type="white"
+          onClick={() => router.push({ pathname: '/profile/edit', query: { isQuery: 'isQuery' } })}
+        />
       </div>
     </div>
   );
