@@ -9,10 +9,11 @@ type Props = {
   disabled?: boolean;
   onChange: (value: string) => void;
   size: 'short' | 'midule';
+  defaultValue?: string;
 };
 
 const RoundedSelect: FC<Props> = (props) => {
-  const { options, id, onChange, disabled, size } = props;
+  const { options, id, onChange, disabled, size, defaultValue } = props;
 
   const containerSize = (() => {
     switch (size) {
@@ -32,6 +33,7 @@ const RoundedSelect: FC<Props> = (props) => {
       <select
         className={styles.selectContainer__select}
         disabled={disabled}
+        defaultValue={defaultValue}
         id={id}
         onChange={(e) => {
           onChange(e.target.value);

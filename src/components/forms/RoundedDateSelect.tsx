@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react';
 import { Control, UseFormRegisterReturn } from 'react-hook-form';
 
-import { useSelectedDate } from '@/hooks/useSelectedDate';
+import { useDateSelection } from '@/hooks/useDateSelection';
 import styles from '@/styles/components/forms/roundedDateSelect.module.scss';
 
 import { RoundedSelect } from './';
@@ -13,42 +12,40 @@ type Props<TDate extends Record<string, unknown>> = {
   setValue: (value: string) => void;
   isSubmitSuccessful?: boolean;
   lable: string;
+  defaultDate?: string;
 };
 
 const RoundedDateSelect = <TDate extends Record<string, unknown>>(props: Props<TDate>) => {
-  const { registration, control, setValue, errorMesseage, isSubmitSuccessful, lable } = props;
-  const { yearsData, monthData, dayData } = useSelectedDate(control);
-  const [year, setYear] = useState('');
-  const [month, setMonth] = useState('');
-  const [day, setDay] = useState('');
-
-  const selectedYear = (value: string) => {
-    setYear(value);
-    setValue(`${value}-${month}-${day}`);
-  };
-  const selectedMonth = (value: string) => {
-    setMonth(value);
-    setValue(`${year}-${value}-${day}`);
-  };
-  const selectedDay = (value: string) => {
-    setDay(value);
-    setValue(`${year}-${month}-${value}`);
-  };
-
-  useEffect(() => {
-    if (!isSubmitSuccessful) {
-      setYear('');
-      setMonth('');
-      setDay('');
-    }
-  }, [isSubmitSuccessful]);
+  const { registration, control, setValue, errorMesseage, isSubmitSuccessful, lable, defaultDate } = props;
+  const { yearsData, monthData, dayData, selectedYear, selectedMonth, selectedDay, extractDate } = useDateSelection({
+    control,
+    defaultDate,
+    isSubmitSuccessful,
+    setValue,
+  });
   return (
     <div className={styles.selectContainer}>
-      <RoundedSelect options={yearsData} onChange={selectedYear} id={lable} size="midule" />
+      <RoundedSelect
+        options={yearsData}
+        onChange={selectedYear}
+        id={lable}
+        size="midule"
+        defaultValue={extractDate('year', defaultDate)}
+      />
       <span>年</span>
-      <RoundedSelect options={monthData} onChange={selectedMonth} size="short" />
+      <RoundedSelect
+        options={monthData}
+        onChange={selectedMonth}
+        size="short"
+        defaultValue={extractDate('month', defaultDate)}
+      />
       <span>月</span>
-      <RoundedSelect options={dayData} onChange={selectedDay} size="short" />
+      <RoundedSelect
+        options={dayData}
+        onChange={selectedDay}
+        size="short"
+        defaultValue={extractDate('day', defaultDate)}
+      />
       <span>日</span>
       <input type="text" {...registration} hidden />
       {errorMesseage && <p>{errorMesseage}</p>}
