@@ -1,5 +1,5 @@
-import { useEffect,useState } from 'react';
-import { Control,useWatch } from 'react-hook-form';
+import { useEffect, useState } from 'react';
+import { Control, useWatch } from 'react-hook-form';
 
 export const useSelectedDate = (control: Control<any, object>) => {
   const [maxDay, setMaxDay] = useState(31);

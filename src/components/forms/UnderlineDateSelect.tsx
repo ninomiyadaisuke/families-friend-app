@@ -1,12 +1,11 @@
-import { useEffect, useState } from 'react';
-import { Control, UseFormRegisterReturn } from 'react-hook-form';
+import { Control, FieldValues, UseFormRegisterReturn } from 'react-hook-form';
 
-import { useSelectedDate } from '@/hooks/useSelectedDate';
+import { useDateSelection } from '@/hooks/useDateSelection';
 import styles from '@/styles/components/forms/underlineDateSelect.module.scss';
 
 import { UnderlineSelect } from '.';
 
-type Props<TDate extends Record<string, unknown>> = {
+type Props<TDate extends FieldValues> = {
   registration?: UseFormRegisterReturn;
   control: Control<TDate, any>;
   errorMesseage?: string;
@@ -15,55 +14,16 @@ type Props<TDate extends Record<string, unknown>> = {
   defaultDate?: string;
 };
 
-const UnderlineDateSelect = <TDate extends Record<string, unknown>>(props: Props<TDate>) => {
+const UnderlineDateSelect = <TDate extends FieldValues>(props: Props<TDate>) => {
   const { registration, control, setValue, errorMesseage, isSubmitSuccessful, defaultDate } = props;
-  const { yearsData, monthData, dayData } = useSelectedDate(control);
-  const [year, setYear] = useState<string | undefined>('');
-  const [month, setMonth] = useState<string | undefined>('');
-  const [day, setDay] = useState<string | undefined>('');
 
-  function extractDate(type: 'year' | 'month' | 'day', date?: string) {
-    if (!date) return;
-    const [year, month, day] = date.split('-');
-    switch (type) {
-      case 'year':
-        return year;
-      case 'month':
-        return month;
-      case 'day':
-        return day;
-      default:
-        throw new Error(`Invalid type: ${type}`);
-    }
-  }
-
-  const selectedYear = (value: string) => {
-    setYear(value);
-    setValue(`${value}-${month}-${day}`);
-  };
-  const selectedMonth = (value: string) => {
-    setMonth(value);
-    setValue(`${year}-${value}-${day}`);
-  };
-  const selectedDay = (value: string) => {
-    setDay(value);
-    setValue(`${year}-${month}-${value}`);
-  };
-
-  useEffect(() => {
-    if (!isSubmitSuccessful) {
-      setYear('');
-      setMonth('');
-      setDay('');
-    }
-  }, [isSubmitSuccessful]);
-
-  useEffect(() => {
-    if (!defaultDate) return;
-    setYear(extractDate('year', defaultDate));
-    setMonth(extractDate('month', defaultDate));
-    setDay(extractDate('day', defaultDate));
-  }, []);
+  const { yearsData, monthData, dayData, selectedYear, selectedMonth, selectedDay, extractDate } =
+    useDateSelection<TDate>({
+      control,
+      defaultDate,
+      isSubmitSuccessful,
+      setValue,
+    });
 
   return (
     <div className={styles.selected}>
