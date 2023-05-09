@@ -1,3 +1,4 @@
+import { storage } from 'firebase-admin';
 import _ from 'lodash';
 import type { NextApiHandler } from 'next';
 
@@ -11,13 +12,27 @@ const handler: NextApiHandler = async (req, res) => {
     const cookies = req.cookies['session'];
     if (!cookies) return;
 
-    const { inputData, cacheData } = sendToFireStoreProfileSchema.parse(req.body);
+    const { inputData, cacheData, file } = sendToFireStoreProfileSchema.parse(req.body);
     const { uid, family_id: familyId, members } = inputData;
 
     // cookieを検証
     const decodedToken = await auth.verifySessionCookie(cookies, true);
     if (decodedToken.uid !== uid) {
       return res.status(403).send('Forbidden');
+    }
+
+    const image = file?.encodedString;
+    if (image) {
+      const filename = file?.filename;
+      const folderPath = 'users';
+      const bucketName = 'families-app-e1d8f.appspot.com';
+      const buffer = Buffer.from(image, 'base64');
+      const files = storage().bucket(bucketName).file(`${folderPath}/${filename}`);
+      await files.save(buffer);
+      // Firebase Storageの公開URLを構築
+      const encodedFilePath = encodeURIComponent(`${folderPath}/${filename}`);
+
+      const publicUrl = `https://firebasestorage.googleapis.com/v0/b/${bucketName}/o/${encodedFilePath}?alt=media`;
     }
 
     const userData = _.omit(inputData, ['members']);
@@ -63,6 +78,7 @@ const handler: NextApiHandler = async (req, res) => {
     }
     return res.status(200).send('Success');
   } catch (error) {
+    // console.error(error);
     return res.status(500).send('Internal Server Error');
   }
 };

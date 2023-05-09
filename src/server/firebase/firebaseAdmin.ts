@@ -20,7 +20,11 @@ const serviceAccount: admin.ServiceAccount = {
  */
 
 export const firebaseAdmin =
-  admin.apps[0] || admin.initializeApp({ credential: admin.credential.cert(serviceAccount) });
+  admin.apps[0] ||
+  admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+  });
 
 const createFirestoreStaticAdmin = (raw: any) => {
   return {
