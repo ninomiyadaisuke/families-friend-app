@@ -12,36 +12,35 @@ export type EncodedFile = {
 };
 
 const compressAndEncodeFileToBase64 = (file?: File, quality = 0.6) => {
+  if (!file) return;
   return new Promise<EncodedFile>((resolve, reject) => {
-    if (file) {
-      const image = new Image();
-      image.src = URL.createObjectURL(file);
-      image.onload = () => {
-        const canvas = document.createElement('canvas');
-        canvas.width = image.naturalWidth;
-        canvas.height = image.naturalHeight;
-        canvas.getContext('2d')?.drawImage(image, 0, 0);
-        canvas.toBlob(
-          (blob) => {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-              const base64data = reader.result as string;
-              resolve({
-                encodedString: base64data.split(',')[1],
-                filename: file.name,
-              });
-            };
-            reader.onerror = reject;
-            if (blob) {
-              reader.readAsDataURL(blob);
-            }
-          },
-          'image/jpeg',
-          quality
-        );
-      };
-      image.onerror = reject;
-    }
+    const image = new Image();
+    image.src = URL.createObjectURL(file);
+    image.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = image.naturalWidth;
+      canvas.height = image.naturalHeight;
+      canvas.getContext('2d')?.drawImage(image, 0, 0);
+      canvas.toBlob(
+        (blob) => {
+          const reader = new FileReader();
+          reader.onloadend = () => {
+            const base64data = reader.result as string;
+            resolve({
+              encodedString: base64data.split(',')[1],
+              filename: file.name,
+            });
+          };
+          reader.onerror = reject;
+          if (blob) {
+            reader.readAsDataURL(blob);
+          }
+        },
+        'image/jpeg',
+        quality
+      );
+    };
+    image.onerror = reject;
   });
 };
 
