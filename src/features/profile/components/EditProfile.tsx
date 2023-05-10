@@ -36,6 +36,7 @@ const EditProfile: FC = () => {
             defaultValues={{
               defaultDate: profile?.birthday,
               defaultRelationship: profile?.relationship,
+              defaultImage: profile?.image?.path,
             }}
           />
           <div className={styles.profile__address}>

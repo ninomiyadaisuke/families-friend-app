@@ -1,26 +1,11 @@
-import { storage } from 'firebase-admin';
 import _ from 'lodash';
 import type { NextApiHandler } from 'next';
+import { v4 as uuidv4 } from 'uuid';
 
-import { EncodedFile } from '@/features/profile/apis/editProfile';
 import { sendToFireStoreProfileSchema } from '@/features/profile/schema';
 import { removeUndefinedProperties } from '@/libs/helper';
 import { auth, typedFirestore } from '@/server/firebase/firebaseAdmin';
-
-const imageSaveToReturnUrl = async (file?: EncodedFile) => {
-  if (!file) return;
-  const filename = file?.filename;
-  const image = file.encodedString;
-  const folderPath = 'users';
-  const bucketName = 'families-app-e1d8f.appspot.com';
-  const buffer = Buffer.from(image, 'base64');
-  const files = storage().bucket(bucketName).file(`${folderPath}/${filename}`);
-  await files.save(buffer);
-  // Firebase Storageの公開URLを構築
-  const encodedFilePath = encodeURIComponent(`${folderPath}/${filename}`);
-  const publicUrl = `https://firebasestorage.googleapis.com/v0/b/${bucketName}/o/${encodedFilePath}?alt=media`;
-  return publicUrl;
-};
+import { imageSaveToReturnUrl } from '@/server/libs/serverUtils';
 
 const handler: NextApiHandler = async (req, res) => {
   try {
@@ -38,8 +23,11 @@ const handler: NextApiHandler = async (req, res) => {
     }
 
     const publicUrl = await imageSaveToReturnUrl(file);
-
+    const imageId = uuidv4();
     const userData = _.omit(inputData, ['members']);
+    if (publicUrl) {
+      userData.image = { id: imageId, path: publicUrl };
+    }
     const cachedUserData = _.omit(cacheData, ['members']);
     const cachedMembersData = cacheData?.members;
     // オブジェクトの中にあるundefinedを削除する
