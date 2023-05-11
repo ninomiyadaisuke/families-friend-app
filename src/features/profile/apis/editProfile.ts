@@ -47,12 +47,16 @@ const compressAndEncodeFileToBase64 = (file?: File, quality = 0.1) => {
 
 export const updateProfile = async (values: EditProfile, cache: EditProfile | undefined) => {
   const userFile = await compressAndEncodeFileToBase64(values.file as File);
-  const membersFile = [] as EncodedFile[];
-  for (const member of values.members) {
-    compressAndEncodeFileToBase64(member.file as File)?.then((file) => {
-      membersFile.push({ id: member.id, encodedString: file.encodedString, filename: file.filename });
-    });
-  }
+  const membersFile = (
+    await Promise.all(
+      values.members.map(async (member) => {
+        const file = await compressAndEncodeFileToBase64(member.file as File);
+        if (!file) return;
+        return { id: member.image?.id, encodedString: file.encodedString, filename: file.filename };
+      })
+    )
+  ).filter((item) => item !== undefined);
+
   const data = {
     inputData: values,
     cacheData: cache,

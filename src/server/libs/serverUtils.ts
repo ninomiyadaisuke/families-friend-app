@@ -31,11 +31,10 @@ export const checkUser = async (ctx: GetServerSidePropsContext, isProtected: boo
   };
 };
 
-export const imageSaveToReturnUrl = async (file?: EncodedFile) => {
+export const imageSaveToReturnUrl = async (folderPath: string, file?: EncodedFile) => {
   if (!file) return;
-  const filename = file?.filename;
-  const image = file.encodedString;
-  const folderPath = 'users';
+  const filename = file.filename;
+  const image = file.encodedString as string;
   const bucketName = process.env.FIREBASE_STORAGE_BUCKET;
   const buffer = Buffer.from(image, 'base64');
   const files = storage().bucket(bucketName).file(`${folderPath}/${filename}`);

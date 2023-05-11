@@ -22,8 +22,9 @@ const handler: NextApiHandler = async (req, res) => {
       return res.status(403).send('Forbidden');
     }
 
-    const publicUrl = await imageSaveToReturnUrl(files.userFile);
+    const publicUrl = await imageSaveToReturnUrl('users', files.userFile);
     const userData = _.omit(inputData, ['members']);
+
     if (publicUrl) {
       const imageId = uuidv4();
       const id = userData.image?.id;
@@ -46,6 +47,19 @@ const handler: NextApiHandler = async (req, res) => {
       .collection('household_member');
 
     for (const member of members) {
+      const publicUrlPromises = files.membersFile.map(async (file) => {
+        if (!file) return;
+        const publicUrl = await imageSaveToReturnUrl('members', file);
+        if (!publicUrl) return;
+        return { id: file.id, url: publicUrl };
+      });
+      const membersFile = await Promise.all(publicUrlPromises);
+      for (const encodedFile of membersFile) {
+        if (!encodedFile) return;
+        const imageId = uuidv4();
+        const id = member?.image?.id;
+        member.image = { id: id || imageId, path: encodedFile.url };
+      }
       const memberId = member?.id || householdMemberCollection.doc().id;
       const memberData = {
         ...member,
@@ -71,7 +85,6 @@ const handler: NextApiHandler = async (req, res) => {
     }
     return res.status(200).send('Success');
   } catch (error) {
-    // console.error(error);
     return res.status(500).send('Internal Server Error');
   }
 };

@@ -41,19 +41,13 @@ export const sendToFireStoreProfileSchema = z.object({
     membersFile: z.array(
       z
         .object({
-          id: z.string(),
+          id: z.string().optional(),
           encodedString: z.string(),
           filename: z.string(),
         })
         .optional()
     ),
   }),
-  // file: z
-  //   .object({
-  //     encodedString: z.string(),
-  //     filename: z.string(),
-  //   })
-  //   .optional(),
 });
 
 export type TProfileCard = z.infer<typeof cardsSchema>;
