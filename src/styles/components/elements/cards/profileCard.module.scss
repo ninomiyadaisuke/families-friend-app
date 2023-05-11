@@ -12,8 +12,12 @@
     gap: 10px;
   }
   &__image {
-    width: 60px;
-    height: 60px;
+    display: flex;
+    img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+    }
   }
 
   &__icon_edit {
@@ -78,9 +82,11 @@
       gap: 27px;
     }
     &__image {
-      width: 146px;
-      height: 146px;
       margin: 0 auto;
+      img {
+        width: 146px;
+        height: 146px;
+      }
     }
     &__icon_edit {
       width: 17.5px;

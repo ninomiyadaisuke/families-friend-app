@@ -13,7 +13,7 @@ const handler: NextApiHandler = async (req, res) => {
     const cookies = req.cookies['session'];
     if (!cookies) return;
 
-    const { inputData, cacheData, file } = sendToFireStoreProfileSchema.parse(req.body);
+    const { inputData, cacheData, files } = sendToFireStoreProfileSchema.parse(req.body);
     const { uid, family_id: familyId, members } = inputData;
 
     // cookieを検証
@@ -22,11 +22,12 @@ const handler: NextApiHandler = async (req, res) => {
       return res.status(403).send('Forbidden');
     }
 
-    const publicUrl = await imageSaveToReturnUrl(file);
-    const imageId = uuidv4();
+    const publicUrl = await imageSaveToReturnUrl(files.userFile);
     const userData = _.omit(inputData, ['members']);
     if (publicUrl) {
-      userData.image = { id: imageId, path: publicUrl };
+      const imageId = uuidv4();
+      const id = userData.image?.id;
+      userData.image = { id: id || imageId, path: publicUrl };
     }
     const cachedUserData = _.omit(cacheData, ['members']);
     const cachedMembersData = cacheData?.members;

@@ -7,11 +7,12 @@ import { MutationConfig } from '@/libs/reactQuery';
 import { EditProfile } from '../schema';
 
 export type EncodedFile = {
+  id?: string;
   encodedString: string;
   filename: string;
 };
 
-const compressAndEncodeFileToBase64 = (file?: File, quality = 0.6) => {
+const compressAndEncodeFileToBase64 = (file?: File, quality = 0.1) => {
   if (!file) return;
   return new Promise<EncodedFile>((resolve, reject) => {
     const image = new Image();
@@ -45,11 +46,20 @@ const compressAndEncodeFileToBase64 = (file?: File, quality = 0.6) => {
 };
 
 export const updateProfile = async (values: EditProfile, cache: EditProfile | undefined) => {
-  const file = await compressAndEncodeFileToBase64(values.file as File);
+  const userFile = await compressAndEncodeFileToBase64(values.file as File);
+  const membersFile = [] as EncodedFile[];
+  for (const member of values.members) {
+    compressAndEncodeFileToBase64(member.file as File)?.then((file) => {
+      membersFile.push({ id: member.id, encodedString: file.encodedString, filename: file.filename });
+    });
+  }
   const data = {
     inputData: values,
     cacheData: cache,
-    file: file,
+    files: {
+      userFile,
+      membersFile,
+    },
   };
   await axios.post('/api/my/updateProfile', data);
 };
