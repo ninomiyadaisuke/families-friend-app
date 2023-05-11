@@ -33,11 +33,7 @@ const ImageUploader: FC<Props> = (props) => {
       </div>
       <div className={styles.uploaderContainer__imageAndButton}>
         <div className={styles.uploaderContainer__imageAndButton_postion}>
-          <FixedImage
-            src={imageUrl ? imageUrl : '/icon/default-image-profile.svg'}
-            alt="image"
-            className={styles.profileImage}
-          />
+          <FixedImage src={imageUrl || '/icon/default-image-profile.svg'} alt="image" className={styles.profileImage} />
         </div>
         <UploadButton registration={registration} fileChangedHandler={fileChangedHandler} />
       </div>

@@ -25,7 +25,7 @@ const ProfileCard: FC<Props> = (props) => {
       <div className={styles.card__header}>
         <div className={styles.card__image}>
           <ResponsiveImage
-            src={image ? image : '/icon/default-image-profile-lg.svg'}
+            src={image || '/icon/default-image-profile-lg.svg'}
             width={146}
             height={146}
             alt="profile-image"

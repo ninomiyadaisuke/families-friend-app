@@ -29,13 +29,14 @@ type Props = {
   defaultValues: {
     defaultRelationship?: string;
     defaultDate?: string;
+    defaultImage?: string;
   };
 };
 
 const PersonalInfo = (props: Props) => {
   const { title, index, isIcon, required, defaultValues, id, formMethods } = props;
   const { register, control, formState, setValue, remove } = formMethods;
-  const { defaultRelationship, defaultDate } = defaultValues;
+  const { defaultRelationship, defaultDate, defaultImage } = defaultValues;
   const { getErrorMessage, getRegistrationPath, handleDelete, isIndex, formNameFields, formOtherFields } =
     usePersonalInfoForm<EditProfile>({
       index,
@@ -133,6 +134,7 @@ const PersonalInfo = (props: Props) => {
         <ImageUploader
           setValue={(value) => setValue(getRegistrationPath(isIndex, 'file', index), value)}
           registration={register(getRegistrationPath(isIndex, 'file', index))}
+          imageUrl={defaultImage}
         />
       </div>
     </div>

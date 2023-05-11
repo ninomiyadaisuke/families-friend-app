@@ -36,6 +36,7 @@ const EditProfile: FC = () => {
             defaultValues={{
               defaultDate: profile?.birthday,
               defaultRelationship: profile?.relationship,
+              defaultImage: profile?.image?.path,
             }}
           />
           <div className={styles.profile__address}>
@@ -56,6 +57,7 @@ const EditProfile: FC = () => {
           {fields.map((field, index) => {
             const memberRelationship = profile?.members[index]?.relationship;
             const memberBirthday = profile?.members[index]?.birthday;
+            const memberImage = profile?.members[index]?.image;
             return (
               <PersonalInfo
                 key={field.id}
@@ -63,6 +65,7 @@ const EditProfile: FC = () => {
                 defaultValues={{
                   defaultDate: memberBirthday && memberBirthday,
                   defaultRelationship: memberRelationship && memberRelationship,
+                  defaultImage: memberImage && memberImage.path,
                 }}
                 required="required"
                 id={profile?.members[index] && profile?.members[index].id}
