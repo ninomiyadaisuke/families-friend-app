@@ -10,7 +10,6 @@ export type Styles = {
   input__icon_user: string;
   input__icon_zipCode: string;
   input__status: string;
-  input__status_error: string;
 };
 
 export type ClassNames = keyof Styles;

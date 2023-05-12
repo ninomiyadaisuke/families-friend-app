@@ -28,6 +28,18 @@
     width: 21.6px;
     height: 36px;
   }
+  &__password {
+    width: 22.29px;
+    height: 29.17px;
+  }
+  &__note {
+    width: 29px;
+    height: 29px;
+  }
+  &__error {
+    width: 20px;
+    height: 20px;
+  }
   @include mq('md') {
     &__pencilSquare {
       width: 17.5px;

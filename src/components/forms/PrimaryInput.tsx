@@ -1,11 +1,10 @@
 import { FC, HTMLInputTypeAttribute } from 'react';
 import type { UseFormRegisterReturn } from 'react-hook-form';
 
-import { RequiredBadge } from '@/components/elements/utils';
 import { useBreakPoint } from '@/hooks/useBreakPoint';
 import styles from '@/styles/components/forms/primaryInput.module.scss';
 
-import { FixedImage } from '../elements/images';
+import { FixedImage, Icons } from '../elements/images';
 
 type Props = {
   type: HTMLInputTypeAttribute;
@@ -52,13 +51,7 @@ const PrimaryInput: FC<Props> = (props) => {
         <FixedImage src={src} alt={alt} className={`${styles.input__icon} ${iconSizeClassName}`} />
       )}
       {required === 'required' && (
-        <div className={styles.input__status}>
-          {errorMesseage ? (
-            <FixedImage src="/icon/error-icon.svg" className={styles.input__status_error} alt="error" />
-          ) : (
-            <RequiredBadge />
-          )}
-        </div>
+        <div className={styles.input__status}>{errorMesseage ? <Icons.ErrorIcon /> : <Icons.RequiredBadge />}</div>
       )}
 
       <input
