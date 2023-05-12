@@ -1,3 +1,4 @@
+import cx from 'classnames';
 import { FC } from 'react';
 
 import { FixedImage } from '@/components/elements/images';
@@ -5,46 +6,74 @@ import styles from '@/styles/components/elements/images/icons.module.scss';
 
 import { RequiredBadge } from '../utils';
 
-interface IconsProps {
-  TrashCanIcon: FC;
-  PencilSquareIcon: FC;
-  PencilIcon: FC;
-  EmailIcon: FC;
-  PersonIcon: FC;
-  MobileIcon: FC;
-  CurrentPositonIcon: FC;
-  AddressIcon: FC;
-  LockIcon: FC;
-  NoteIcon: FC;
-  ErrorIcon: FC;
+type Position = {
+  position?: string;
+};
+
+type IconsProps = {
+  TrashCanIcon: FC<Position>;
+  PencilSquareIcon: FC<Position>;
+  PencilIcon: FC<Position>;
+  EmailIcon: FC<Position>;
+  PersonIcon: FC<Position>;
+  MobileIcon: FC<Position>;
+  CurrentPositonIcon: FC<Position>;
+  AddressIcon: FC<Position>;
+  LockIcon: FC<Position>;
+  NoteIcon: FC<Position>;
+  ErrorIcon: FC<Position>;
   RequiredBadge: FC;
-  TwitterIcon: FC;
-  InstagramIcon: FC;
-  FaceBookIcon: FC;
-}
+  TwitterIcon: FC<Position>;
+  InstagramIcon: FC<Position>;
+  FaceBookIcon: FC<Position>;
+};
 const Icons: IconsProps = {
-  TrashCanIcon: () => <FixedImage src="/icon/material-delete.svg" alt="delete-icon" className={styles.icons__trash} />,
-  PencilSquareIcon: () => (
-    <FixedImage src="/icon/edit-icon.svg" alt="edit-icon" className={styles.icons__pencilSquare} />
+  TrashCanIcon: ({ position }) => (
+    <FixedImage src="/icon/material-delete.svg" alt="delete-icon" className={cx(position, styles.icons__trash)} />
   ),
-  PencilIcon: () => <FixedImage src="/icon/pencil-icon.svg" alt="edit-icon" className={styles.icons__pencil} />,
-  EmailIcon: () => <FixedImage src="/icon/email-icon.svg" alt="email-icon" className={styles.icons__email} />,
-  PersonIcon: () => <FixedImage src="/icon/user-icon.svg" alt="user-icon" className={styles.icons__email} />,
-  MobileIcon: () => <FixedImage src="/icon/mobile-icon.svg" alt="mobile-icon" className={styles.icons__phone} />,
-  AddressIcon: () => <FixedImage src="/icon/address-icon.svg" alt="address-icon" className={styles.icons__phone} />,
-  CurrentPositonIcon: () => (
-    <FixedImage src="/icon/zip-code-icon.svg" alt="zip-code-icon" className={styles.icons__currentPosition} />
+  PencilSquareIcon: ({ position }) => (
+    <FixedImage src="/icon/edit-icon.svg" alt="edit-icon" className={cx(position, styles.icons__pencilSquare)} />
   ),
-  LockIcon: () => <FixedImage src="/icon/password-icon.svg" alt="password-icon" className={styles.icons__password} />,
-  NoteIcon: () => <FixedImage src="/icon/hobby-icon.svg" alt="hobby-icon" className={styles.icons__note} />,
-  ErrorIcon: () => <FixedImage src="/icon/error-icon.svg" alt="error" className={styles.icons__error} />,
+  PencilIcon: ({ position }) => (
+    <FixedImage src="/icon/pencil-icon.svg" alt="edit-icon" className={cx(position, styles.icons__pencil)} />
+  ),
+  EmailIcon: ({ position }) => (
+    <FixedImage src="/icon/email-icon.svg" alt="email-icon" className={cx(position, styles.icons__email)} />
+  ),
+  PersonIcon: ({ position }) => (
+    <FixedImage src="/icon/user-icon.svg" alt="user-icon" className={cx(position, styles.icons__user)} />
+  ),
+  MobileIcon: ({ position }) => (
+    <FixedImage src="/icon/mobile-icon.svg" alt="mobile-icon" className={cx(position, styles.icons__phone)} />
+  ),
+  AddressIcon: ({ position }) => (
+    <FixedImage src="/icon/address-icon.svg" alt="address-icon" className={cx(position, styles.icons__phone)} />
+  ),
+  CurrentPositonIcon: ({ position }) => (
+    <FixedImage
+      src="/icon/zip-code-icon.svg"
+      alt="zip-code-icon"
+      className={cx(position, styles.icons__currentPosition)}
+    />
+  ),
+  LockIcon: ({ position }) => (
+    <FixedImage src="/icon/password-icon.svg" alt="password-icon" className={cx(position, styles.icons__password)} />
+  ),
+  NoteIcon: ({ position }) => (
+    <FixedImage src="/icon/hobby-icon.svg" alt="hobby-icon" className={cx(position, styles.icons__note)} />
+  ),
+  ErrorIcon: ({ position }) => (
+    <FixedImage src="/icon/error-icon.svg" alt="error" className={cx(position, styles.icons__error)} />
+  ),
   RequiredBadge: () => <RequiredBadge />,
-  TwitterIcon: () => <FixedImage src="/icon/twitter-icon.svg" alt="twitter-icon" className={styles.icons__twitter} />,
-  InstagramIcon: () => (
-    <FixedImage src="/icon/instagram-icon.svg" alt="instagram-icon" className={styles.icons__instagram} />
+  TwitterIcon: ({ position }) => (
+    <FixedImage src="/icon/twitter-icon.svg" alt="twitter-icon" className={cx(position, styles.icons__twitter)} />
   ),
-  FaceBookIcon: () => (
-    <FixedImage src="/icon/facebook-icon.svg" alt="facebook-icon" className={styles.icons__facebook} />
+  InstagramIcon: ({ position }) => (
+    <FixedImage src="/icon/instagram-icon.svg" alt="instagram-icon" className={cx(position, styles.icons__instagram)} />
+  ),
+  FaceBookIcon: ({ position }) => (
+    <FixedImage src="/icon/facebook-icon.svg" alt="facebook-icon" className={cx(position, styles.icons__facebook)} />
   ),
 };
 
