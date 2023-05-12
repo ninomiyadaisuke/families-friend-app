@@ -10,6 +10,7 @@ interface IconsProps {
   EmailIcon: FC;
   PersonIcon: FC;
   MobileIcon: FC;
+  CurrentPositonIcon: FC;
 }
 
 const Icons: IconsProps = {
@@ -21,6 +22,9 @@ const Icons: IconsProps = {
   EmailIcon: () => <FixedImage src="/icon/email-icon.svg" alt="email-icon" className={styles.icons__email} />,
   PersonIcon: () => <FixedImage src="/icon/user-icon.svg" alt="user-icon" className={styles.icons__email} />,
   MobileIcon: () => <FixedImage src="/icon/mobile-icon.svg" alt="mobile-icon" className={styles.icons__phone} />,
+  CurrentPositonIcon: () => (
+    <FixedImage src="/icon/zip-code-icon.svg" alt="zip-code-icon" className={styles.icons__currentPosition} />
+  ),
 };
 
 export default Icons;

@@ -24,6 +24,10 @@
     width: 21.21px;
     height: 30.85px;
   }
+  &__currentPosition {
+    width: 21.6px;
+    height: 36px;
+  }
   @include mq('md') {
     &__pencilSquare {
       width: 17.5px;
