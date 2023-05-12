@@ -65,8 +65,6 @@ const PersonalInfo = (props: Props) => {
               placeholder={field.placeholder}
               required={required}
               iconType="user"
-              src="/icon/user-icon.svg"
-              alt="user-icon"
               errorMesseage={getErrorMessage(formState.errors, field.name, index)}
             />
           ))}
@@ -80,8 +78,6 @@ const PersonalInfo = (props: Props) => {
               placeholder={field.placeholder}
               required={required}
               iconType="user"
-              src="/icon/user-icon.svg"
-              alt="user-icon"
               errorMesseage={getErrorMessage(formState.errors, 'last_name_kana', index)}
             />
           ))}
@@ -94,8 +90,6 @@ const PersonalInfo = (props: Props) => {
             type={field.type}
             placeholder={field.placeholder}
             iconType={field.iconType}
-            src={field.src}
-            alt={field.alt}
             errorMesseage={getErrorMessage(formState.errors, field.name, index)}
           />
         ))}

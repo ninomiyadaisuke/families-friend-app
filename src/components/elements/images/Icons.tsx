@@ -47,7 +47,7 @@ const Icons: IconsProps = {
     <FixedImage src="/icon/mobile-icon.svg" alt="mobile-icon" className={cx(position, styles.icons__phone)} />
   ),
   AddressIcon: ({ position }) => (
-    <FixedImage src="/icon/address-icon.svg" alt="address-icon" className={cx(position, styles.icons__phone)} />
+    <FixedImage src="/icon/address-icon.svg" alt="address-icon" className={cx(position, styles.icons__address)} />
   ),
   CurrentPositonIcon: ({ position }) => (
     <FixedImage

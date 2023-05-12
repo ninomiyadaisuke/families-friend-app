@@ -1,4 +1,5 @@
 export type Styles = {
+  icons__address: string;
   icons__currentPosition: string;
   icons__email: string;
   icons__error: string;

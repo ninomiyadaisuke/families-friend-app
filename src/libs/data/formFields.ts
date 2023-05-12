@@ -11,8 +11,6 @@ type FormOtherField<T extends FieldValues> = {
   type: HTMLInputTypeAttribute;
   placeholder: string;
   iconType: string;
-  src: string;
-  alt: string;
 };
 
 type FormAdressField<T extends FieldValues> = Omit<FormOtherField<T>, 'type'>;
@@ -34,24 +32,18 @@ export const otherFields = <T extends FieldValues>() =>
       name: 'email',
       placeholder: 'メールアドレス',
       iconType: 'email',
-      src: '/icon/email-icon.svg',
-      alt: 'email-icon',
     },
     {
       type: 'text',
       name: 'phone_number',
       placeholder: '電話番号',
       iconType: 'phone',
-      src: '/icon/mobile-icon.svg',
-      alt: 'mobile-icon',
     },
     {
       type: 'text',
       name: 'hobby',
       placeholder: '趣味',
       iconType: 'hobby',
-      src: '/icon/hobby-icon.svg',
-      alt: 'hobby-icon',
     },
   ] as const satisfies readonly FormOtherField<T>[];
 
@@ -61,22 +53,16 @@ export const addressFields = <T extends FieldValues>() =>
       name: 'zip_code',
       placeholder: '郵便番号',
       iconType: 'zipCode',
-      src: '/icon/zip-code-icon.svg',
-      alt: 'zip-code-icon',
     },
     {
       name: 'address',
       placeholder: '住所',
       iconType: 'address',
-      src: '/icon/address-icon.svg',
-      alt: 'zip-code-icon',
     },
     {
       name: 'building',
       placeholder: '建物',
       iconType: 'hobby',
-      src: '/icon/address-icon.svg',
-      alt: 'zip-code-icon',
     },
   ] as const satisfies readonly FormAdressField<T>[];
 

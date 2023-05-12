@@ -43,8 +43,6 @@ const RegisterForm: FC = () => {
               type="email"
               placeholder="メールアドレス"
               iconType="email"
-              src="/icon/email-icon.svg"
-              alt="メールアイコン"
               errorMesseage={formState.errors.email?.message}
               registration={register('email')}
               required="required"
@@ -53,20 +51,15 @@ const RegisterForm: FC = () => {
               type="text"
               placeholder="メールアドレス確認"
               iconType="email"
-              src="/icon/email-icon.svg"
-              alt="メールアイコン"
               errorMesseage={formState.errors.confirm_email?.message}
               registration={register('confirm_email')}
               required="required"
             />
-
             <div className={styles.forms__pass}>
               <PrimaryInput
                 type="password"
                 placeholder="パスワード"
                 iconType="password"
-                src="/icon/password-icon.svg"
-                alt="password-icon"
                 errorMesseage={formState.errors.password?.message}
                 registration={register('password')}
                 required="required"
@@ -75,21 +68,16 @@ const RegisterForm: FC = () => {
                 type="password"
                 placeholder="パスワード確認"
                 iconType="password"
-                src="/icon/password-icon.svg"
-                alt="password-icon"
                 errorMesseage={formState.errors.confirm_password?.message}
                 registration={register('confirm_password')}
                 required="required"
               />
             </div>
-
             <div className={styles.forms__name}>
               <PrimaryInput
                 type="text"
                 placeholder="姓"
                 iconType="user"
-                src="/icon/user-icon.svg"
-                alt="user-icon"
                 errorMesseage={formState.errors.last_name?.message}
                 registration={register('last_name')}
               />
@@ -98,8 +86,6 @@ const RegisterForm: FC = () => {
                 placeholder="名"
                 iconType="user"
                 responsiveImageNone="none"
-                src="/icon/user-icon.svg"
-                alt="user-icon"
                 errorMesseage={formState.errors.first_name?.message}
                 registration={register('first_name')}
               />
@@ -109,8 +95,6 @@ const RegisterForm: FC = () => {
                 type="text"
                 placeholder="セイ"
                 iconType="user"
-                src="/icon/user-icon.svg"
-                alt="user-icon"
                 errorMesseage={formState.errors.last_name_kana?.message}
                 registration={register('last_name_kana')}
               />
@@ -119,8 +103,6 @@ const RegisterForm: FC = () => {
                 placeholder="メイ"
                 iconType="user"
                 responsiveImageNone="none"
-                src="/icon/user-icon.svg"
-                alt="user-icon"
                 errorMesseage={formState.errors.first_name_kana?.message}
                 registration={register('first_name_kana')}
               />
