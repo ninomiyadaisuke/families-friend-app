@@ -2,7 +2,9 @@ export type Styles = {
   icons__email: string;
   icons__pencil: string;
   icons__pencilSquare: string;
+  icons__phone: string;
   icons__trash: string;
+  icons__user: string;
 };
 
 export type ClassNames = keyof Styles;

@@ -16,6 +16,14 @@
     width: 29.65px;
     height: 22.46px;
   }
+  &__user {
+    width: 30px;
+    height: 30px;
+  }
+  &__phone {
+    width: 21.21px;
+    height: 30.85px;
+  }
   @include mq('md') {
     &__pencilSquare {
       width: 17.5px;

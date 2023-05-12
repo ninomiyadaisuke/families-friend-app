@@ -8,6 +8,8 @@ interface IconsProps {
   PencilSquareIcon: FC;
   PencilIcon: FC;
   EmailIcon: FC;
+  PersonIcon: FC;
+  MobileIcon: FC;
 }
 
 const Icons: IconsProps = {
@@ -17,6 +19,8 @@ const Icons: IconsProps = {
   ),
   PencilIcon: () => <FixedImage src="/icon/pencil-icon.svg" alt="edit-icon" className={styles.icons__pencil} />,
   EmailIcon: () => <FixedImage src="/icon/email-icon.svg" alt="email-icon" className={styles.icons__email} />,
+  PersonIcon: () => <FixedImage src="/icon/user-icon.svg" alt="user-icon" className={styles.icons__email} />,
+  MobileIcon: () => <FixedImage src="/icon/mobile-icon.svg" alt="mobile-icon" className={styles.icons__phone} />,
 };
 
 export default Icons;
