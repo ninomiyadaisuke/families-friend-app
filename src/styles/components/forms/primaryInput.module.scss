@@ -5,37 +5,6 @@
     position: absolute;
     top: 15px;
     left: 0;
-    &_none {
-      text-indent: 0px !important;
-    }
-    &_email {
-      width: 29.65px;
-      height: 22.46px;
-    }
-    &_password {
-      width: 22.29px;
-      height: 29.17px;
-    }
-    &_user {
-      width: 30px;
-      height: 30px;
-    }
-    &_address {
-      width: 35px;
-      height: 27px;
-    }
-    &_hobby {
-      width: 29px;
-      height: 29px;
-    }
-    &_zipCode {
-      width: 21.6px;
-      height: 36px;
-    }
-    &_phone {
-      width: 21.21px;
-      height: 30.85px;
-    }
   }
   input,
   &__icon_none {
@@ -66,10 +35,6 @@
     position: absolute;
     top: 15px;
     right: 0;
-    &_error {
-      width: 20px;
-      height: 20px;
-    }
   }
   @include mq('md') {
     input {

@@ -25,18 +25,6 @@
     justify-content: space-between;
     width: 174px;
     height: auto;
-    &_facebook {
-      width: 14px;
-      height: 27px;
-    }
-    &_twitter {
-      width: 30px;
-      height: 24px;
-    }
-    &_instagram {
-      width: 26px;
-      height: 26px;
-    }
   }
 
   &__logoArea {
@@ -63,18 +51,6 @@
       left: 50%;
       width: 26%;
       transform: translate(-50%, -50%);
-      &_facebook {
-        width: 19px;
-        height: 36px;
-      }
-      &_twitter {
-        width: 40px;
-        height: 32px;
-      }
-      &_instagram {
-        width: 35px;
-        height: 35px;
-      }
     }
     &__logoArea {
       small {

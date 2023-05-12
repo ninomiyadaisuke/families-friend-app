@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { FC } from 'react';
 
 import { PrimaryButton } from '@/components/elements/buttons';
-import { FixedImage, ResponsiveImage } from '@/components/elements/images';
+import { Icons, ResponsiveImage } from '@/components/elements/images';
 import styles from '@/styles/components/elements/cards/profileCard.module.scss';
 
 type Props = {
@@ -37,7 +37,8 @@ const ProfileCard: FC<Props> = (props) => {
           <label>
             {relationship}
             <Link href={link} scroll={false}>
-              <FixedImage src="/icon/edit-icon.svg" alt="edit-icon" className={styles.card__icon_edit} />
+              <Icons.PencilSquareIcon />
+              {/* <FixedImage src="/icon/edit-icon.svg" alt="edit-icon" className={styles.card__icon_edit} /> */}
             </Link>
           </label>
         </div>

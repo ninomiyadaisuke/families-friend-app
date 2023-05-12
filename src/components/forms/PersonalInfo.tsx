@@ -1,6 +1,6 @@
 import { Control, FieldPath, FieldValues, FormState, UseFieldArrayRemove, UseFormRegister } from 'react-hook-form';
 
-import { FixedImage } from '@/components/elements/images';
+import Icons from '@/components/elements/images/Icons';
 import { ImageUploader, PrimaryInput, PrimarySelect, UnderlineDateSelect } from '@/components/forms';
 import { LabelLayout } from '@/components/layouts';
 import { EditProfile } from '@/features/profile/schema';
@@ -52,7 +52,7 @@ const PersonalInfo = (props: Props) => {
           <h3>{title}</h3>
           {isIcon && remove && (
             <div onClick={() => handleDelete()}>
-              <FixedImage src="/icon/material-delete.svg" alt="delete-icon" className={styles.forms__icon} />
+              <Icons.TrashCanIcon />
             </div>
           )}
         </div>
@@ -65,8 +65,6 @@ const PersonalInfo = (props: Props) => {
               placeholder={field.placeholder}
               required={required}
               iconType="user"
-              src="/icon/user-icon.svg"
-              alt="user-icon"
               errorMesseage={getErrorMessage(formState.errors, field.name, index)}
             />
           ))}
@@ -80,8 +78,6 @@ const PersonalInfo = (props: Props) => {
               placeholder={field.placeholder}
               required={required}
               iconType="user"
-              src="/icon/user-icon.svg"
-              alt="user-icon"
               errorMesseage={getErrorMessage(formState.errors, 'last_name_kana', index)}
             />
           ))}
@@ -94,8 +90,6 @@ const PersonalInfo = (props: Props) => {
             type={field.type}
             placeholder={field.placeholder}
             iconType={field.iconType}
-            src={field.src}
-            alt={field.alt}
             errorMesseage={getErrorMessage(formState.errors, field.name, index)}
           />
         ))}

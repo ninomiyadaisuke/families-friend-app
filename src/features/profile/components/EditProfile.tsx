@@ -47,8 +47,6 @@ const EditProfile: FC = () => {
                 type="text"
                 registration={register(field.name)}
                 iconType={field.iconType}
-                src={field.src}
-                alt={field.alt}
                 placeholder={field.placeholder}
                 errorMesseage={getErrorMessage(formState.errors, field.name)}
               />
