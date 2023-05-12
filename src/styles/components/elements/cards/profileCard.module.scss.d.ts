@@ -4,8 +4,6 @@ export type Styles = {
   card__buttons_button: string;
   card__container: string;
   card__header: string;
-  card__icon_delete: string;
-  card__icon_edit: string;
   card__image: string;
   card__nameRelationship: string;
   card__profile: string;

@@ -1,4 +1,6 @@
 export type Styles = {
+  icons__pencil: string;
+  icons__pencilSquare: string;
   icons__trash: string;
 };
 

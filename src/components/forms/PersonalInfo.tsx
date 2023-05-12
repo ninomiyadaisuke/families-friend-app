@@ -1,6 +1,6 @@
 import { Control, FieldPath, FieldValues, FormState, UseFieldArrayRemove, UseFormRegister } from 'react-hook-form';
 
-import { TrashCanIcon } from '@/components/elements/images/Icons';
+import Icons from '@/components/elements/images/Icons';
 import { ImageUploader, PrimaryInput, PrimarySelect, UnderlineDateSelect } from '@/components/forms';
 import { LabelLayout } from '@/components/layouts';
 import { EditProfile } from '@/features/profile/schema';
@@ -52,7 +52,7 @@ const PersonalInfo = (props: Props) => {
           <h3>{title}</h3>
           {isIcon && remove && (
             <div onClick={() => handleDelete()}>
-              <TrashCanIcon />
+              <Icons.TrashCanIcon />
             </div>
           )}
         </div>

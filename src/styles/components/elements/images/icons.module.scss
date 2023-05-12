@@ -4,4 +4,18 @@
     height: 27px;
     cursor: pointer;
   }
+  &__pencilSquare {
+    width: 14px;
+    height: 12px;
+  }
+  &__pencil {
+    width: 25.68px;
+    height: 25.68px;
+  }
+  @include mq('md') {
+    &__pencilSquare {
+      width: 17.5px;
+      height: 15px;
+    }
+  }
 }
