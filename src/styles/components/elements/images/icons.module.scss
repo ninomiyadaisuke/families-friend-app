@@ -12,6 +12,10 @@
     width: 25.68px;
     height: 25.68px;
   }
+  &__email {
+    width: 29.65px;
+    height: 22.46px;
+  }
   @include mq('md') {
     &__pencilSquare {
       width: 17.5px;
