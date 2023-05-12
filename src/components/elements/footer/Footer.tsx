@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { FC } from 'react';
 
-import { FixedImage } from '@/components/elements/images';
+import { FixedImage, Icons } from '@/components/elements/images';
 import styles from '@/styles/components/elements/footer/footer.module.scss';
 
 const Footer: FC = () => {
@@ -22,21 +22,17 @@ const Footer: FC = () => {
         <ul className={styles.footer__icons}>
           <li>
             <Link href={'/'}>
-              <FixedImage src="/icon/facebook-icon.svg" alt="facebook-icon" className={styles.footer__icons_facebook} />
+              <Icons.FaceBookIcon />
             </Link>
           </li>
           <li>
             <Link href={'/'}>
-              <FixedImage src="/icon/twitter-icon.svg" alt="twitter-icon" className={styles.footer__icons_twitter} />
+              <Icons.TwitterIcon />
             </Link>
           </li>
           <li>
             <Link href={'/'}>
-              <FixedImage
-                src="/icon/instagram-icon.svg"
-                alt="instagram-icon"
-                className={styles.footer__icons_instagram}
-              />
+              <Icons.InstagramIcon />
             </Link>
           </li>
         </ul>

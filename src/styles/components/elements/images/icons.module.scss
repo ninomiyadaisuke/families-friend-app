@@ -40,10 +40,34 @@
     width: 20px;
     height: 20px;
   }
+  &__twitter {
+    width: 30px;
+    height: 24px;
+  }
+  &__instagram {
+    width: 26px;
+    height: 26px;
+  }
+  &__facebook {
+    width: 14px;
+    height: 27px;
+  }
   @include mq('md') {
     &__pencilSquare {
       width: 17.5px;
       height: 15px;
+    }
+    &__twitter {
+      width: 40px;
+      height: 32px;
+    }
+    &__instagram {
+      width: 35px;
+      height: 35px;
+    }
+    &__facebook {
+      width: 19px;
+      height: 36px;
     }
   }
 }

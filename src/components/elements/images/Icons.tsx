@@ -18,8 +18,10 @@ interface IconsProps {
   NoteIcon: FC;
   ErrorIcon: FC;
   RequiredBadge: FC;
+  TwitterIcon: FC;
+  InstagramIcon: FC;
+  FaceBookIcon: FC;
 }
-
 const Icons: IconsProps = {
   TrashCanIcon: () => <FixedImage src="/icon/material-delete.svg" alt="delete-icon" className={styles.icons__trash} />,
   PencilSquareIcon: () => (
@@ -37,6 +39,13 @@ const Icons: IconsProps = {
   NoteIcon: () => <FixedImage src="/icon/hobby-icon.svg" alt="hobby-icon" className={styles.icons__note} />,
   ErrorIcon: () => <FixedImage src="/icon/error-icon.svg" alt="error" className={styles.icons__error} />,
   RequiredBadge: () => <RequiredBadge />,
+  TwitterIcon: () => <FixedImage src="/icon/twitter-icon.svg" alt="twitter-icon" className={styles.icons__twitter} />,
+  InstagramIcon: () => (
+    <FixedImage src="/icon/instagram-icon.svg" alt="instagram-icon" className={styles.icons__instagram} />
+  ),
+  FaceBookIcon: () => (
+    <FixedImage src="/icon/facebook-icon.svg" alt="facebook-icon" className={styles.icons__facebook} />
+  ),
 };
 
 export default Icons;
