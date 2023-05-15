@@ -1,4 +1,5 @@
 export type Styles = {
+  images__circle: string;
   images__circleFamilyHead: string;
   images__circleUser: string;
   images__rectangle: string;

@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import styles from '@/styles/components/elements/images/profileImages.module.scss';
 
-import { FixedImage, ResponsiveImage } from '.';
+import { FixedImage } from '.';
 
 type ImageProps = {
   image?: string;
@@ -19,8 +19,20 @@ type ProfileImagesProps = {
 };
 
 const ProfileImages: ProfileImagesProps = {
-  CircleImagePrimary: ({ image }) => <div></div>,
-  CircleImageSecondary: ({ image }) => <div></div>,
+  CircleImagePrimary: ({ image }) => (
+    <FixedImage
+      src={image || '/icon/default-image-profile-lg-circle.svg'}
+      alt="profile-icon"
+      className={styles.images__circle}
+    />
+  ),
+  CircleImageSecondary: ({ image }) => (
+    <FixedImage
+      src={image || '/icon/circle-profile-secondary.svg'}
+      alt="profile-icon"
+      className={styles.images__circle}
+    />
+  ),
   CircleFamilyHeadImage: ({ image }) => (
     <FixedImage
       src={image || '/icon/default-image-profile-lg-circle.svg'}
@@ -29,7 +41,11 @@ const ProfileImages: ProfileImagesProps = {
     />
   ),
   CircleUserImage: ({ image }) => (
-    <FixedImage src={image as string} alt="avatar-icon" className={styles.images__circleUser} />
+    <FixedImage
+      src={image || '/icon/default-image-profile-lg-circle.svg'}
+      alt="avatar-icon"
+      className={styles.images__circleUser}
+    />
   ),
   RectangleImage: ({ image }) => (
     <FixedImage
