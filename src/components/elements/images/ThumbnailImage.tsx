@@ -3,7 +3,6 @@ import { Dispatch, FC } from 'react';
 
 import styles from '@/styles/components/elements/images/thumbnailImage.module.scss';
 
-import FixedImage from './FixedImage';
 import ProfileImages from './ProfileImages';
 
 type Props = {
