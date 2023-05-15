@@ -1,0 +1,12 @@
+.images {
+  &__squarePrimary {
+    width: 60px;
+    height: 60px;
+  }
+  @include mq('md'){
+    &__squarePrimary {
+      width: 146px;
+      height: 146px;
+    }
+  }
+}

@@ -1,25 +1,37 @@
 import { FC } from 'react';
 
-import { FixedImage } from '.';
+import styles from '@/styles/components/elements/images/profileImages.module.scss';
+
+import { FixedImage, ResponsiveImage } from '.';
+
+type ImageProps = {
+  image?: string;
+};
 
 type ProfileImagesProps = {
-  SquareImagePrimary: FC;
-  SquareImageSecondary: FC;
-  RectangleImage: FC;
-  CircleImagePrimary: FC;
-  CircleImageSecondary: FC;
-  CircleUserImage: FC;
-  CircleFamilyHeadImage: FC;
+  SquareImagePrimary: FC<ImageProps>;
+  SquareImageSecondary: FC<ImageProps>;
+  RectangleImage: FC<ImageProps>;
+  CircleImagePrimary: FC<ImageProps>;
+  CircleImageSecondary: FC<ImageProps>;
+  CircleUserImage: FC<ImageProps>;
+  CircleFamilyHeadImage: FC<ImageProps>;
 };
 
 const ProfileImages: ProfileImagesProps = {
-  CircleImagePrimary: () => <div></div>,
-  CircleImageSecondary: () => <div></div>,
-  CircleFamilyHeadImage: () => <div></div>,
-  CircleUserImage: () => <div></div>,
-  RectangleImage: () => <div></div>,
-  SquareImagePrimary: () => <div></div>,
-  SquareImageSecondary: () => <div></div>,
+  CircleImagePrimary: ({ image }) => <div></div>,
+  CircleImageSecondary: ({ image }) => <div></div>,
+  CircleFamilyHeadImage: ({ image }) => <div></div>,
+  CircleUserImage: ({ image }) => <div></div>,
+  RectangleImage: ({ image }) => <div></div>,
+  SquareImagePrimary: ({ image }) => (
+    <FixedImage
+      src={image || '/icon/default-image-profile-lg.svg'}
+      alt="profile-image"
+      className={styles.images__squarePrimary}
+    />
+  ),
+  SquareImageSecondary: ({ image }) => <div></div>,
 };
 
 export default ProfileImages;
