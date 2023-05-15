@@ -1,6 +1,7 @@
 export type Styles = {
   images__circleFamilyHead: string;
   images__circleUser: string;
+  images__rectangle: string;
   images__squarePrimary: string;
 };
 

@@ -31,7 +31,13 @@ const ProfileImages: ProfileImagesProps = {
   CircleUserImage: ({ image }) => (
     <FixedImage src={image as string} alt="avatar-icon" className={styles.images__circleUser} />
   ),
-  RectangleImage: ({ image }) => <div></div>,
+  RectangleImage: ({ image }) => (
+    <FixedImage
+      src={image || '/icon/default-image-profile.svg'}
+      alt="profile-icon"
+      className={styles.images__rectangle}
+    />
+  ),
   SquareImagePrimary: ({ image }) => (
     <FixedImage
       src={image || '/icon/default-image-profile-lg.svg'}
