@@ -36,6 +36,10 @@
     width: 60px;
     height: 60px;
   }
+  &__thumbnail {
+    width: 60px;
+    height: 80px;
+  }
   @include mq('md') {
     &__circle {
       width: 70px;

@@ -16,6 +16,7 @@ type ProfileImagesProps = {
   CircleImageSecondary: FC<ImageProps>;
   CircleUserImage: FC<ImageProps>;
   CircleFamilyHeadImage: FC<ImageProps>;
+  ThumbnailImage: FC<ImageProps>;
 };
 
 const ProfileImages: ProfileImagesProps = {
@@ -62,6 +63,9 @@ const ProfileImages: ProfileImagesProps = {
     />
   ),
   SquareImageSecondary: ({ image }) => <div></div>, //後で実装
+  ThumbnailImage: ({ image }) => (
+    <FixedImage src={image as string} alt="thumbnail-image" className={styles.images__thumbnail} />
+  ),
 };
 
 export default ProfileImages;

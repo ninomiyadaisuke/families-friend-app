@@ -4,6 +4,7 @@ export type Styles = {
   images__circleUser: string;
   images__rectangle: string;
   images__squarePrimary: string;
+  images__thumbnail: string;
 };
 
 export type ClassNames = keyof Styles;
