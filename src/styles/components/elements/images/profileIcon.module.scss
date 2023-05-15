@@ -1,36 +1,12 @@
 .icon {
   position: relative;
-  width: 48px;
-  height: 48px;
   cursor: pointer;
-  &__image_default,
-  &__image {
-    width: 100%;
-    height: 100%;
-    &::after {
-      position: absolute;
-      right: -5px;
-      bottom: -8px;
-      content: '';
-      border-style: solid;
-      border-top: 8px solid $main;
-      border-right: 5px solid transparent;
-      border-bottom: 0;
-      border-left: 5px solid transparent;
-    }
-  }
-  &__image {
-    overflow: hidden;
-    border-radius: 50%;
-  }
   &__dropdawn {
     position: absolute;
     top: 60px;
     left: -100px;
   }
   @include mq('md') {
-    width: 52px;
-    height: 52px;
     &__dropdawn {
       top: 68px;
       left: -110px;

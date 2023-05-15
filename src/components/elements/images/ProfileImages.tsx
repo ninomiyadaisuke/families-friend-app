@@ -21,8 +21,16 @@ type ProfileImagesProps = {
 const ProfileImages: ProfileImagesProps = {
   CircleImagePrimary: ({ image }) => <div></div>,
   CircleImageSecondary: ({ image }) => <div></div>,
-  CircleFamilyHeadImage: ({ image }) => <div></div>,
-  CircleUserImage: ({ image }) => <div></div>,
+  CircleFamilyHeadImage: ({ image }) => (
+    <FixedImage
+      src={image || '/icon/default-image-profile-lg-circle.svg'}
+      alt="avatar-icon"
+      className={styles.images__circleFamilyHead}
+    />
+  ),
+  CircleUserImage: ({ image }) => (
+    <FixedImage src={image as string} alt="avatar-icon" className={styles.images__circleUser} />
+  ),
   RectangleImage: ({ image }) => <div></div>,
   SquareImagePrimary: ({ image }) => (
     <FixedImage
@@ -31,7 +39,7 @@ const ProfileImages: ProfileImagesProps = {
       className={styles.images__squarePrimary}
     />
   ),
-  SquareImageSecondary: ({ image }) => <div></div>,
+  SquareImageSecondary: ({ image }) => <div></div>, //後で実装
 };
 
 export default ProfileImages;

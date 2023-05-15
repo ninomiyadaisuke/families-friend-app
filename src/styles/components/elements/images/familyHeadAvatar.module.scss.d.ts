@@ -1,6 +1,5 @@
 export type Styles = {
   avatar: string;
-  avatar__image: string;
 };
 
 export type ClassNames = keyof Styles;
