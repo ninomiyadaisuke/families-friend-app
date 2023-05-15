@@ -3,10 +3,10 @@ import { FC, useState } from 'react';
 import styles from '@/styles/components/elements/images/profileIcon.module.scss';
 
 import { DropDawnLinks } from '../links';
-import { FixedImage, ProfileImages } from './';
+import { ProfileImages } from './';
 
 type Props = {
-  image: string;
+  image?: string;
 };
 
 const links = [

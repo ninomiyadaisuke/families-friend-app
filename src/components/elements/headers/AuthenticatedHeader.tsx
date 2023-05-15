@@ -74,7 +74,7 @@ const AuthenticatedHeader: FC = () => {
             </div>
           )}
           <div className={styles.header__container_profile}>
-            {isLoading ? <Spinner color="red" /> : <ProfileIcon image={data || '/icon/profile-icon.svg'} />}
+            {isLoading ? <Spinner color="red" /> : <ProfileIcon image={data} />}
           </div>
         </nav>
       </header>
