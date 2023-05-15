@@ -3,10 +3,10 @@ import { FC, useState } from 'react';
 import styles from '@/styles/components/elements/images/profileIcon.module.scss';
 
 import { DropDawnLinks } from '../links';
-import { FixedImage } from './';
+import { ProfileImages } from './';
 
 type Props = {
-  image: string;
+  image?: string;
 };
 
 const links = [
@@ -20,7 +20,7 @@ const ProfileIcon: FC<Props> = (props) => {
 
   return (
     <div className={styles.icon} onClick={() => setIsOpen((prev) => !prev)}>
-      <FixedImage className={styles.icon__image} src={image} alt="profile-icon" />
+      <ProfileImages.CircleUserImage image={image} />
       {isOpen && (
         <div className={styles.icon__dropdawn}>
           <DropDawnLinks links={links} auth="ログアウト" />

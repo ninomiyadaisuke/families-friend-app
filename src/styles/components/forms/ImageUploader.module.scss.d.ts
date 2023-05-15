@@ -1,5 +1,4 @@
 export type Styles = {
-  profileImage: string;
   uploaderContainer: string;
   uploaderContainer__imageAndButton: string;
   uploaderContainer__imageAndButton_postion: string;

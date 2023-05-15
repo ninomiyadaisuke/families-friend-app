@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { FC } from 'react';
 
 import { PrimaryButton } from '@/components/elements/buttons';
-import { Icons, ResponsiveImage } from '@/components/elements/images';
+import { Icons, ProfileImages } from '@/components/elements/images';
 import styles from '@/styles/components/elements/cards/profileCard.module.scss';
 
 type Props = {
@@ -24,21 +24,14 @@ const ProfileCard: FC<Props> = (props) => {
     <div className={styles.card}>
       <div className={styles.card__header}>
         <div className={styles.card__image}>
-          <ResponsiveImage
-            src={image || '/icon/default-image-profile-lg.svg'}
-            width={146}
-            height={146}
-            alt="profile-image"
-          />
+          <ProfileImages.SquareImagePrimary image={image} />
         </div>
         <div className={styles.card__nameRelationship}>
           <p>{name}</p>
-
           <label>
             {relationship}
             <Link href={link} scroll={false}>
               <Icons.PencilSquareIcon />
-              {/* <FixedImage src="/icon/edit-icon.svg" alt="edit-icon" className={styles.card__icon_edit} /> */}
             </Link>
           </label>
         </div>

@@ -1,7 +1,7 @@
 import { FC, useEffect } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
-import { FixedImage, ThumbnailImage } from '@/components/elements/images';
+import { ProfileImages, ThumbnailImage } from '@/components/elements/images';
 import { ImaegLabel } from '@/components/elements/labels';
 import { useImageUpload } from '@/hooks/useImageUpload';
 import styles from '@/styles/components/forms/ImageUploader.module.scss';
@@ -33,7 +33,7 @@ const ImageUploader: FC<Props> = (props) => {
       </div>
       <div className={styles.uploaderContainer__imageAndButton}>
         <div className={styles.uploaderContainer__imageAndButton_postion}>
-          <FixedImage src={imageUrl || '/icon/default-image-profile.svg'} alt="image" className={styles.profileImage} />
+          <ProfileImages.RectangleImage image={imageUrl} />
         </div>
         <UploadButton registration={registration} fileChangedHandler={fileChangedHandler} />
       </div>

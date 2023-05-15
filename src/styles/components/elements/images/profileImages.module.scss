@@ -1,0 +1,61 @@
+.images {
+  &__circle,
+  &__circleUser,
+  &__circleFamilyHead {
+    overflow: hidden;
+    border-radius: 50%;
+  }
+  &__circle {
+    width: 55px;
+    height: 55px;
+  }
+  &__circleUser {
+    width: 48px;
+    height: 48px;
+    &::after {
+      position: absolute;
+      right: -5px;
+      bottom: -8px;
+      content: '';
+      border-style: solid;
+      border-top: 8px solid $main;
+      border-right: 5px solid transparent;
+      border-bottom: 0;
+      border-left: 5px solid transparent;
+    }
+  }
+  &__circleFamilyHead {
+    width: 120px;
+    height: 120px;
+  }
+  &__rectangle {
+    width: 120px;
+    height: 160px;
+  }
+  &__squarePrimary {
+    width: 60px;
+    height: 60px;
+  }
+  &__thumbnail {
+    width: 60px;
+    height: 80px;
+  }
+  @include mq('md') {
+    &__circle {
+      width: 70px;
+      height: 70px;
+    }
+    &__circleUser {
+      width: 52px;
+      height: 52px;
+    }
+    &__circleFamilyHead {
+      width: calc(120px + 160 * (100vw - 800px) / 1120);
+      height: calc(120px + 160 * (100vw - 800px) / 1120);
+    }
+    &__squarePrimary {
+      width: 146px;
+      height: 146px;
+    }
+  }
+}

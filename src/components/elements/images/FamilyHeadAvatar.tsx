@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { FixedImage } from '@/components/elements/images';
+import { FixedImage, ProfileImages } from '@/components/elements/images';
 import styles from '@/styles/components/elements/images/familyHeadAvatar.module.scss';
 
 type Props = {
@@ -12,17 +12,11 @@ type Props = {
 };
 
 const FamilyHeadAvatar: FC<Props> = (props) => {
-  const {
-    image = '/icon/default-image-profile-lg-circle.svg',
-    name = 'null',
-    zipCode = 'null',
-    address = 'null',
-    numberOfPeople = 'null',
-  } = props;
+  const { image, name = 'null', zipCode = 'null', address = 'null', numberOfPeople = 'null' } = props;
 
   return (
     <div className={styles.avatar}>
-      <FixedImage src={image} alt="avatar-icon" className={styles.avatar__image} />
+      <ProfileImages.CircleFamilyHeadImage image={image} />
       <h2>{`${name} 家`}</h2>
       <p>{`世帯人数：${numberOfPeople}人`}</p>
       <p>

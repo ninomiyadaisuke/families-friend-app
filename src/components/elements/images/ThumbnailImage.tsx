@@ -4,6 +4,7 @@ import { Dispatch, FC } from 'react';
 import styles from '@/styles/components/elements/images/thumbnailImage.module.scss';
 
 import FixedImage from './FixedImage';
+import ProfileImages from './ProfileImages';
 
 type Props = {
   setValue: (value: string | File) => void;
@@ -15,7 +16,7 @@ const ThumbnailImage: FC<Props> = (props) => {
   const { setValue, previewUrl, setImage } = props;
   return (
     <div className={styles.thumbnailContainer}>
-      <FixedImage src={previewUrl} alt="image" className={styles.thumbnailContainer__image} />
+      <ProfileImages.ThumbnailImage image={previewUrl} />
       <a
         className={styles.thumbnailContainer__link}
         onClick={() => {
