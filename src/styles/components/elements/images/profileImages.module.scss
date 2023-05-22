@@ -6,8 +6,8 @@
     border-radius: 50%;
   }
   &__circle {
-    width: 55px;
-    height: 55px;
+    width: 42px;
+    height: 42px;
   }
   &__circleUser {
     width: 48px;
@@ -42,8 +42,8 @@
   }
   @include mq('md') {
     &__circle {
-      width: 70px;
-      height: 70px;
+      width: 94px;
+      height: 94px;
     }
     &__circleUser {
       width: 52px;
