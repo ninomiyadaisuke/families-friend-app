@@ -23,9 +23,9 @@ const FamilyCardList: FC<Props> = (props) => {
   };
   return (
     <section className={styles.list}>
-      {familiesData.map((data) => (
-        <ul key={data.id}>
-          <li>
+      <ul>
+        {familiesData.map((data) => (
+          <li key={data.id}>
             <FamilyCard
               name={data.name}
               householdSize={data.householdSize}
@@ -36,8 +36,8 @@ const FamilyCardList: FC<Props> = (props) => {
               onClick={() => deleteClick(data.id)}
             />
           </li>
-        </ul>
-      ))}
+        ))}
+      </ul>
     </section>
   );
 };
