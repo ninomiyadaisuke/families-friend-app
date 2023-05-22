@@ -1,0 +1,28 @@
+.list {
+  width: 100%;
+  height: auto;
+  max-height: 460px;
+  overflow: scroll;
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  @include mq('md') {
+    height: auto;
+    max-height: 538px;
+    padding: 10px;
+    ul {
+      gap: 12px;
+      li:hover {
+        box-shadow: -5px 5px 8px $light-grey;
+        transform: translateY(-10px);
+      }
+    }
+  }
+}
+
+.list::-webkit-scrollbar {
+  display: none;
+}
+
