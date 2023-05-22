@@ -6,7 +6,6 @@ export type Styles = {
   card__text: string;
   card__texts: string;
   card__title: string;
-  container: string;
 };
 
 export type ClassNames = keyof Styles;

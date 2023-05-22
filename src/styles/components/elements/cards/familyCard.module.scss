@@ -57,11 +57,3 @@
   }
 }
 
-.container {
-  width: 100%;
-  @include mq('md') {
-    width: 50%;
-    min-width: 800px;
-    max-width: 947px;
-  }
-}
