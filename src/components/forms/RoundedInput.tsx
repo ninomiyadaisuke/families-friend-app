@@ -4,38 +4,24 @@ import { UseFormRegisterReturn } from 'react-hook-form';
 import { useBreakPoint } from '@/hooks/useBreakPoint';
 import styles from '@/styles/components/forms/roundedInput.module.scss';
 
-import { FixedImage } from '../elements/images';
+import { FixedImage, Icons } from '../elements/images';
 
 type Props = {
   type: HTMLInputTypeAttribute;
   registration?: UseFormRegisterReturn;
   iconType?: 'user';
-  src?: string;
-  alt?: string;
   placeholder: string;
   errorMesseage?: string;
-  responsiveImageNone?: 'none';
   id?: string;
   width?: string;
 };
 
 const RoundedInput: FC<Props> = (props) => {
-  const { type, src, alt, errorMesseage, placeholder, responsiveImageNone, iconType, registration, id, width } = props;
-  const { tablet } = useBreakPoint();
-  const checkImage = src && alt;
-  const iconNone = (tablet && responsiveImageNone === 'none') || !iconType;
+  const { type, errorMesseage, placeholder, iconType, registration, id, width } = props;
 
-  const iconSizeClassName = (() => {
-    switch (iconType) {
-      case 'user':
-        return `${styles.input__icon_user}`;
-    }
-  })();
   return (
     <div className={`${styles.input} ${width}`}>
-      {checkImage && !iconNone && (
-        <FixedImage src={src} alt={alt} className={`${styles.input__icon} ${iconSizeClassName}`} />
-      )}
+      {iconType && <Icons.PersonIcon position={styles.input__icon} />}
 
       {errorMesseage && (
         <>
@@ -49,7 +35,7 @@ const RoundedInput: FC<Props> = (props) => {
         autoComplete="on"
         type={type}
         placeholder={placeholder}
-        className={iconNone ? styles.input__icon_none : ''}
+        className={!iconType ? styles.input__icon_none : ''}
       />
     </div>
   );

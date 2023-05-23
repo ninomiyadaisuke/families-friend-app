@@ -1,8 +1,5 @@
 export type Styles = {
-  input: string;
-  input__icon: string;
-  input__icon_none: string;
-  input_error: string;
+  forms: string;
 };
 
 export type ClassNames = keyof Styles;
