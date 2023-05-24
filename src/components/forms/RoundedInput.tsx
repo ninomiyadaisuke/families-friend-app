@@ -1,7 +1,6 @@
 import { FC, HTMLInputTypeAttribute } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
-import { useBreakPoint } from '@/hooks/useBreakPoint';
 import styles from '@/styles/components/forms/roundedInput.module.scss';
 
 import { FixedImage, Icons } from '../elements/images';
